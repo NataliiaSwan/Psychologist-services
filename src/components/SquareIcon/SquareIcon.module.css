@@ -1,0 +1,26 @@
+.iconboxViolet {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 40px;
+  height: 40px;
+  background-color: #4535af;
+  transform: rotate(65deg);
+  position: absolute;
+  top: 370px;
+  left: 888px;
+  border-radius: 10px;
+}
+.iconboxYellow {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 59px;
+  height: 59px;
+  background-color: #fbc75e;
+  transform: rotate(15deg);
+  top: 212px;
+  right: 78px;
+  position: absolute;
+  border-radius: 10px;
+}

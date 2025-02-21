@@ -1,0 +1,107 @@
+.headerContainer {
+  display: flex;
+  justify-content: space-between;
+
+  padding: 24px 0;
+}
+
+.guestHeader {
+  background-color: white;
+}
+
+.authHeader {
+  border-bottom: 2px solid #f7fcfa;
+}
+
+.line {
+  border: 1px solid #191a151a;
+  margin-bottom: 78px;
+  width: calc(100% + 256px);
+  margin-left: -128px;
+}
+
+.headerBox {
+  display: flex;
+  gap: 130px;
+  align-items: center;
+}
+
+.navList {
+  display: flex;
+  list-style-type: none;
+  gap: 40px;
+  justify-content: center;
+  font-size: 16px;
+  font-weight: 400;
+  line-height: 1.3em;
+}
+
+.navList a {
+  color: #191a15;
+  text-decoration: none;
+}
+
+.buttonLogin {
+  padding: 14px 39px;
+  gap: 8px;
+  border: 1px solid #54be96;
+  border-radius: 30px;
+  font-size: 16px;
+  font-weight: 500;
+  color: #191a15;
+  cursor: pointer;
+}
+
+.buttonRegistrator {
+  padding: 14px 40px;
+  gap: 8px;
+  border-radius: 30px;
+  background: #54be96;
+  border: none;
+  color: white;
+}
+
+.userSection {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 28px;
+}
+
+.userBox {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.userIcon {
+  width: 40px;
+  height: 40px;
+  background: #54be96;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 10px;
+}
+
+.userName {
+  font-size: 16px;
+  font-weight: 600;
+}
+.userSection {
+  display: flex;
+  gap: 28px;
+}
+.logoutButton {
+  cursor: pointer;
+  padding: 14px 39px;
+  gap: 8px;
+  border-radius: 30px;
+  border: 1px solid #f4f6ef1a;
+  background-color: #fbfbfb;
+
+  font-size: 16px;
+  font-weight: 500;
+  line-height: 1.2em;
+  color: #191a15;
+}
