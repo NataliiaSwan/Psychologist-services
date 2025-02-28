@@ -1,0 +1,6 @@
+.psychologistListContainer {
+  padding: 170px 128px 100px;
+  display: flex;
+  flex-direction: column;
+  gap: 32px;
+}

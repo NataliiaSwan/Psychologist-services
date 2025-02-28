@@ -1,0 +1,22 @@
+.navItem {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.activeLink {
+  font-weight: bold;
+  color: #54be96;
+}
+
+.circle {
+  position: absolute;
+  bottom: -10px; /* Під текстом */
+  left: 50%;
+  transform: translateX(-50%);
+  width: 8px;
+  height: 8px;
+  background-color: #54be96;
+  border-radius: 50%;
+}

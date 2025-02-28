@@ -3,7 +3,7 @@ import PsychologistListCard from "../../components/PsychologistListCard/Psycholo
 
 const PsychologistPage = () => {
   return (
-    <div className={css.psychologistcontainer}>
+    <div className={css.pageContainer}>
       <PsychologistListCard />
     </div>
   );

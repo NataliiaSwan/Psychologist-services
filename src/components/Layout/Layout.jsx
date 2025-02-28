@@ -3,6 +3,7 @@ import Header from "../Header/Header.jsx";
 import { useState } from "react";
 import LoginModal from "../../components/LoginModal/LoginModal.jsx";
 import RegisterModal from "../../components/RegisterModal/RegisterModal.jsx";
+// import css from "./Layout.module.css";
 
 const Layout = () => {
   const [isAuthenticated, setIsAuthenticated] = useState(false);
@@ -26,6 +27,7 @@ const Layout = () => {
     setIsAuthenticated(true);
     setUserName("User");
     setIsLoginModalOpen(false); // Закриваємо модальне вікно
+    navigate("/psychologists");
   }
 
   // ✅ Функція реєстрації (закриває модалку після реєстрації)
@@ -52,9 +54,9 @@ const Layout = () => {
         onRegister={handleOpenRegisterModal} // ✅ Передаємо функцію відкриття
       />
 
-      <main>
-        <Outlet />
-      </main>
+      {/* <main className={css.pageContainer}> */}
+      <Outlet />
+      {/* </main> */}
 
       {/* ✅ Модальні вікна відкриваються лише при натисканні кнопки */}
       {isLoginModalOpen && (

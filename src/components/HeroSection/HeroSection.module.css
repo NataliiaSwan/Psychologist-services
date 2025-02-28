@@ -1,15 +1,11 @@
-.section {
+.heroSection {
   display: flex;
   gap: 125px;
   position: relative;
+  padding-top: 78px;
 }
-.container {
-  display: flex;
-  flex-direction: column;
 
-  align-items: start;
-}
-.title {
+.heroTitle {
   font-size: 80px;
   font-weight: 600;
   line-height: 1em;
@@ -26,7 +22,7 @@
   line-height: 82px;
   color: #54be96;
 }
-.page {
+.heroPage {
   display: block;
   width: 510px;
 
@@ -38,7 +34,7 @@
 .button {
   background-color: #54be96;
   padding: 18px 50px;
-  gap: 18px;
+
   border-radius: 30px;
   font-family: Inter;
   font-size: 20px;
@@ -51,7 +47,7 @@
 button:hover {
   background: #36a379;
 }
-.images {
+.heroImages {
   width: 464px;
   height: 526px;
 }

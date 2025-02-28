@@ -7,8 +7,8 @@
   background-color: #4535af;
   transform: rotate(65deg);
   position: absolute;
-  top: 370px;
-  left: 888px;
+  top: 45%;
+  right: 35%;
   border-radius: 10px;
 }
 .iconboxYellow {
@@ -19,8 +19,8 @@
   height: 59px;
   background-color: #fbc75e;
   transform: rotate(15deg);
-  top: 212px;
-  right: 78px;
+  top: 18%;
+  right: -4%;
   position: absolute;
   border-radius: 10px;
 }
