@@ -1,5 +1,19 @@
-.psychologistCardContaine {
+.psychologistCardContainer {
   display: flex;
+  flex-direction: column;
   align-items: center;
   justify-content: center;
+  padding: 0 128px;
+}
+.avatar {
+  width: 96;
+  height: 96;
+  top: 12px;
+  left: 12px;
+  border-radius: 15px;
+}
+.type {
+  font-weight: 500;
+  color: #8a8a89;
+  line-height: 1.5em;
 }

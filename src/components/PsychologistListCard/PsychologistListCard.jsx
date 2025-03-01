@@ -1,39 +1,42 @@
-// import { data } from "react-router-dom";
 import PsychologistCard from "../../components/PsychologistCard/PsychologistCard.jsx";
 import css from "./PsychologistListCard.module.css";
 import { useEffect, useState } from "react";
+import { fetchPsychologists } from "../../services/psychologistService.js";
 
 const PsychologistListCard = () => {
-  const [psychologistCard, setPsychologistCard] = useState([]);
+  const [psychologists, setPsychologists] = useState([]);
 
   useEffect(() => {
-    fetch()
-      .then((responce) => responce.json())
-      .then((data) => setPsychologistCard(data))
+    fetchPsychologists()
+      .then((data) => {
+        console.log("Fetched psychologists:", data);
+        setPsychologists(data);
+      })
       .catch((error) => console.error("Error fetching psychologists:", error));
   }, []);
 
   return (
     <div className={css.psychologistListContainer}>
-      {psychologistCard.length > 0 ? (
-        psychologistCard.map((psychologistCard) => (
+      {psychologists.length > 0 ? (
+        psychologists.map((psychologist) => (
           <PsychologistCard
-            key={psychologistCard.id}
-            avatar_url={psychologistCard.avatar_url}
-            name={psychologistCard.name}
-            rating={psychologistCard.rating}
-            price={psychologistCard.price}
-            experience={psychologistCard.experience}
-            license={psychologistCard.license}
-            specialization={psychologistCard.specialization}
-            consultation={psychologistCard.consultation}
-            description={psychologistCard.description}
+            key={psychologist.id}
+            avatar_url={psychologist.avatar_url}
+            name={psychologist.name}
+            rating={psychologist.rating}
+            price_per_hour={psychologist.price_per_hour}
+            experience={psychologist.experience}
+            license={psychologist.license}
+            specialization={psychologist.specialization}
+            initial_consultation={psychologist.initial_consultation}
+            description={psychologist.about}
           />
         ))
       ) : (
-        <p>Loading psychologists</p>
+        <p>Loading psychologists...</p>
       )}
     </div>
   );
 };
+
 export default PsychologistListCard;

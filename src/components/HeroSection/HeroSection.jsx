@@ -20,6 +20,7 @@ const HeroSection = () => {
       </div>
       <ExperiencedCheckbox />
       <SquareIcon />
+
       <img
         src={image}
         className={css.heroImages}

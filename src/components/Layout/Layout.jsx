@@ -54,9 +54,9 @@ const Layout = () => {
         onRegister={handleOpenRegisterModal} // ✅ Передаємо функцію відкриття
       />
 
-      {/* <main className={css.pageContainer}> */}
-      <Outlet />
-      {/* </main> */}
+      <main>
+        <Outlet />
+      </main>
 
       {/* ✅ Модальні вікна відкриваються лише при натисканні кнопки */}
       {isLoginModalOpen && (
