@@ -1,19 +1,72 @@
 .psychologistCardContainer {
   display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  padding: 0 128px;
+  align-items: flex-start;
+  padding: 24px;
+  background-color: #f3f3f3;
+  border-radius: 24px;
+  gap: 24px;
+  width: 100%;
+  max-width: 1184px;
 }
 .avatar {
-  width: 96;
-  height: 96;
-  top: 12px;
-  left: 12px;
+  display: block;
+  width: 96px;
+  height: 96px;
+
   border-radius: 15px;
 }
-.type {
+.avatarContainer {
+  display: inline-block;
+  align-items: center;
+  justify-content: center;
+  padding: 12px;
+  color: #fbfbfb;
+
+  border-radius: 30px;
+  border: 2px solid #54be9633;
+}
+
+.cardBox {
+  display: flex;
+  flex-direction: column;
+}
+.listRatingPrice {
+  display: flex;
+  gap: 32px;
+}
+.cardHeader {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+.name {
+  font-weight: 500;
+  font-size: 24px;
+  line-height: 1em;
+  color: #191a15;
+  margin-bottom: 24px;
+}
+.infoPcychologistList {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  margin-bottom: 24px;
+  margin-right: 4px;
+}
+.psychologistInfo {
   font-weight: 500;
   color: #8a8a89;
+  line-height: 1.5em;
+  margin-bottom: 8px;
+}
+.description {
+  font-size: 16px;
+  line-height: 1.2em;
+  color: #191a1580;
+  margin-bottom: 14px;
+}
+.rating .price {
+  font-weight: 500;
+  font-size: 16px;
   line-height: 1.5em;
 }

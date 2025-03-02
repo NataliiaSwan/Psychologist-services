@@ -1,0 +1,16 @@
+.buttonAZ {
+  width: 226;
+  height: 48;
+  gap: 133px;
+  border-radius: 14px;
+  padding-top: 16px;
+  padding-right: 162px;
+  padding-bottom: 16px;
+  padding-left: 18px;
+  background-color: #54be96;
+  color: #fbfbfb;
+}
+.boxfilter {
+  display: flex;
+  flex-direction: column;
+}

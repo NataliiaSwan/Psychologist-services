@@ -2,6 +2,7 @@ import PsychologistCard from "../../components/PsychologistCard/PsychologistCard
 import css from "./PsychologistListCard.module.css";
 import { useEffect, useState } from "react";
 import { fetchPsychologists } from "../../services/psychologistService.js";
+import FilterComponent from "../../components/FilterComponent/FilterComponent.jsx";
 
 const PsychologistListCard = () => {
   const [psychologists, setPsychologists] = useState([]);
@@ -16,26 +17,29 @@ const PsychologistListCard = () => {
   }, []);
 
   return (
-    <div className={css.psychologistListContainer}>
-      {psychologists.length > 0 ? (
-        psychologists.map((psychologist) => (
-          <PsychologistCard
-            key={psychologist.id}
-            avatar_url={psychologist.avatar_url}
-            name={psychologist.name}
-            rating={psychologist.rating}
-            price_per_hour={psychologist.price_per_hour}
-            experience={psychologist.experience}
-            license={psychologist.license}
-            specialization={psychologist.specialization}
-            initial_consultation={psychologist.initial_consultation}
-            description={psychologist.about}
-          />
-        ))
-      ) : (
-        <p>Loading psychologists...</p>
-      )}
-    </div>
+    <>
+      <FilterComponent />
+      <div className={css.psychologistListContainer}>
+        {psychologists.length > 0 ? (
+          psychologists.map((psychologist) => (
+            <PsychologistCard
+              key={psychologist.id}
+              avatar_url={psychologist.avatar_url}
+              name={psychologist.name}
+              rating={psychologist.rating}
+              price_per_hour={psychologist.price_per_hour}
+              experience={psychologist.experience}
+              license={psychologist.license}
+              specialization={psychologist.specialization}
+              initial_consultation={psychologist.initial_consultation}
+              description={psychologist.about}
+            />
+          ))
+        ) : (
+          <p>Loading psychologists...</p>
+        )}
+      </div>
+    </>
   );
 };
 
