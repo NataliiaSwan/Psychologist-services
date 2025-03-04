@@ -30,11 +30,11 @@ body {
   background-color: var(--background-color);
   color: var(--text-color);
 }
-*,
+/* *,
 *::before,
 *::after {
   box-sizing: inherit;
-}
+} */
 
 button {
   background-color: var(--primary-color);

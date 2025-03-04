@@ -1,6 +1,11 @@
-.buttonAZ {
-  width: 226;
-  height: 48;
+.filterContainer {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+.button {
+  width: 226px;
+  height: 48px;
   gap: 133px;
   border-radius: 14px;
   padding-top: 16px;
@@ -10,7 +15,31 @@
   background-color: #54be96;
   color: #fbfbfb;
 }
+
 .boxfilter {
   display: flex;
   flex-direction: column;
+  align-items: flex-start;
+  justify-content: center;
+  gap: 8px;
+  width: 226px;
+  height: 216px;
+
+  border-radius: 14px;
+  background: #ffffff;
+}
+
+.filterList {
+  font-weight: 400;
+  font-size: 16px;
+  line-height: 1.2em;
+  letter-spacing: 0%;
+  color: #191a154d;
+  transition: color 0.3s ease;
+}
+.filterList li:hover {
+  color: #191a15;
+}
+li {
+  margin-bottom: 8px;
 }
