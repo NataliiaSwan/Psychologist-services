@@ -21,25 +21,30 @@
   flex-direction: column;
   align-items: flex-start;
   justify-content: center;
+  padding: 18px 14px;
   gap: 8px;
   width: 226px;
-  height: 216px;
-
+  height: 100%;
   border-radius: 14px;
   background: #ffffff;
+  box-sizing: border-box;
 }
-
+.filterTitle {
+  font-weight: 500;
+  font-size: 14px;
+  line-height: 1.3em;
+}
 .filterList {
   font-weight: 400;
   font-size: 16px;
   line-height: 1.2em;
-  letter-spacing: 0%;
+
   color: #191a154d;
   transition: color 0.3s ease;
 }
 .filterList li:hover {
   color: #191a15;
 }
-li {
+li:not(:last-child) {
   margin-bottom: 8px;
 }

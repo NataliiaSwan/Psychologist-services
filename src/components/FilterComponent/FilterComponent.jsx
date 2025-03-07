@@ -3,7 +3,7 @@ import css from "../../components/FilterComponent/FilterComponent.module.css";
 const FilterComponent = () => {
   return (
     <div className={css.filterContainer}>
-      <h1>Filter</h1>
+      <h1 className={css.filterTitle}>Filter</h1>
       <button className={css.button}>A to Z</button>
       <div className={css.boxfilter}>
         <ul className={css.filterList}>

@@ -1,6 +1,11 @@
+.psychologistListCard {
+  padding: 64px 0px;
+}
+
 .psychologistListContainer {
   padding-top: 170px;
   display: flex;
   flex-wrap: wrap;
   gap: 32px;
+  padding: 64px 0;
 }

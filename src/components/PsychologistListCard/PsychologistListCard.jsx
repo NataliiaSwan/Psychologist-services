@@ -17,7 +17,7 @@ const PsychologistListCard = () => {
   }, []);
 
   return (
-    <>
+    <div className={css.psychologistListCard}>
       <FilterComponent />
       <div className={css.psychologistListContainer}>
         {psychologists.length > 0 ? (
@@ -39,7 +39,7 @@ const PsychologistListCard = () => {
           <p>Loading psychologists...</p>
         )}
       </div>
-    </>
+    </div>
   );
 };
 
