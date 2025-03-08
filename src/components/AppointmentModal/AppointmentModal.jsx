@@ -18,8 +18,10 @@ const AppointmentModal = ({ isOpen, onClose }) => {
   return (
     <div className={isOpen ? "modal open" : "modal"}>
       <div>
-        <h1>Make an appointment with a psychologists</h1>
-        <p>
+        <h1 className={css.titleAppointmentModal}>
+          Make an appointment with a psychologists
+        </h1>
+        <p className={css.page}>
           You are on the verge of changing your life for the better. Fill out
           the short form below to book your personal appointment with a
           professional psychologist. We guarantee confidentiality and respect
@@ -27,7 +29,7 @@ const AppointmentModal = ({ isOpen, onClose }) => {
         </p>
         <div>
           <img />
-          <p></p>
+          <p className={css.pageInfo}></p>
           <h1></h1>
           <Formik
             initialValues={{
@@ -117,7 +119,7 @@ const AppointmentModal = ({ isOpen, onClose }) => {
                   value={values.comment}
                 />
 
-                <button type="submit" className={css.button}>
+                <button type="submit" className={css.buttonSend}>
                   Send
                 </button>
               </Form>
