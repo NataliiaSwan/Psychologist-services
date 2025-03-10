@@ -16,7 +16,7 @@ const FilterComponent = ({ onFilterChange }) => {
 
   return (
     <>
-      <div className={css.filterContainer}>
+      <div>
         <div className={css.boxfilter}>
           <ul className={css.filterList}>
             {filters.map((filter) => (

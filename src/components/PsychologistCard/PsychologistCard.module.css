@@ -5,8 +5,6 @@
   background-color: #fbfbfb;
   border-radius: 24px;
   gap: 24px;
-  max-width: 1184px;
-  height: 378px;
 }
 .avatar {
   display: block;
@@ -55,7 +53,6 @@
   flex-wrap: wrap;
   gap: 8px;
   margin-bottom: 24px;
-  margin-right: 4px;
 }
 
 .psychologistInfo {
@@ -64,11 +61,13 @@
   line-height: 1.5em;
   margin-bottom: 8px;
 }
-.description {
+.about {
   font-size: 16px;
   line-height: 1.2em;
   color: #191a1580;
   margin-bottom: 14px;
+  text-align: start;
+  width: 992px;
 }
 .rating .price {
   font-weight: 500;
@@ -92,7 +91,7 @@
 .heart:hover {
   color: #54be96; /* Серце змінює колір при наведенні */
 }
-.readMore {
+/* .readMore {
   font-family: Inter;
   font-weight: 500;
   font-size: 16px;
@@ -100,7 +99,7 @@
   background: inherit;
   color: #191a15;
   text-decoration: underline;
-}
+} */
 .experience,
 .license,
 .specialization,
@@ -118,6 +117,7 @@
 }
 span {
   color: #191a15;
+  margin-left: 5px;
 }
 .pricePerHour {
   color: #38cd3e;

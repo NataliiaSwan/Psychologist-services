@@ -17,7 +17,7 @@ const PsychologistCard = ({
   license,
   specialization,
   initial_consultation,
-  description,
+  about,
 }) => {
   const { user } = useAuth();
   const [isFav, setIsFav] = useState(false);
@@ -46,7 +46,7 @@ const PsychologistCard = ({
           license,
           specialization,
           initial_consultation,
-          description,
+          about,
         });
         setIsFav(true); // Оновлення стану після додавання
       }
@@ -96,9 +96,9 @@ const PsychologistCard = ({
             Initial consultation: <span>{initial_consultation}</span>
           </li>
         </ul>
-        <p className={css.description}>{description}</p>
-        <button className={css.readMore}>Read more</button>
+        <p className={css.about}>{about}</p>
       </div>
+      {/* <button className={css.readMore}>Read more</button> */}
     </div>
   );
 };
