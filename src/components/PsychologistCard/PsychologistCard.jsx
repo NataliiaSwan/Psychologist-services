@@ -1,6 +1,14 @@
 import css from "./PsychologistCard.module.css";
+import {
+  addToFavorites,
+  removeFromFavorites,
+  isFavorite,
+} from "../../services/firebaseFunctions.js";
+import { useEffect, useState } from "react";
+import { useAuth } from "../../context/AuthContext.jsx";
 
 const PsychologistCard = ({
+  id,
   avatar_url,
   name,
   rating,
@@ -11,6 +19,42 @@ const PsychologistCard = ({
   initial_consultation,
   description,
 }) => {
+  const { user } = useAuth();
+  const [isFav, setIsFav] = useState(false);
+
+  useEffect(() => {
+    if (user?.uid) {
+      isFavorite(user.uid, id).then(setIsFav);
+    }
+  }, [user, id]);
+
+  const toggleFavorite = async () => {
+    if (!user) return alert("Please log in to add to favorites.");
+
+    try {
+      if (isFav) {
+        await removeFromFavorites(user.uid, id);
+        setIsFav(false); // Оновлення стану після видалення
+      } else {
+        await addToFavorites(user.uid, {
+          id,
+          avatar_url,
+          name,
+          rating,
+          price_per_hour,
+          experience,
+          license,
+          specialization,
+          initial_consultation,
+          description,
+        });
+        setIsFav(true); // Оновлення стану після додавання
+      }
+    } catch (error) {
+      console.error("Error updating favorites:", error);
+    }
+  };
+
   return (
     <div className={css.psychologistCardContainer}>
       <div className={css.avatarContainer}>
@@ -24,7 +68,16 @@ const PsychologistCard = ({
               Rating: <span>{rating}</span>
             </li>
             <li className={css.price}>
-              Price 1 / hour: <span>{price_per_hour}</span>
+              Price 1 / hour:{" "}
+              <span className={css.pricePerHour}>{price_per_hour}</span>
+            </li>
+            <li>
+              <button
+                className={isFav ? css.heartActive : css.heart}
+                onClick={toggleFavorite}
+              >
+                ❤️
+              </button>
             </li>
           </ul>
         </div>
@@ -39,7 +92,7 @@ const PsychologistCard = ({
           <li className={css.specialization}>
             Specialization: <span>{specialization}</span>
           </li>
-          <li className={css.consultation}>
+          <li className={css.initialConsultation}>
             Initial consultation: <span>{initial_consultation}</span>
           </li>
         </ul>

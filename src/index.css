@@ -29,6 +29,7 @@ body {
   padding: 0;
   background-color: var(--background-color);
   color: var(--text-color);
+  background-color: #f3f3f3;
 }
 /* *,
 *::before,
@@ -72,4 +73,7 @@ ol {
   padding: 0;
   margin: 0;
   list-style: none;
+}
+hr {
+  margin: 0;
 }

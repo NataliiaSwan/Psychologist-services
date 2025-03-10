@@ -66,12 +66,12 @@ import css from "./LoginModal.module.css";
 const schema = yup.object().shape({
   email: yup
     .string()
-    .email("Невірний формат email")
-    .required("Email обов’язковий"),
+    .email("Incorrect format email")
+    .required("Email mandatory"),
   password: yup
     .string()
-    .min(6, "Пароль має містити щонайменше 6 символів")
-    .required("Пароль обов’язковий"),
+    .min(6, "The password must be at least 6 characters long")
+    .required("Password required"),
 });
 
 const LoginModal = ({ onClose, onLogin }) => {

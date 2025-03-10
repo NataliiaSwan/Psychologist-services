@@ -1,22 +1,37 @@
-import css from "../../components/FilterComponent/FilterComponent.module.css";
+import css from "./FilterComponent.module.css";
 
-const FilterComponent = () => {
+const FilterComponent = ({ onFilterChange }) => {
+  const filters = [
+    { key: "A_TO_Z", label: "A to Z" },
+    { key: "Z_TO_A", label: "Z to A" },
+    { key: "PRICE_LOW", label: "Less than 10$" },
+    { key: "PRICE_HIGH", label: "Greater than 10$" },
+    { key: "POPULAR", label: "Popular" },
+    { key: "NOT_POPULAR", label: "Not popular" },
+    { key: "ALL", label: "Show all" },
+  ];
+  const handleFilterClick = (key) => {
+    onFilterChange(key);
+  };
+
   return (
-    <div className={css.filterContainer}>
-      <h1 className={css.filterTitle}>Filter</h1>
-      <button className={css.button}>A to Z</button>
-      <div className={css.boxfilter}>
-        <ul className={css.filterList}>
-          <li>A to Z</li>
-          <li>Z to A</li>
-          <li>Less than 10$</li>
-          <li>Greater than 10$</li>
-          <li>Popular</li>
-          <li>Not popular</li>
-          <li>Show all</li>
-        </ul>
+    <>
+      <div className={css.filterContainer}>
+        <div className={css.boxfilter}>
+          <ul className={css.filterList}>
+            {filters.map((filter) => (
+              <li
+                key={filter.key}
+                onClick={() => handleFilterClick(filter.key)}
+              >
+                {filter.label}
+              </li>
+            ))}
+          </ul>
+        </div>
       </div>
-    </div>
+    </>
   );
 };
+
 export default FilterComponent;

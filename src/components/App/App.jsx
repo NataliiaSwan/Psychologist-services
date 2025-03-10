@@ -44,9 +44,6 @@ function AppContent() {
 
   return (
     <div className={css.appContent}>
-      <button onClick={() => setIsLoginOpen(true)}>Log In</button>
-      <button onClick={() => setIsRegisterOpen(true)}>Sign Up</button>
-
       {isLoginOpen && (
         <LoginModal
           onClose={() => setIsLoginOpen(false)}

@@ -29,21 +29,16 @@
   background: #ffffff;
   box-sizing: border-box;
 }
-.filterTitle {
-  font-weight: 500;
-  font-size: 14px;
-  line-height: 1.3em;
-}
+
 .filterList {
   font-weight: 400;
   font-size: 16px;
   line-height: 1.2em;
-
   color: #191a154d;
   transition: color 0.3s ease;
 }
 .filterList li:hover {
-  color: #191a15;
+  color: red;
 }
 li:not(:last-child) {
   margin-bottom: 8px;
