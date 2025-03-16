@@ -91,7 +91,7 @@
 .heart:hover {
   color: #54be96; /* Серце змінює колір при наведенні */
 }
-/* .readMore {
+.readMore {
   font-family: Inter;
   font-weight: 500;
   font-size: 16px;
@@ -99,7 +99,7 @@
   background: inherit;
   color: #191a15;
   text-decoration: underline;
-} */
+}
 .experience,
 .license,
 .specialization,

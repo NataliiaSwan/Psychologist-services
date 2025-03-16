@@ -6,6 +6,7 @@ import {
 } from "../../services/firebaseFunctions.js";
 import { useEffect, useState } from "react";
 import { useAuth } from "../../context/AuthContext.jsx";
+import CardReview from "../../components/CardReview/CardReview.jsx";
 
 const PsychologistCard = ({
   id,
@@ -21,6 +22,11 @@ const PsychologistCard = ({
 }) => {
   const { user } = useAuth();
   const [isFav, setIsFav] = useState(false);
+  const [isExpanded, setIsExpanded] = useState(false);
+
+  const handleToggleExpand = () => {
+    setIsExpanded((prev) => !prev);
+  };
 
   useEffect(() => {
     if (user?.uid) {
@@ -97,8 +103,17 @@ const PsychologistCard = ({
           </li>
         </ul>
         <p className={css.about}>{about}</p>
+        {!isExpanded && (
+          <button className={css.readMore} onClick={handleToggleExpand}>
+            {isExpanded ? "Hide Reviews" : "Read More"}
+          </button>
+        )}
+        {isExpanded && (
+          <>
+            <CardReview name={name} reiting={rating} review={about} />
+          </>
+        )}
       </div>
-      {/* <button className={css.readMore}>Read more</button> */}
     </div>
   );
 };

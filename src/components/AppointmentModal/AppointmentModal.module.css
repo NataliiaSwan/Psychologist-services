@@ -1,0 +1,153 @@
+.modal {
+  width: 100%;
+
+  max-width: 600px;
+  background: #fff;
+  border-radius: 20px;
+  padding: 64px;
+  overflow-y: auto;
+  position: relative;
+  box-sizing: border-box;
+}
+
+.backdrop {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  background: rgba(0, 0, 0, 0.6);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 999;
+}
+.closeBtn {
+  border: none;
+}
+.title {
+  font-weight: 500;
+  font-size: 40px;
+  line-height: 1.2em;
+  margin-bottom: 20px;
+}
+.description {
+  font-size: 16px;
+  line-height: 1.3em;
+  margin-bottom: 40px;
+}
+.avatarContainer {
+  display: flex;
+  gap: 14px;
+  margin-bottom: 40px;
+}
+.infoTitle {
+  font-weight: 500;
+  font-size: 12px;
+  line-height: 1.3em;
+  color: #8a8a89;
+}
+
+.form {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+.fullWidth {
+  width: 100%;
+}
+.inputField {
+  font-weight: 400;
+  font-size: 16px;
+  line-height: 1.3em;
+  width: 100%;
+  border-radius: 12px;
+  box-sizing: border-box;
+  padding: 16px 18px;
+  gap: 18px;
+  border: 1px solid #191a151a;
+}
+.row {
+  display: flex;
+  gap: 10px;
+}
+.halfWidth {
+  flex: 1;
+  min-width: 48%;
+}
+.textArea {
+  width: 100%;
+  padding: 16px 18px;
+  border-radius: 12px;
+  border: 1px solid #191a151a;
+  gap: 18px;
+  box-sizing: border-box;
+}
+.submitButton {
+  cursor: pointer;
+  border-radius: 30px;
+  gap: 8px;
+  padding: 16px 217px;
+  background-color: #54be96;
+  color: #fbfbfb;
+  gap: 8px;
+}
+.timeInputWrapper {
+  position: relative;
+  display: flex;
+  align-items: center;
+}
+
+.clockIcon {
+  position: absolute;
+  right: 12px;
+  cursor: pointer;
+  font-size: 18px;
+  color: #555;
+}
+
+.dropdown {
+  display: flex;
+  flex-direction: column;
+  box-sizing: border-box;
+  position: absolute;
+  background: white;
+  border: 1px solid #ccc;
+  border-radius: 10px;
+  width: 151px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+  margin-top: 8px;
+  padding: 16px;
+}
+.dropdown:not(:first-child) {
+  gap: 4px;
+}
+.dropdownTitle {
+  margin-bottom: 4px;
+
+  font-weight: 500;
+  font-size: 16px;
+  line-height: 1.5em;
+}
+
+.dropdownItem {
+  font-weight: 500;
+  font-size: 16px;
+  line-height: 1.2em;
+
+  text-align: center;
+  color: #191a154d;
+
+  cursor: pointer;
+  transition: background 0.2s;
+}
+
+.dropdownItem:hover {
+  background-color: #f0f0f0;
+}
+
+.errorMessage {
+  font-size: 12px;
+  color: red;
+  margin-top: 4px;
+}

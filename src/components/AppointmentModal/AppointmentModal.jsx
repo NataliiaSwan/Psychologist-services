@@ -1,8 +1,9 @@
 import * as Yup from "yup";
 import { Formik, Form, Field, ErrorMessage } from "formik";
-import css from "./AppointmentModal.modal.css";
+import { useEffect, useState } from "react";
+import css from "./AppointmentModal.module.css";
 
-const availableTimes = ["10.00", "12.00", "16.00", "18.00"];
+const availableTimes = ["10 : 00", "11 : 00", "12 : 00", "13 : 00"];
 
 const validationSchema = Yup.object({
   name: Yup.string().required("Name is required"),
@@ -10,124 +11,160 @@ const validationSchema = Yup.object({
   phoneNumber: Yup.string()
     .matches(/^[0-9]{10,15}$/, "Invalid phone number")
     .required("Phone number is required"),
-  time: Yup.string().required("Please, select a time"),
+  time: Yup.string().required("Please select a time"),
   comment: Yup.string(),
 });
 
-const AppointmentModal = ({ isOpen, onClose }) => {
+const AppointmentModal = ({ isOpen, onClose, name, avatar_url }) => {
+  const [showDropdown, setShowDropdown] = useState(false);
+  useEffect(() => {
+    const handleEsc = (e) => {
+      if (e.key === "Escape") {
+        onClose();
+      }
+    };
+    window.addEventListener("keydown", handleEsc);
+    return () => window.removeEventListener("keydown", handleEsc);
+  }, [onClose]);
+
+  if (!isOpen) return null;
+
   return (
-    <div className={isOpen ? "modal open" : "modal"}>
-      <div>
-        <h1 className={css.titleAppointmentModal}>
-          Make an appointment with a psychologists
-        </h1>
-        <p className={css.page}>
+    <div className={css.backdrop} onClick={onClose}>
+      <div className={css.modal} onClick={(e) => e.stopPropagation()}>
+        <button className={css.closeBtn} onClick={onClose}>
+          ×
+        </button>
+        <h1 className={css.title}>Make an appointment with a psychologist</h1>
+        <p className={css.description}>
           You are on the verge of changing your life for the better. Fill out
           the short form below to book your personal appointment with a
           professional psychologist. We guarantee confidentiality and respect
           for your privacy.
         </p>
-        <div>
-          <img />
-          <p className={css.pageInfo}></p>
-          <h1></h1>
-          <Formik
-            initialValues={{
-              name: "",
-              email: "",
-              phoneNumber: "",
-              time: "",
-              comment: "",
-            }}
-            validationSchema={validationSchema}
-            onSubmit={(values, { resetForm }) => {
-              console.log("Appointment booked:", values);
-              resetForm();
-              onClose();
-            }}
-          >
-            {({ setFieldValue, values }) => (
-              <Form className={css.form}>
-                <div>
+        <div className={css.avatarContainer}>
+          <img src={avatar_url} alt="name" className={css.avatar} />
+          <h3 className={css.infoTitle}>Your psychologists</h3>
+          <p className={css.psychologistName}>{name}</p>
+        </div>
+        <Formik
+          initialValues={{
+            name: "",
+            email: "",
+            phoneNumber: "",
+            time: "",
+            comment: "",
+            showDropdown: false,
+          }}
+          validationSchema={validationSchema}
+          onSubmit={(values, { resetForm }) => {
+            console.log("Appointment booked:", values);
+            resetForm();
+            onClose();
+          }}
+        >
+          {({ setFieldValue, values }) => (
+            <Form className={css.form}>
+              <div className={css.fullWidth}>
+                <Field
+                  name="name"
+                  placeholder="Your Name"
+                  className={css.inputField}
+                />
+                <ErrorMessage
+                  name="name"
+                  component="div"
+                  className={css.errorMessage}
+                />
+              </div>
+              <div className={css.row}>
+                <div className={css.halfWidth}>
                   <Field
-                    name="name"
-                    placeholder="Your Name"
+                    name="phoneNumber"
+                    placeholder="Your Phone Number"
                     className={css.inputField}
-                    value={values.name}
                   />
                   <ErrorMessage
-                    name="name"
+                    name="phoneNumber"
                     component="div"
                     className={css.errorMessage}
                   />
                 </div>
-                <div>
-                  <Field
-                    name="phoneNumber"
-                    placeholder="Your PhoneNumber"
-                    className={css.inputField}
-                    value={values.phoneNumber}
-                  />
-                  <ErrorMessage
-                    name="phoneNumber"
-                    component="div"
-                    className={css.errorMessage}
-                  />
-                </div>
-                <div>
-                  <div>
-                    <label className={css.meetingTime}>Meeting Time</label>
-                    <div className={css.boxTime}>
+
+                <div className={css.halfWidth}>
+                  <div className={css.timeInputWrapper}>
+                    <input
+                      type="text"
+                      name="time"
+                      placeholder="00:00"
+                      readOnly
+                      value={values.time}
+                      onClick={() => setShowDropdown(!showDropdown)}
+                      className={css.inputField}
+                    />
+                    <span
+                      className={css.clockIcon}
+                      onClick={() => setShowDropdown(!showDropdown)}
+                    >
+                      🕒
+                    </span>
+                  </div>
+
+                  {showDropdown && (
+                    <div className={css.dropdown}>
+                      <div className={css.dropdownTitle}>Meeting time</div>
                       {availableTimes.map((t, index) => (
-                        <button
-                          type="button"
+                        <div
                           key={index}
-                          className={css.timeButton}
-                          onClick={() => setFieldValue("time", t)}
-                          aria-label={`Select meeting time: ${t}`}
+                          className={css.dropdownItem}
+                          onClick={() => {
+                            setFieldValue("time", t);
+                            setShowDropdown(false);
+                          }}
                         >
                           {t}
-                        </button>
+                        </div>
                       ))}
                     </div>
-                    <ErrorMessage
-                      name="time"
-                      component="div"
-                      className={css.errorMessage}
-                    />
-                  </div>
-                </div>
-
-                <div>
-                  <Field
-                    name="email"
-                    type="email"
-                    placeholder="Your Email"
-                    className={css.inputField}
-                    value={values.email}
-                  />
+                  )}
                   <ErrorMessage
-                    name="email"
+                    name="time"
                     component="div"
                     className={css.errorMessage}
                   />
                 </div>
+              </div>
+
+              <div className={css.fullWidth}>
+                <Field
+                  name="email"
+                  type="email"
+                  placeholder="Your Email"
+                  className={css.inputField}
+                />
+                <ErrorMessage
+                  name="email"
+                  component="div"
+                  className={css.errorMessage}
+                />
+              </div>
+              <div className={css.fullWidth}>
                 <Field
                   name="comment"
+                  as="textarea"
                   placeholder="Your Comment"
                   className={css.textArea}
-                  value={values.comment}
                 />
-
-                <button type="submit" className={css.buttonSend}>
-                  Send
-                </button>
-              </Form>
-            )}
-          </Formik>
-        </div>
+              </div>
+              <button type="submit" className={css.submitButton}>
+                Send
+              </button>
+            </Form>
+          )}
+        </Formik>
       </div>
     </div>
   );
 };
+
 export default AppointmentModal;
