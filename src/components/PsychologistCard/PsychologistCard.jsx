@@ -19,13 +19,22 @@ const PsychologistCard = ({
   specialization,
   initial_consultation,
   about,
+  reviews, // ⬅️ тут передаємо масив reviews
 }) => {
   const { user } = useAuth();
   const [isFav, setIsFav] = useState(false);
   const [isExpanded, setIsExpanded] = useState(false);
+  const [isModalOpen, setIsModalOpen] = useState(false);
 
   const handleToggleExpand = () => {
     setIsExpanded((prev) => !prev);
+  };
+  const handleOpenModal = () => {
+    setIsModalOpen(true);
+  };
+
+  const handleCloseModal = () => {
+    setIsModalOpen(false);
   };
 
   useEffect(() => {
@@ -40,7 +49,7 @@ const PsychologistCard = ({
     try {
       if (isFav) {
         await removeFromFavorites(user.uid, id);
-        setIsFav(false); // Оновлення стану після видалення
+        setIsFav(false);
       } else {
         await addToFavorites(user.uid, {
           id,
@@ -53,8 +62,9 @@ const PsychologistCard = ({
           specialization,
           initial_consultation,
           about,
+          reviews, // ⬅️ зберігаємо reviews також
         });
-        setIsFav(true); // Оновлення стану після додавання
+        setIsFav(true);
       }
     } catch (error) {
       console.error("Error updating favorites:", error);
@@ -103,17 +113,35 @@ const PsychologistCard = ({
           </li>
         </ul>
         <p className={css.about}>{about}</p>
+
         {!isExpanded && (
           <button className={css.readMore} onClick={handleToggleExpand}>
-            {isExpanded ? "Hide Reviews" : "Read More"}
+            Read More
           </button>
         )}
-        {isExpanded && (
+
+        {isExpanded && reviews && reviews.length > 0 && (
           <>
-            <CardReview name={name} reiting={rating} review={about} />
+            {/* <h3 className={css.reviewsTitle}>Reviews</h3> */}
+            {reviews.map((review, index) => (
+              <CardReview
+                isOpen={isModalOpen}
+                onClose={handleCloseModal}
+                key={index}
+                name={name}
+                avatar_url={avatar_url}
+                reviewer={review.reviewer}
+                comment={review.comment}
+                rating={review.rating}
+              />
+            ))}
+            <button className={css.openModalButton} onClick={handleOpenModal}>
+              Make an appointment
+            </button>
           </>
         )}
       </div>
+      <div className={css.reviewButtonWrapper}></div>
     </div>
   );
 };

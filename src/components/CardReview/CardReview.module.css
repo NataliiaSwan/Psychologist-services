@@ -1,0 +1,20 @@
+.reviewer {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 44px;
+  height: 44px;
+  border-radius: 50%;
+  background-color: #54be9633;
+  color: #54be96;
+  font-weight: 500;
+  font-size: 20px;
+  line-height: 1em;
+}
+.comment {
+  font-family: Inter;
+  font-weight: 400;
+  font-size: 16px;
+  line-height: 1.2em;
+  color: #191a1580;
+}

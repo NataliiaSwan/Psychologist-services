@@ -32,9 +32,9 @@ const AppointmentModal = ({ isOpen, onClose, name, avatar_url }) => {
   return (
     <div className={css.backdrop} onClick={onClose}>
       <div className={css.modal} onClick={(e) => e.stopPropagation()}>
-        <button className={css.closeBtn} onClick={onClose}>
+        {/* <button className={css.closeBtn} onClick={onClose}>
           ×
-        </button>
+        </button> */}
         <h1 className={css.title}>Make an appointment with a psychologist</h1>
         <p className={css.description}>
           You are on the verge of changing your life for the better. Fill out
@@ -43,9 +43,11 @@ const AppointmentModal = ({ isOpen, onClose, name, avatar_url }) => {
           for your privacy.
         </p>
         <div className={css.avatarContainer}>
-          <img src={avatar_url} alt="name" className={css.avatar} />
-          <h3 className={css.infoTitle}>Your psychologists</h3>
-          <p className={css.psychologistName}>{name}</p>
+          <img src={avatar_url} alt={name} className={css.avatar} />
+          <div className={css.titleNamebox}>
+            <h3 className={css.infoTitle}>Your psychologists</h3>
+            <p className={css.psychologistName}>{name}</p>
+          </div>
         </div>
         <Formik
           initialValues={{

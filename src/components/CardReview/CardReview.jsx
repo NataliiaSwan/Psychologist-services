@@ -1,94 +1,25 @@
-// import { useState } from "react";
-// import css from "./CardReview.module.css";
-// import AppointmentModal from "../../components/AppointmentModal/AppointmentModal.jsx";
-
-// const CardReview = ({ name, rating, review }) => {
-//   const [isExpanded, setIsExpanded] = useState(false);
-//   const [isModalOpen, setIsModalopen] = useState(false);
-
-//   const handleReadMore = () => {
-//     setIsExpanded(!isExpanded);
-//   };
-//   const handleOpenModal = () => {
-//     setIsModalopen(true);
-//   };
-//   const handleCloseModal = () => {
-//     setIsModalopen(false);
-//   };
-//   return (
-//     <div className={css.reviewCard}>
-//       <div className={css.cardHeader}>
-//         <div className={css.avatar}>{name.charAt(0).toUpperCase()}</div>
-//         <p>{name}</p>
-//         <span>Raiting: {rating}</span>
-//       </div>
-//       {isExpanded && (
-//         <div className={css.review}>
-//           <p>{review}</p>
-//         </div>
-//       )}
-//       <button onClick={handleReadMore}>
-//         {isExpanded ? "Read Less" : "Read More"}
-//       </button>
-//       <button onClick={handleOpenModal}>Make an appointment</button>
-//       <AppointmentModal
-//         isOpen={isModalOpen}
-//         onClose={handleCloseModal}
-//         name={name}
-//       />
-//     </div>
-//   );
-// };
-// export default CardReview;
-
-import { useState } from "react";
 import css from "./CardReview.module.css";
 import AppointmentModal from "../../components/AppointmentModal/AppointmentModal.jsx";
+import { FaStar } from "react-icons/fa";
 
-const CardReview = ({ name, rating, review, avatar }) => {
-  const [isExpanded, setIsExpanded] = useState(false);
-  const [isModalOpen, setIsModalOpen] = useState(false);
-
-  const handleReadMore = () => {
-    setIsExpanded(!isExpanded);
-  };
-
-  const handleOpenModal = () => {
-    setIsModalOpen(true);
-  };
-
-  const handleCloseModal = () => {
-    setIsModalOpen(false);
-  };
-
+const CardReview = ({ name, avatar_url, reviewer, rating, comment }) => {
   return (
     <div className={css.reviewCard}>
       <div className={css.cardHeader}>
-        <div className={css.avatar}>
-          {name ? name.charAt(0).toUpperCase() : "?"}
+        <div className={css.reviewer}>
+          {reviewer ? reviewer.charAt(0).toUpperCase() : "?"}
         </div>
-        <p>{name}</p>
-        <span>Rating: {rating}</span>
+        <h3 className={css.nameReviever}>{reviewer}</h3>
+        <span>
+          <FaStar color="#FFD700" size={16} style={{ marginRight: "4px" }} />{" "}
+          {rating}
+        </span>
+      </div>
+      <div className={css.comment}>
+        <p>{comment}</p>
       </div>
 
-      {isExpanded && (
-        <div className={css.review}>
-          <p>{review}</p>
-        </div>
-      )}
-
-      <button onClick={handleReadMore}>
-        {isExpanded ? "Read Less" : "Read More"}
-      </button>
-
-      <button onClick={handleOpenModal}>Make an appointment</button>
-
-      <AppointmentModal
-        isOpen={isModalOpen}
-        onClose={handleCloseModal}
-        name={name}
-        avatar_url={avatar}
-      />
+      <AppointmentModal name={name} avatar_url={avatar_url} />
     </div>
   );
 };
