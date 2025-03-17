@@ -24,14 +24,14 @@ export const AuthProvider = ({ children }) => {
     try {
       await signInWithEmailAndPassword(auth, email, password);
     } catch (error) {
-      console.error("Помилка входу:", error.message);
+      console.error("Exit error:", error.message);
     }
   };
   const logout = async () => {
     try {
       await signOut(auth);
     } catch (error) {
-      console.error("Помилка виходу:", error.message);
+      console.error("Exit error:", error.message);
     }
   };
 

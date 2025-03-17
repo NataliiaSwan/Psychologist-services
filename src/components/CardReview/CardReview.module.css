@@ -17,4 +17,21 @@
   font-size: 16px;
   line-height: 1.2em;
   color: #191a1580;
+  margin-bottom: 40px;
+}
+.cardHeader {
+  display: flex;
+  gap: 12px;
+  margin-bottom: 16px;
+  margin-top: 25px;
+}
+.cardRating {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+.nameReviever {
+  font-weight: 500;
+  font-size: 16px;
+  line-height: 1.2em;
 }

@@ -100,6 +100,9 @@
   color: #191a15;
   text-decoration: underline;
 }
+.readMore:hover {
+  background-color: inherit;
+}
 .experience,
 .license,
 .specialization,
@@ -123,6 +126,8 @@ span {
   color: #38cd3e;
 }
 .openModalButton {
+  width: 227px;
+  height: 48px;
   border-radius: 30px;
   padding: 14px 32px;
   background-color: #54be96;

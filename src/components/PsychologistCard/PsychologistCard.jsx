@@ -7,6 +7,7 @@ import {
 import { useEffect, useState } from "react";
 import { useAuth } from "../../context/AuthContext.jsx";
 import CardReview from "../../components/CardReview/CardReview.jsx";
+import AppointmentModal from "../../components/AppointmentModal/AppointmentModal.jsx";
 
 const PsychologistCard = ({
   id,
@@ -122,11 +123,8 @@ const PsychologistCard = ({
 
         {isExpanded && reviews && reviews.length > 0 && (
           <>
-            {/* <h3 className={css.reviewsTitle}>Reviews</h3> */}
             {reviews.map((review, index) => (
               <CardReview
-                isOpen={isModalOpen}
-                onClose={handleCloseModal}
                 key={index}
                 name={name}
                 avatar_url={avatar_url}
@@ -138,6 +136,12 @@ const PsychologistCard = ({
             <button className={css.openModalButton} onClick={handleOpenModal}>
               Make an appointment
             </button>
+            <AppointmentModal
+              isOpen={isModalOpen}
+              onClose={handleCloseModal}
+              name={name}
+              avatar_url={avatar_url}
+            />
           </>
         )}
       </div>
