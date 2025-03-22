@@ -25,7 +25,7 @@ const LoginModal = ({ onClose, onLogin }) => {
 
   return (
     <div className={css.modalOverlay} onClick={onClose}>
-      <div className={css.modalContainer} onClick={(e) => e.stopPropagation()}>
+      <div className={css.modalContent} onClick={(e) => e.stopPropagation()}>
         <button className={css.closeButton} onClick={onClose}>
           ×
         </button>

@@ -2,15 +2,11 @@ import logo from "../../assets/images/Logo.svg";
 import css from "./Header.module.css";
 import { useLocation } from "react-router-dom";
 import NavItem from "../../components/NavItem/NavItem.jsx";
+import { useAuth } from "../../hooks/useAuth.js";
 
-const Header = ({
-  isAuthenticated,
-  userName,
-  onLogin,
-  onLogout,
-  onRegister,
-}) => {
+const Header = ({ isAuthenticated, onLogin, onLogout, onRegister }) => {
   const location = useLocation();
+  const { user } = useAuth();
   return (
     <>
       <div
@@ -40,7 +36,10 @@ const Header = ({
           <div className={css.userSection}>
             <div className={css.userBox}>
               <span className={css.userIcon}></span>
-              <span className={css.userName}>{userName}</span>
+
+              <span className={css.userName}>
+                {user?.displayName || "User"}
+              </span>
             </div>
             <button className={css.logoutButton} onClick={onLogout}>
               Log out

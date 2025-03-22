@@ -4,7 +4,7 @@ import image from "../../assets/images/image.jpg";
 import ExperiencedCheckbox from "../../components/ExperiencedCheckbox/ExperiencedCheckbox.jsx";
 import SquareIcon from "../../components/SquareIcon/SquareIcon.jsx";
 
-const HeroSection = () => {
+const HeroSection = ({ onGetStarted }) => {
   return (
     <div className={css.heroSection}>
       <div className={css.container}>
@@ -16,7 +16,9 @@ const HeroSection = () => {
           We help you to reveal your potential, overcome challenges and find a
           guide in your own life with the help of our experienced psychologists.
         </p>
-        <button className={css.button}>Get started</button>
+        <button className={css.button} onClick={onGetStarted}>
+          Get started
+        </button>
       </div>
       <ExperiencedCheckbox />
       <SquareIcon />

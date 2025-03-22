@@ -5,7 +5,7 @@ import {
   isFavorite,
 } from "../../services/firebaseFunctions.js";
 import { useEffect, useState } from "react";
-import { useAuth } from "../../context/AuthContext.jsx";
+import { useAuth } from "../../hooks/useAuth.js";
 import CardReview from "../../components/CardReview/CardReview.jsx";
 import AppointmentModal from "../../components/AppointmentModal/AppointmentModal.jsx";
 
@@ -20,16 +20,27 @@ const PsychologistCard = ({
   specialization,
   initial_consultation,
   about,
-  reviews, // ⬅️ тут передаємо масив reviews
+  reviews,
 }) => {
   const { user } = useAuth();
   const [isFav, setIsFav] = useState(false);
   const [isExpanded, setIsExpanded] = useState(false);
   const [isModalOpen, setIsModalOpen] = useState(false);
+  const [showLoginAlert, setShowLoginAlert] = useState(false); // 🔔
+
+  useEffect(() => {
+    if (user?.uid) {
+      isFavorite(user.uid, id).then(setIsFav);
+    } else {
+      const savedFavs = JSON.parse(localStorage.getItem("favorites")) || [];
+      setIsFav(savedFavs.includes(id));
+    }
+  }, [user, id]);
 
   const handleToggleExpand = () => {
     setIsExpanded((prev) => !prev);
   };
+
   const handleOpenModal = () => {
     setIsModalOpen(true);
   };
@@ -38,19 +49,22 @@ const PsychologistCard = ({
     setIsModalOpen(false);
   };
 
-  useEffect(() => {
-    if (user?.uid) {
-      isFavorite(user.uid, id).then(setIsFav);
-    }
-  }, [user, id]);
-
   const toggleFavorite = async () => {
-    if (!user) return alert("Please log in to add to favorites.");
+    if (!user) {
+      // 🔔 якщо користувач не залогінений
+      setShowLoginAlert(true);
+      setTimeout(() => setShowLoginAlert(false), 3000);
+      return;
+    }
 
     try {
       if (isFav) {
         await removeFromFavorites(user.uid, id);
         setIsFav(false);
+        // також прибрати з localStorage
+        const savedFavs = JSON.parse(localStorage.getItem("favorites")) || [];
+        const updatedFavs = savedFavs.filter((favId) => favId !== id);
+        localStorage.setItem("favorites", JSON.stringify(updatedFavs));
       } else {
         await addToFavorites(user.uid, {
           id,
@@ -63,9 +77,13 @@ const PsychologistCard = ({
           specialization,
           initial_consultation,
           about,
-          reviews, // ⬅️ зберігаємо reviews також
+          reviews,
         });
         setIsFav(true);
+        // додати до localStorage
+        const savedFavs = JSON.parse(localStorage.getItem("favorites")) || [];
+        const updatedFavs = [...savedFavs, id];
+        localStorage.setItem("favorites", JSON.stringify(updatedFavs));
       }
     } catch (error) {
       console.error("Error updating favorites:", error);
@@ -98,7 +116,9 @@ const PsychologistCard = ({
             </li>
           </ul>
         </div>
+
         <h1 className={css.name}>{name}</h1>
+
         <ul className={css.infoPcychologistList}>
           <li className={css.experience}>
             Experience: <span>{experience} years</span>
@@ -113,6 +133,7 @@ const PsychologistCard = ({
             Initial consultation: <span>{initial_consultation}</span>
           </li>
         </ul>
+
         <p className={css.about}>{about}</p>
 
         {!isExpanded && (
@@ -145,7 +166,11 @@ const PsychologistCard = ({
           </>
         )}
       </div>
-      <div className={css.reviewButtonWrapper}></div>
+
+      {/* 🔔 Пуш-сповіщення */}
+      {showLoginAlert && (
+        <div className={css.loginAlert}>Please log in to use favorites 💚</div>
+      )}
     </div>
   );
 };

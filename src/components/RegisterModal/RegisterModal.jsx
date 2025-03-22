@@ -61,15 +61,15 @@ import * as yup from "yup";
 import css from "./RegisterModal.module.css";
 
 const schema = yup.object().shape({
-  name: yup.string().required("Ім'я обов’язкове"),
+  name: yup.string().required("Name required"),
   email: yup
     .string()
-    .email("Невірний формат email")
-    .required("Email обов’язковий"),
+    .email("Incorrect format email")
+    .required("Email is required"),
   password: yup
     .string()
-    .min(6, "Пароль має містити щонайменше 6 символів")
-    .required("Пароль обов’язковий"),
+    .min(6, "The password must be at least 6 characters long")
+    .required("Password required"),
 });
 
 const RegisterModal = ({ onClose, onRegister }) => {
@@ -83,7 +83,7 @@ const RegisterModal = ({ onClose, onRegister }) => {
 
   return (
     <div className={css.modalOverlay} onClick={onClose}>
-      <div className={css.modalContainer} onClick={(e) => e.stopPropagation()}>
+      <div className={css.modalContent} onClick={(e) => e.stopPropagation()}>
         <button className={css.closeButton} onClick={onClose}>
           ×
         </button>

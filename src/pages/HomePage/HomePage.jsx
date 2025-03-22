@@ -2,10 +2,10 @@ import HeroSection from "../../components/HeroSection/HeroSection.jsx";
 
 import css from "./HomePage.module.css";
 
-const HomePage = () => {
+const HomePage = ({ onGetStarted }) => {
   return (
     <div className={css.pageContainer}>
-      <HeroSection />
+      <HeroSection onGetStarted={onGetStarted} />
     </div>
   );
 };

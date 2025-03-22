@@ -136,3 +136,15 @@ span {
   line-height: 1.2px;
   color: #fbfbfb;
 }
+.loginAlert {
+  position: fixed;
+  top: 20px;
+  right: 20px;
+  background-color: #ffdddd;
+  color: #a60000;
+  padding: 12px 20px;
+  border-radius: 12px;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.2);
+  z-index: 9999;
+  font-weight: 500;
+}

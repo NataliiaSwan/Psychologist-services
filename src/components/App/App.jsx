@@ -1,11 +1,106 @@
+// import { useState, useEffect } from "react";
+// import { Route, Routes } from "react-router-dom";
+// import HomePage from "../../pages/HomePage/HomePage.jsx";
+// import PsychologistPage from "../../pages/PsychologistPage/PsychologistPage.jsx";
+// import FavoritesPage from "../../pages/FavoritesPage/FavoritesPage.jsx";
+// import Layout from "../../components/Layout/Layout.jsx";
+// import Loader from "../../components/Loader/Loader.jsx";
+// import { useAuth } from "../../hooks/useAuth.js";
+// import { AuthProvider } from "../../context/AuthContext.jsx";
+// import LoginModal from "../../components/LoginModal/LoginModal.jsx";
+// import RegisterModal from "../../components/RegisterModal/RegisterModal.jsx";
+// import { signIn, signUp } from "../../services/authService.js";
+// import css from "./App.module.css";
+// import { useNavigate } from "react-router-dom";
+
+// function AppContent() {
+//   const navigate = useNavigate();
+//   const { user, loading: authLoading } = useAuth();
+
+//   const [isLoadingPsychologists, setIsLoadingPsychologists] = useState(true);
+//   const [isLoginOpen, setIsLoginOpen] = useState(false);
+//   const [isRegisterOpen, setIsRegisterOpen] = useState(false);
+
+//   useEffect(() => {
+//     setTimeout(() => setIsLoadingPsychologists(false), 2000);
+//   }, []);
+
+//   const handleLogin = async ({ name, email, password }) => {
+//     try {
+//       await signIn(name, email, password);
+//       setIsLoginOpen(false);
+//       navigate("/psychologists");
+//     } catch (error) {
+//       console.error("Login error:", error.message);
+//     }
+//   };
+
+//   const handleRegister = async ({ name, email, password }) => {
+//     try {
+//       await signUp(name, email, password);
+//       setIsRegisterOpen(false);
+//       navigate("/psychologists");
+//     } catch (error) {
+//       console.error("Registration error:", error.message);
+//     }
+//   };
+
+//   if (authLoading || isLoadingPsychologists) return <Loader />;
+
+//   const handleGetStarted = () => {
+//     if (user) {
+//       navigate("/psychologists");
+//     } else {
+//       setIsRegisterOpen(true);
+//     }
+//   };
+
+//   return (
+//     <div className={css.appContent}>
+//       {isLoginOpen && (
+//         <LoginModal
+//           onClose={() => setIsLoginOpen(false)}
+//           onLogin={handleLogin}
+//         />
+//       )}
+//       {isRegisterOpen && (
+//         <RegisterModal
+//           onClose={() => setIsRegisterOpen(false)}
+//           onRegister={handleRegister}
+//         />
+//       )}
+
+//       <Routes>
+//         <Route path="/" element={<Layout />}>
+//           <Route index element={<HomePage onGetStarted={handleGetStarted} />} />
+//           <Route path="/psychologists" element={<PsychologistPage />} />
+//           <Route path="/favorites" element={<FavoritesPage />} />
+//         </Route>
+//       </Routes>
+//     </div>
+//   );
+// }
+
+// function App() {
+//   return (
+//     <AuthProvider>
+//       <div className={css.app}>
+//         <AppContent />
+//       </div>
+//     </AuthProvider>
+//   );
+// }
+
+// export default App;
+
 import { useState, useEffect } from "react";
-import { Route, Routes } from "react-router-dom";
+import { Route, Routes, useNavigate } from "react-router-dom";
 import HomePage from "../../pages/HomePage/HomePage.jsx";
 import PsychologistPage from "../../pages/PsychologistPage/PsychologistPage.jsx";
 import FavoritesPage from "../../pages/FavoritesPage/FavoritesPage.jsx";
 import Layout from "../../components/Layout/Layout.jsx";
 import Loader from "../../components/Loader/Loader.jsx";
-import { useAuth } from "../../context/AuthContext.jsx";
+import { useAuth } from "../../hooks/useAuth.js";
 import { AuthProvider } from "../../context/AuthContext.jsx";
 import LoginModal from "../../components/LoginModal/LoginModal.jsx";
 import RegisterModal from "../../components/RegisterModal/RegisterModal.jsx";
@@ -13,7 +108,9 @@ import { signIn, signUp } from "../../services/authService.js";
 import css from "./App.module.css";
 
 function AppContent() {
-  const { loading: authLoading } = useAuth();
+  const navigate = useNavigate();
+  const { user, loading: authLoading } = useAuth();
+
   const [isLoadingPsychologists, setIsLoadingPsychologists] = useState(true);
   const [isLoginOpen, setIsLoginOpen] = useState(false);
   const [isRegisterOpen, setIsRegisterOpen] = useState(false);
@@ -22,25 +119,39 @@ function AppContent() {
     setTimeout(() => setIsLoadingPsychologists(false), 2000);
   }, []);
 
-  const handleLogin = async ({ email, password }) => {
+  const handleLogin = async ({ name, email, password }) => {
     try {
-      await signIn(email, password);
+      await signIn(name, email, password);
       setIsLoginOpen(false);
+      navigate("/psychologists");
     } catch (error) {
-      console.error("Помилка входу:", error.message);
+      console.error("Login error:", error.message);
     }
   };
 
-  const handleRegister = async ({ email, password }) => {
+  const handleRegister = async ({ name, email, password }) => {
     try {
-      await signUp(email, password);
+      await signUp(name, email, password);
       setIsRegisterOpen(false);
+      navigate("/psychologists");
     } catch (error) {
-      console.error("Помилка реєстрації:", error.message);
+      console.error("Registration error:", error.message);
     }
+  };
+
+  const handleLogout = () => {
+    navigate("/");
   };
 
   if (authLoading || isLoadingPsychologists) return <Loader />;
+
+  const handleGetStarted = () => {
+    if (user) {
+      navigate("/psychologists");
+    } else {
+      setIsRegisterOpen(true);
+    }
+  };
 
   return (
     <div className={css.appContent}>
@@ -58,8 +169,18 @@ function AppContent() {
       )}
 
       <Routes>
-        <Route path="/" element={<Layout />}>
-          <Route index element={<HomePage />} />
+        <Route
+          path="/"
+          element={
+            <Layout
+              onLoginOpen={() => setIsLoginOpen(true)}
+              onRegisterOpen={() => setIsRegisterOpen(true)}
+              user={user}
+              onLogout={handleLogout}
+            />
+          }
+        >
+          <Route index element={<HomePage onGetStarted={handleGetStarted} />} />
           <Route path="/psychologists" element={<PsychologistPage />} />
           <Route path="/favorites" element={<FavoritesPage />} />
         </Route>
