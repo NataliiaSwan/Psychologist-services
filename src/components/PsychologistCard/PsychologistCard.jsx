@@ -53,20 +53,21 @@ const PsychologistCard = ({
     if (!user) {
       // 🔔 якщо користувач не залогінений
       setShowLoginAlert(true);
-      setTimeout(() => setShowLoginAlert(false), 3000);
+      setTimeout(() => setShowLoginAlert(false), 2000);
       return;
     }
 
     try {
+      const savedFavs = JSON.parse(localStorage.getItem("favorites")) || [];
+
       if (isFav) {
         await removeFromFavorites(user.uid, id);
         setIsFav(false);
         // також прибрати з localStorage
-        const savedFavs = JSON.parse(localStorage.getItem("favorites")) || [];
-        const updatedFavs = savedFavs.filter((favId) => favId !== id);
+        const updatedFavs = savedFavs.filter((fav) => fav.id !== id);
         localStorage.setItem("favorites", JSON.stringify(updatedFavs));
       } else {
-        await addToFavorites(user.uid, {
+        const newFavorite = {
           id,
           avatar_url,
           name,
@@ -78,11 +79,11 @@ const PsychologistCard = ({
           initial_consultation,
           about,
           reviews,
-        });
+        };
+        await addToFavorites(user.uid, newFavorite);
         setIsFav(true);
         // додати до localStorage
-        const savedFavs = JSON.parse(localStorage.getItem("favorites")) || [];
-        const updatedFavs = [...savedFavs, id];
+        const updatedFavs = [...savedFavs, newFavorite];
         localStorage.setItem("favorites", JSON.stringify(updatedFavs));
       }
     } catch (error) {
