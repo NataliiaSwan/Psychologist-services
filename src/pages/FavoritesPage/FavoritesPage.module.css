@@ -1,0 +1,81 @@
+.favoritsContainer {
+  width: 100%;
+  padding: 64px 0;
+}
+.filterToggleButton {
+  border-radius: 14px;
+  padding-top: 16px;
+  padding-right: 149px;
+  padding-bottom: 16px;
+  padding-left: 18px;
+  color: #fbfbfb;
+  font-weight: 500;
+  font-size: 16px;
+  line-height: 1.3;
+  margin-bottom: 8px;
+  transition: background 0.2s ease;
+}
+
+.filterTitle {
+  font-weight: 500;
+  font-size: 14px;
+  line-height: 1.3em;
+  color: #8a8a89;
+  margin-bottom: 8px;
+}
+
+@keyframes slideFadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(-10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+.filterWrapper {
+  position: relative;
+  display: inline-block; /* щоб dropdown не займав всю ширину */
+  margin-bottom: 32px;
+}
+
+.dropdownMenu {
+  position: absolute;
+  top: 100%; /* відразу під кнопкою */
+  left: 0;
+  background-color: white;
+  border: 1px solid #ccc;
+  z-index: 1000;
+  padding: 10px;
+  border-radius: 8px;
+  box-shadow: 0px 6px 12px rgba(0, 0, 0, 0.1);
+  min-width: 180px;
+}
+.loadMoreButton {
+  margin: 32px auto 0 auto;
+  display: block;
+  padding: 14px 48px;
+  font-size: 16px;
+  background-color: #54be96;
+  color: white;
+  border: none;
+  border-radius: 30px;
+  cursor: pointer;
+}
+
+.loadMoreButton:hover {
+  background-color: #43a685;
+}
+
+.endMessage {
+  text-align: center;
+  margin-top: 32px;
+  color: #888;
+}
+.favoritsContent {
+  display: flex;
+  flex-direction: column;
+  align-items: center; /* щоб Load More була точно по центру */
+  gap: 24px;
+}

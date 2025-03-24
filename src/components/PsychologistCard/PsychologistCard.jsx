@@ -95,6 +95,9 @@ const PsychologistCard = ({
     <div className={css.psychologistCardContainer}>
       <div className={css.avatarContainer}>
         <img src={avatar_url} alt={name} className={css.avatar} />
+        <div className={css.outerCircle}>
+          <div className={css.innerCircle}></div>
+        </div>
       </div>
       <div className={css.cardBox}>
         <div className={css.cardHeader}>

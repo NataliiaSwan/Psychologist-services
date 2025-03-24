@@ -8,9 +8,6 @@ const FavoritesList = ({ favorites, onRemove }) => {
 
   return (
     <div className={css.favoriteContainer}>
-      {/* {favorites.map((card) => (
-        <PsychologistCard key={card.id} {...card} onRemove={onRemove} />
-      ))} */}
       {favorites.map((psychologist) => (
         <PsychologistCard
           key={psychologist.id}
