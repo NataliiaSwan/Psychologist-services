@@ -38,7 +38,7 @@ const Header = ({ isAuthenticated, onLogin, onLogout, onRegister }) => {
               <span className={css.userIcon}></span>
 
               <span className={css.userName}>
-                {user?.displayName || "User"}
+                {user?.displayName?.split(" ")[0] || "User"}
               </span>
             </div>
             <button className={css.logoutButton} onClick={onLogout}>

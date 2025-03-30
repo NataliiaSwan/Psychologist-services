@@ -1,13 +1,13 @@
 import { useState, useEffect, useMemo } from "react";
 import FavoritesList from "../../components/FavoritesList/FavoritesList.jsx";
 import FavoritesFilter from "../../components/FavoritesFilter/FavoritesFilter.jsx";
-import css from "./FavorstesPage.module.css";
+import css from "./FavoritesPage.module.css";
 
 const FavoritesPage = () => {
   const [favorites, setFavorites] = useState([]);
   const [filter, setFilter] = useState("ALL");
   const [showFilter, setShowFilter] = useState(false);
-  const [visibleCount, setVisibleCount] = useState(3); // 👈 додаємо
+  const [visibleCount, setVisibleCount] = useState(3);
 
   useEffect(() => {
     const storedFavorites = JSON.parse(localStorage.getItem("favorites")) || [];

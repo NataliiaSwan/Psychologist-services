@@ -36,13 +36,13 @@
 }
 .filterWrapper {
   position: relative;
-  display: inline-block; /* щоб dropdown не займав всю ширину */
+  display: inline-block;
   margin-bottom: 32px;
 }
 
 .dropdownMenu {
   position: absolute;
-  top: 100%; /* відразу під кнопкою */
+  top: 100%;
   left: 0;
   background-color: white;
   border: 1px solid #ccc;
@@ -76,6 +76,6 @@
 .favoritsContent {
   display: flex;
   flex-direction: column;
-  align-items: center; /* щоб Load More була точно по центру */
+  align-items: center;
   gap: 24px;
 }

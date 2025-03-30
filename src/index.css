@@ -7,14 +7,11 @@
   --font-size-base: 16px;
 }
 
-/* Глобальні стилі */
-/* *,
-*::before,
-*::after {
+* {
   box-sizing: border-box;
   margin: 0;
   padding: 0;
-} */
+}
 
 body {
   margin: 0;
@@ -23,19 +20,14 @@ body {
   display: flex;
   flex-direction: column;
   box-sizing: border-box;
-  align-items: initial;
+
   min-width: 320px;
   min-height: 100vh;
   padding: 0;
   background-color: var(--background-color);
-  color: var(--text-color);
   background-color: #f3f3f3;
+  color: var(--text-color);
 }
-/* *,
-*::before,
-*::after {
-  box-sizing: inherit;
-} */
 
 button {
   background-color: var(--primary-color);

@@ -21,7 +21,7 @@ function AppContent() {
   const [isRegisterOpen, setIsRegisterOpen] = useState(false);
 
   useEffect(() => {
-    setTimeout(() => setIsLoadingPsychologists(false), 2000);
+    setTimeout(() => setIsLoadingPsychologists(false), 1000);
   }, []);
 
   const handleLogin = async ({ name, email, password }) => {
@@ -50,14 +50,6 @@ function AppContent() {
 
   if (authLoading || isLoadingPsychologists) return <Loader />;
 
-  const handleGetStarted = () => {
-    if (user) {
-      navigate("/psychologists");
-    } else {
-      setIsRegisterOpen(true);
-    }
-  };
-
   return (
     <div className={css.appContent}>
       {isLoginOpen && (
@@ -85,7 +77,12 @@ function AppContent() {
             />
           }
         >
-          <Route index element={<HomePage onGetStarted={handleGetStarted} />} />
+          <Route
+            index
+            element={
+              <HomePage user={user} setIsRegisterOpen={setIsRegisterOpen} />
+            }
+          />
           <Route path="/psychologists" element={<PsychologistPage />} />
           <Route path="/favorites" element={<FavoritesPage />} />
         </Route>

@@ -2,7 +2,8 @@
   display: flex;
   gap: 125px;
   position: relative;
-  padding-top: 78px;
+  padding: 78px 0;
+  width: 100%;
 }
 
 .heroTitle {
