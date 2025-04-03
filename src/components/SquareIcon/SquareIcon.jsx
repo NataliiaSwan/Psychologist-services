@@ -1,13 +1,18 @@
 import css from "./SquareIcon.module.css";
+import sprite from "../../assets/icons/sprite.svg";
 
 const SquareIcon = () => {
   return (
     <>
       <div className={css.iconboxViolet}>
-        <span className={css.iconViolet}></span>
+        <svg className={css.iconViolet}>
+          <use href={`${sprite}#icon-question-mark`} />
+        </svg>
       </div>
       <div className={css.iconboxYellow}>
-        <span className={css.iconYellow}></span>
+        <svg className={css.iconYellow}>
+          <use href={`${sprite}#icon-users`} />
+        </svg>
       </div>
     </>
   );

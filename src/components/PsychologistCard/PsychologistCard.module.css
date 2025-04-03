@@ -98,23 +98,50 @@
   font-size: 16px;
   line-height: 1.5em;
 }
-.heart {
-  background: none;
+
+/* .iconHeart {
+  width: 26px;
+  height: 26px;
+  fill: white;
+  stroke: black;
+  stroke-width: 2px;
+  transition: fill 0.3s ease;
+}
+
+.iconHeartActive {
+  fill: #54be96;
+  stroke: none;
+}
+button {
+  background-color: transparent;
   border: none;
-  font-size: 24px;
-  cursor: pointer;
-  color: black; /* Серце чорного кольору за замовчуванням */
-  transition: color 0.3s ease-in-out;
-  outline: none; /* Видаляє обводку кнопки */
+  padding: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+} */
+.heartButton {
+  background-color: transparent;
+  border: none;
+  padding: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 
-.heartActive {
-  color: #54be96; /* Серце стає зеленим, якщо додано в обране */
+.iconHeart path {
+  fill: white;
+  stroke: black;
+  stroke-width: 2px;
+  transition: fill 0.3s ease;
 }
 
-.heart:hover {
-  color: #54be96; /* Серце змінює колір при наведенні */
+/* Тепер без path всередині */
+.iconHeartActive {
+  fill: #54be96; /* Колір змінюється тільки у серця */
+  stroke: none;
 }
+
 .readMore {
   font-family: Inter;
   font-weight: 500;

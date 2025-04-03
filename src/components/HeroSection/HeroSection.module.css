@@ -33,6 +33,8 @@
   margin-bottom: 40px;
 }
 .button {
+  display: flex;
+  gap: 18px;
   background-color: #54be96;
   padding: 18px 50px;
 
@@ -47,4 +49,8 @@
 }
 button:hover {
   background: #36a379;
+}
+.iconArrow {
+  width: 18px;
+  height: 18px;
 }

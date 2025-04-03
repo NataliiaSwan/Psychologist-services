@@ -8,3 +8,14 @@ export default defineConfig({
     sourcemap: true,
   },
 });
+// import { defineConfig } from "vite";
+// import svgSprite from "vite-plugin-svg-sprite";
+
+// export default defineConfig({
+//   plugins: [
+//     svgSprite({
+//       // шлях до папки з вашими SVG іконками
+//       src: "src/assets/icons",
+//     }),
+//   ],
+// });

@@ -2,6 +2,7 @@ import css from "./HeroSection.module.css";
 import image from "../../assets/images/image.jpg";
 import ExperiencedCheckbox from "../../components/ExperiencedCheckbox/ExperiencedCheckbox.jsx";
 import SquareIcon from "../../components/SquareIcon/SquareIcon.jsx";
+import sprite from "../../assets/icons/sprite.svg";
 
 const HeroSection = ({ onGetStarted }) => {
   return (
@@ -17,6 +18,9 @@ const HeroSection = ({ onGetStarted }) => {
         </p>
         <button className={css.button} onClick={onGetStarted}>
           Get started
+          <svg className={css.iconArrow}>
+            <use href={`${sprite}#icon-arrow`} />
+          </svg>
         </button>
       </div>
       <ExperiencedCheckbox />

@@ -3,6 +3,7 @@ import css from "./Header.module.css";
 import { useLocation } from "react-router-dom";
 import NavItem from "../../components/NavItem/NavItem.jsx";
 import { useAuth } from "../../hooks/useAuth.js";
+import UserIcon from "../../assets/icons/user.svg";
 
 const Header = ({ isAuthenticated, onLogin, onLogout, onRegister }) => {
   const location = useLocation();
@@ -35,8 +36,10 @@ const Header = ({ isAuthenticated, onLogin, onLogout, onRegister }) => {
         {isAuthenticated ? (
           <div className={css.userSection}>
             <div className={css.userBox}>
-              <span className={css.userIcon}></span>
-
+              {/* <span className={css.userIcon}></span> */}
+              <div className={css.iconContainer}>
+                <img src={UserIcon} alt="User Icon" className={css.userIcon} />
+              </div>
               <span className={css.userName}>
                 {user?.displayName?.split(" ")[0] || "User"}
               </span>

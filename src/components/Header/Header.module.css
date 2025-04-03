@@ -75,15 +75,19 @@
   align-items: center;
   gap: 10px;
 }
-
-.userIcon {
-  width: 40px;
-  height: 40px;
-  background: #54be96;
+.iconContainer {
   display: flex;
   align-items: center;
   justify-content: center;
+  background-color: #54be96;
+  width: 40px;
+  height: 40px;
   border-radius: 10px;
+}
+.userIcon {
+  color: #fbfbfb;
+  width: 16px;
+  height: 16px;
 }
 
 .userName {

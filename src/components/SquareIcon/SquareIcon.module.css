@@ -11,6 +11,11 @@
   right: 35%;
   border-radius: 10px;
 }
+.iconViolet {
+  width: 10px;
+  height: 15px;
+  transform: rotate(-65deg);
+}
 .iconboxYellow {
   display: flex;
   align-items: center;
@@ -18,9 +23,14 @@
   width: 59px;
   height: 59px;
   background-color: #fbc75e;
-  transform: rotate(15deg);
+  transform: rotate(25deg);
   top: 18%;
-  right: -4%;
+  right: -7%;
   position: absolute;
   border-radius: 10px;
+}
+.iconYellow {
+  width: 25px;
+  height: 25px;
+  transform: rotate(-15deg);
 }
