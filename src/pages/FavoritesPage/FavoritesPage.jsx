@@ -1,4 +1,4 @@
-import { useState, useEffect, useMemo } from "react";
+import { useState, useEffect, useMemo, useRef } from "react";
 import FavoritesList from "../../components/FavoritesList/FavoritesList.jsx";
 import FavoritesFilter from "../../components/FavoritesFilter/FavoritesFilter.jsx";
 import css from "./FavoritesPage.module.css";
@@ -8,6 +8,9 @@ const FavoritesPage = () => {
   const [filter, setFilter] = useState("ALL");
   const [showFilter, setShowFilter] = useState(false);
   const [visibleCount, setVisibleCount] = useState(3);
+
+  // Для перевірки, чи натиснули поза фільтром
+  const filterRef = useRef(null);
 
   useEffect(() => {
     const storedFavorites = JSON.parse(localStorage.getItem("favorites")) || [];
@@ -58,6 +61,19 @@ const FavoritesPage = () => {
     setVisibleCount(3); // при зміні фільтра скидуємо лічильник
   };
 
+  // Закриття фільтра при натисканні поза ним
+  useEffect(() => {
+    const handleClickOutside = (e) => {
+      if (filterRef.current && !filterRef.current.contains(e.target)) {
+        setShowFilter(false);
+      }
+    };
+    document.addEventListener("mousedown", handleClickOutside);
+    return () => {
+      document.removeEventListener("mousedown", handleClickOutside);
+    };
+  }, []);
+
   return (
     <div className={css.favoritsContainer}>
       <h1 className={css.filterTitle}>Favorites</h1>
@@ -70,7 +86,7 @@ const FavoritesPage = () => {
         </button>
 
         {showFilter && (
-          <div className={css.dropdownMenu}>
+          <div ref={filterRef} className={css.dropdownMenu}>
             <FavoritesFilter
               selectedFilter={filter}
               onFilterChange={handleFilterChange}

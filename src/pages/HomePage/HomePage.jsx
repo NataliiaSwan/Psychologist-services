@@ -7,9 +7,9 @@ import { useNavigate } from "react-router-dom";
 const HomePage = ({ user, setIsRegisterOpen }) => {
   const navigate = useNavigate();
 
-  const handleGetStarted = () => {
+  const handleGetStarted = (isExperiencedChecked) => {
     if (user) {
-      navigate("/psychologists");
+      navigate(`/psychologists?experience=${isExperiencedChecked}`);
     } else {
       setIsRegisterOpen(true);
     }

@@ -5,17 +5,29 @@
 }
 
 .filterToggleButton {
+  display: flex;
+  gap: 124px;
+  align-items: center;
+  justify-content: space-between;
   border-radius: 14px;
   padding-top: 16px;
-  padding-right: 162px;
+  padding-right: 14px;
   padding-bottom: 16px;
   padding-left: 18px;
   color: #fbfbfb;
   font-weight: 500;
   font-size: 16px;
   line-height: 1.3;
-
   transition: background 0.2s ease;
+}
+.iconVectorBottom {
+  width: 10px;
+  height: 5px;
+  transition: transform 0.3s ease;
+}
+
+.iconVectorTop {
+  transform: rotate(180deg);
 }
 
 .filterTitle {

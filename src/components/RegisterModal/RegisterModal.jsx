@@ -1,64 +1,9 @@
-// import { useState } from "react";
-// import css from "./RegisterModal.module.css";
-
-// const RegisterModal = ({ onClose, onRegister }) => {
-//   const [name, setName] = useState("");
-//   const [email, setEmail] = useState("");
-//   const [password, setPassword] = useState("");
-
-//   function handleSubmit(e) {
-//     e.preventDefault();
-//     onRegister(name);
-//   }
-
-//   return (
-//     <div className={css.modalOverlay} onClick={onClose}>
-//       <div className={css.modalContent} onClick={(e) => e.stopPropagation()}>
-//         <button className={css.closeButton} onClick={onClose}>
-//           ×
-//         </button>
-
-//         <h2 className={css.modalTitle}>Registration</h2>
-//         <p className={css.modalText}>
-//           Thank you for your interest in our platform! In order to register, we
-//           need some information. Please provide us with the following
-//           information.
-//         </p>
-//         <form onSubmit={handleSubmit}>
-//           <input
-//             type="text"
-//             placeholder="Name"
-//             value={name}
-//             onChange={(e) => setName(e.target.value)}
-//             required
-//           />
-//           <input
-//             type="email"
-//             placeholder="Email"
-//             value={email}
-//             onChange={(e) => setEmail(e.target.value)}
-//             required
-//           />
-//           <input
-//             type="password"
-//             placeholder="Password"
-//             value={password}
-//             onChange={(e) => setPassword(e.target.value)}
-//             required
-//           />
-//           <button type="submit">Sign Up</button>
-//         </form>
-//       </div>
-//     </div>
-//   );
-// };
-
-// export default RegisterModal;
-
 import { useForm } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
 import * as yup from "yup";
 import css from "./RegisterModal.module.css";
+import sprite from "../../assets/icons/sprite.svg";
+import { useState } from "react";
 
 const schema = yup.object().shape({
   name: yup.string().required("Name required"),
@@ -73,6 +18,10 @@ const schema = yup.object().shape({
 });
 
 const RegisterModal = ({ onClose, onRegister }) => {
+  const [isPasswordVisible, setIsPasswordVisible] = useState(false);
+  const togglePasswordVisibility = () => {
+    setIsPasswordVisible((prevState) => !prevState);
+  };
   const {
     register,
     handleSubmit,
@@ -100,12 +49,34 @@ const RegisterModal = ({ onClose, onRegister }) => {
           <input type="email" placeholder="Email" {...register("email")} />
           <p className={css.error}>{errors.email?.message}</p>
 
-          <input
+          {/* <input
             type="password"
             placeholder="Password"
             {...register("password")}
+          /> */}
+          <input
+            type={isPasswordVisible ? "text" : "password"} // змінюємо тип
+            placeholder="Password"
+            {...register("password")}
           />
-          <p className={css.error}>{errors.password?.message}</p>
+          {/* <svg className="icon">
+            <use href={`${sprite}#icon-line`} />
+          </svg>
+
+          <svg className="icon">
+            <use href={`${sprite}#icon-rossed-eye`} />
+          </svg>
+          <p className={css.error}>{errors.password?.message}</p> */}
+          <button type="button" onClick={togglePasswordVisibility}>
+            <svg className="icon">
+              <use href={`${sprite}#icon-eye`} />
+            </svg>
+            {isPasswordVisible && (
+              <svg className="icon">
+                <use href={`${sprite}#icon-crossed-eye`} />
+              </svg>
+            )}
+          </button>
 
           <button type="submit">Sign Up</button>
         </form>

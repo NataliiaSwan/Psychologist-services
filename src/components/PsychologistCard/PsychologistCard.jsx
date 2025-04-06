@@ -8,7 +8,8 @@ import { useEffect, useState } from "react";
 import { useAuth } from "../../hooks/useAuth.js";
 import CardReview from "../../components/CardReview/CardReview.jsx";
 import AppointmentModal from "../../components/AppointmentModal/AppointmentModal.jsx";
-// import IconHeart from "../../assets/icons/heard.svg";
+
+import sprite from "../../assets/icons/sprite.svg";
 
 const PsychologistCard = ({
   id,
@@ -27,7 +28,7 @@ const PsychologistCard = ({
   const [isFav, setIsFav] = useState(false);
   const [isExpanded, setIsExpanded] = useState(false);
   const [isModalOpen, setIsModalOpen] = useState(false);
-  const [showLoginAlert, setShowLoginAlert] = useState(false); // 🔔
+  const [showLoginAlert, setShowLoginAlert] = useState(false);
 
   useEffect(() => {
     if (user?.uid) {
@@ -52,7 +53,6 @@ const PsychologistCard = ({
 
   const toggleFavorite = async () => {
     if (!user) {
-      // 🔔 якщо користувач не залогінений
       setShowLoginAlert(true);
       setTimeout(() => setShowLoginAlert(false), 2000);
       return;
@@ -62,12 +62,14 @@ const PsychologistCard = ({
       const savedFavs = JSON.parse(localStorage.getItem("favorites")) || [];
 
       if (isFav) {
+        // Якщо вже в фаворитах, видаляємо
         await removeFromFavorites(user.uid, id);
         setIsFav(false);
-        // також прибрати з localStorage
+
         const updatedFavs = savedFavs.filter((fav) => fav.id !== id);
         localStorage.setItem("favorites", JSON.stringify(updatedFavs));
       } else {
+        // Якщо не в фаворитах, додаємо
         const newFavorite = {
           id,
           avatar_url,
@@ -83,7 +85,7 @@ const PsychologistCard = ({
         };
         await addToFavorites(user.uid, newFavorite);
         setIsFav(true);
-        // додати до localStorage
+
         const updatedFavs = [...savedFavs, newFavorite];
         localStorage.setItem("favorites", JSON.stringify(updatedFavs));
       }
@@ -105,6 +107,9 @@ const PsychologistCard = ({
           <p className={css.psychologistInfo}>psychologist</p>
           <ul className={css.listRatingPrice}>
             <li className={css.rating}>
+              <svg className={css.iconStar}>
+                <use href={`${sprite}#icon-star`} />
+              </svg>
               Rating: <span>{rating}</span>
             </li>
             <li className={css.price}>
@@ -112,32 +117,13 @@ const PsychologistCard = ({
               <span className={css.pricePerHour}>{price_per_hour}</span>
             </li>
             <li>
-              {/* <button
-                className={isFav ? css.iconHeartActive : css.iconHeart}
-                onClick={toggleFavorite}
-              >
-                <svg
-                  xmlns="http://www.w3.org/2000/svg"
-                  width="26"
-                  height="26"
-                  viewBox="0 0 24 24"
-                  className={isFav ? css.iconHeartActive : css.iconHeart}
-                >
-                  <path d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z" />
-                </svg>
-              </button> */}
               <button className={css.heartButton} onClick={toggleFavorite}>
                 <svg
-                  xmlns="http://www.w3.org/2000/svg"
-                  width="26"
-                  height="26"
-                  viewBox="0 0 24 24"
-                  className={css.iconHeart} // Клас тільки на svg
+                  className={`${css.iconHeart} ${
+                    isFav ? css.iconHeartActive : ""
+                  }`}
                 >
-                  <path
-                    d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z"
-                    className={isFav ? css.iconHeartActive : ""}
-                  />
+                  <use href={`${sprite}#icon-heart`} />
                 </svg>
               </button>
             </li>

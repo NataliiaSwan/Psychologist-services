@@ -3,6 +3,8 @@ import { fetchPsychologists } from "../../services/psychologistService.js";
 import PsychologistCard from "../../components/PsychologistCard/PsychologistCard.jsx";
 import FilterComponent from "../../components/FilterComponent/FilterComponent.jsx";
 import css from "./PsychologistListCard.module.css";
+import sprite from "../../assets/icons/sprite.svg";
+import { useLocation } from "react-router-dom";
 
 const filterLabels = {
   ALL: "Show All",
@@ -32,7 +34,6 @@ const applyFilter = (list, selectedFilter) => {
       return list;
   }
 };
-
 const PsychologistListCard = () => {
   const [psychologists, setPsychologists] = useState([]);
   const [filteredPsychologists, setFilteredPsychologists] = useState([]);
@@ -40,7 +41,7 @@ const PsychologistListCard = () => {
   const [filter, setFilter] = useState("ALL");
   const [visibleCount, setVisibleCount] = useState(3);
   const [isLoading, setIsLoading] = useState(false);
-
+  const location = useLocation();
   const filterRef = useRef(null);
 
   useEffect(() => {
@@ -52,7 +53,7 @@ const PsychologistListCard = () => {
           id: index + 1,
         }));
         setPsychologists(psychologistsWithId);
-        setFilteredPsychologists(psychologistsWithId);
+        console.log("Psychologists after fetching:", psychologists);
       })
       .catch((error) => console.error("Error fetching psychologists:", error))
       .finally(() => setIsLoading(false));
@@ -89,6 +90,33 @@ const PsychologistListCard = () => {
     [filteredPsychologists, visibleCount]
   );
 
+  useEffect(() => {
+    const params = new URLSearchParams(location.search);
+    const experiencedFilter = params.get("experience") === "true";
+    console.log("Experience filter from URL:", experiencedFilter);
+
+    psychologists.forEach((psychologist) => {
+      const experienceInYears = parseInt(psychologist.experience); // Перетворюємо досвід на число
+      console.log(
+        `Psychologist ${psychologist.id}: Experience ${psychologist.experience} => ${experienceInYears} years`
+      );
+    });
+
+    const filtered = experiencedFilter
+      ? psychologists.filter((p) => {
+          const experienceInYears = parseInt(p.experience); // Перетворюємо в число
+          return experienceInYears >= 20; // Порівнюємо з 15 роками
+        })
+      : psychologists;
+
+    console.log(
+      "Filtered psychologists after experience filter:",
+      filtered.length
+    );
+
+    setFilteredPsychologists(filtered);
+  }, [location.search, psychologists]);
+
   return (
     <div>
       <h1 className={css.filterTitle}>Filter</h1>
@@ -98,6 +126,13 @@ const PsychologistListCard = () => {
           onClick={() => setIsFilterOpen(!isFilterOpen)}
         >
           {filterLabels[filter]}
+          <svg
+            className={`${css.iconVectorBottom} ${
+              isFilterOpen ? css.iconVectorTop : ""
+            }`}
+          >
+            <use href={`${sprite}#icon-vector-bottom`} />
+          </svg>
         </button>
 
         {isFilterOpen && (

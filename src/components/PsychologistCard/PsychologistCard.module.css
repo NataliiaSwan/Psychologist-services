@@ -59,6 +59,7 @@
   justify-content: center;
   gap: 32px;
 }
+
 .cardHeader {
   width: 100%;
   display: flex;
@@ -93,33 +94,15 @@
   text-align: start;
   width: 992px;
 }
-.rating .price {
+.rating,
+.price {
+  display: flex;
+  align-items: center;
   font-weight: 500;
   font-size: 16px;
   line-height: 1.5em;
 }
 
-/* .iconHeart {
-  width: 26px;
-  height: 26px;
-  fill: white;
-  stroke: black;
-  stroke-width: 2px;
-  transition: fill 0.3s ease;
-}
-
-.iconHeartActive {
-  fill: #54be96;
-  stroke: none;
-}
-button {
-  background-color: transparent;
-  border: none;
-  padding: 0;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-} */
 .heartButton {
   background-color: transparent;
   border: none;
@@ -128,18 +111,30 @@ button {
   align-items: center;
   justify-content: center;
 }
-
-.iconHeart path {
-  fill: white;
-  stroke: black;
-  stroke-width: 2px;
-  transition: fill 0.3s ease;
+.heartButton:hover {
+  background-color: transparent;
 }
 
-/* Тепер без path всередині */
+.iconHeart {
+  fill: white;
+  stroke: black;
+  width: 26px;
+  height: 23px;
+}
+
 .iconHeartActive {
-  fill: #54be96; /* Колір змінюється тільки у серця */
+  fill: #54be96;
   stroke: none;
+}
+.iconHeart use {
+  width: 100%;
+  height: 100%;
+}
+.iconStar {
+  width: 20px;
+  height: 20px;
+  fill: #ffc531;
+  margin-right: 8px;
 }
 
 .readMore {
