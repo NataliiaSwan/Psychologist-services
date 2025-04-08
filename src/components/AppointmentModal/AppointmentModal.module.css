@@ -1,4 +1,56 @@
 .modal {
+  background: #fff;
+  border-radius: 16px;
+  padding: 40px 20px;
+  max-width: 600px;
+  width: 100%;
+  position: relative;
+  animation: scaleIn 0.3s ease forwards;
+}
+
+/* Loader у кнопці */
+.submitButton:disabled::after {
+  content: "";
+  display: inline-block;
+  width: 18px;
+  height: 18px;
+  border: 2px solid transparent;
+  border-top-color: #fff;
+  border-radius: 50%;
+  animation: spin 0.8s linear infinite;
+  position: absolute;
+  right: 20px;
+  top: 50%;
+  transform: translateY(-50%);
+}
+
+/* Анімації */
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+@keyframes scaleIn {
+  from {
+    transform: scale(0.8);
+    opacity: 0;
+  }
+  to {
+    transform: scale(1);
+    opacity: 1;
+  }
+}
+
+@keyframes spin {
+  to {
+    transform: rotate(360deg);
+  }
+}
+.modal {
   width: 100%;
   max-width: 600px;
   background-color: #fbfbfb;
@@ -7,29 +59,28 @@
   overflow-y: auto;
   position: relative;
   box-sizing: border-box;
+  animation: scaleIn 0.3s ease forwards;
 }
 
 .backdrop {
   position: fixed;
-  top: 0;
-  left: 0;
-  width: 100vw;
-  height: 100vh;
-  background-color: rgba(0, 0, 0, 0.6);
+  inset: 0;
+  background: rgba(0, 0, 0, 0.6);
+  backdrop-filter: blur(2px);
   display: flex;
   justify-content: center;
   align-items: center;
   z-index: 999;
+  animation: fadeIn 0.3s ease forwards;
 }
-/* .closeBtn {
-  border: none;
-} */
+
 .title {
   font-weight: 500;
   font-size: 40px;
   line-height: 1.2em;
   margin-bottom: 20px;
 }
+
 .description {
   font-size: 16px;
   line-height: 1.3em;
@@ -44,53 +95,63 @@
   color: #8a8a89;
 }
 
+.psychologistName {
+  font-weight: 500;
+  font-size: 16px;
+  line-height: 1.5em;
+}
+
+.avatarContainer {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  margin-bottom: 40px;
+}
+
+.avatar {
+  width: 44px;
+  height: 44px;
+  border-radius: 50%;
+}
+
+.titleNamebox {
+  display: flex;
+  flex-direction: column;
+}
+
 .form {
   display: flex;
   flex-direction: column;
   gap: 16px;
 }
+
 .fullWidth {
   width: 100%;
 }
-.inputField {
-  font-weight: 400;
-  font-size: 16px;
-  line-height: 1.3em;
-  width: 100%;
-  border-radius: 12px;
-  box-sizing: border-box;
-  padding: 16px 18px;
-  gap: 18px;
-  border: 1px solid #191a151a;
-  background-color: #fbfbfb;
-}
-.row {
-  display: flex;
-  gap: 10px;
-}
-.halfWidth {
-  flex: 1;
-  min-width: 48%;
-}
+
+.inputField,
 .textArea {
   width: 100%;
   padding: 16px 18px;
   border-radius: 12px;
   border: 1px solid #191a151a;
-  font-family: Inter;
   background-color: #fbfbfb;
   font-size: 16px;
-  line-height: 1.2em;
+  line-height: 1.3em;
+  font-family: Inter;
+  box-sizing: border-box;
 }
-.submitButton {
-  cursor: pointer;
-  border-radius: 30px;
-  gap: 8px;
-  padding: 16px 217px;
-  background-color: #54be96;
-  color: #fbfbfb;
-  gap: 8px;
+
+.row {
+  display: flex;
+  gap: 10px;
 }
+
+.halfWidth {
+  flex: 1;
+  min-width: 48%;
+}
+
 .timeInputWrapper {
   position: relative;
   display: flex;
@@ -108,13 +169,13 @@
 .dropdown {
   display: flex;
   flex-direction: column;
-  box-sizing: border-box;
   position: absolute;
   background-color: #ffffff;
   border-radius: 10px;
   width: 151px;
   margin-top: 8px;
   padding: 16px;
+  box-sizing: border-box;
 }
 
 .dropdownTitle {
@@ -145,31 +206,71 @@
   color: red;
   margin-top: 4px;
 }
-.avatarContainer {
-  display: flex;
-  align-items: center;
-  gap: 14px;
-  margin-bottom: 40px;
+
+.successMessage {
+  text-align: center;
+  color: #3cb371;
+  font-size: 20px;
+  font-weight: 600;
+  padding: 40px 20px;
 }
 
-.avatar {
-  width: 44px;
-  height: 44px;
+.submitButton {
+  width: 100%;
+  padding: 12px 0;
+  background-color: #3cb371;
+  color: #fff;
+  border: none;
+  border-radius: 10px;
+  font-size: 18px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: background-color 0.3s ease, opacity 0.3s ease;
+  position: relative;
+}
+
+.submitButton:disabled {
+  cursor: not-allowed;
+  opacity: 0.8;
+}
+
+.submitButton:disabled::after {
+  content: "";
+  display: inline-block;
+  width: 18px;
+  height: 18px;
+  border: 2px solid transparent;
+  border-top-color: #fff;
   border-radius: 50%;
-}
-.titleNamebox {
-  display: flex;
-  flex-direction: column;
-}
-.infoTitle {
-  font-weight: 500;
-  font-size: 12px;
-  line-height: 1.3em;
-  color: #8a8a89;
+  animation: spin 0.8s linear infinite;
+  position: absolute;
+  right: 20px;
+  top: 50%;
+  transform: translateY(-50%);
 }
 
-.psychologistName {
-  font-weight: 500;
-  font-size: 16px;
-  line-height: 1.5em;
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+@keyframes scaleIn {
+  from {
+    transform: scale(0.8);
+    opacity: 0;
+  }
+  to {
+    transform: scale(1);
+    opacity: 1;
+  }
+}
+
+@keyframes spin {
+  to {
+    transform: rotate(360deg);
+  }
 }
