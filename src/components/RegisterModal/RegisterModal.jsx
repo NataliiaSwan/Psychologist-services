@@ -2,7 +2,6 @@ import { useForm } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
 import * as yup from "yup";
 import css from "./RegisterModal.module.css";
-// import sprite from "../../assets/icons/sprite.svg";
 
 import { useState } from "react";
 

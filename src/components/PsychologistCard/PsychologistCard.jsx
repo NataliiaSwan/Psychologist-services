@@ -23,6 +23,7 @@ const PsychologistCard = ({
   initial_consultation,
   about,
   reviews,
+  onRemoveFavorite,
 }) => {
   const { user } = useAuth();
   const [isFav, setIsFav] = useState(false);
@@ -62,14 +63,15 @@ const PsychologistCard = ({
       const savedFavs = JSON.parse(localStorage.getItem("favorites")) || [];
 
       if (isFav) {
-        // Якщо вже в фаворитах, видаляємо
         await removeFromFavorites(user.uid, id);
         setIsFav(false);
-
         const updatedFavs = savedFavs.filter((fav) => fav.id !== id);
         localStorage.setItem("favorites", JSON.stringify(updatedFavs));
+
+        if (onRemoveFavorite) {
+          onRemoveFavorite(id);
+        }
       } else {
-        // Якщо не в фаворитах, додаємо
         const newFavorite = {
           id,
           avatar_url,
@@ -180,7 +182,6 @@ const PsychologistCard = ({
         )}
       </div>
 
-      {/* 🔔 Пуш-сповіщення */}
       {showLoginAlert && (
         <div className={css.loginAlert}>Please log in to use favorites 💚</div>
       )}

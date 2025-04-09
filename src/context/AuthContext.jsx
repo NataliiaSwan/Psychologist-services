@@ -30,6 +30,7 @@ export const AuthProvider = ({ children }) => {
   const logout = async () => {
     try {
       await signOut(auth);
+      localStorage.removeItem("favorites");
     } catch (error) {
       console.error("Exit error:", error.message);
     }

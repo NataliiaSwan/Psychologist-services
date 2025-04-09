@@ -96,7 +96,7 @@ const PsychologistListCard = () => {
     console.log("Experience filter from URL:", experiencedFilter);
 
     psychologists.forEach((psychologist) => {
-      const experienceInYears = parseInt(psychologist.experience); // Перетворюємо досвід на число
+      const experienceInYears = parseInt(psychologist.experience);
       console.log(
         `Psychologist ${psychologist.id}: Experience ${psychologist.experience} => ${experienceInYears} years`
       );
@@ -104,8 +104,8 @@ const PsychologistListCard = () => {
 
     const filtered = experiencedFilter
       ? psychologists.filter((p) => {
-          const experienceInYears = parseInt(p.experience); // Перетворюємо в число
-          return experienceInYears >= 20; // Порівнюємо з 15 роками
+          const experienceInYears = parseInt(p.experience);
+          return experienceInYears >= 20;
         })
       : psychologists;
 
