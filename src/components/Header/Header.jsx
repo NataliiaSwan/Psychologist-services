@@ -1,3 +1,5 @@
+//
+
 import logo from "../../assets/images/Logo.svg";
 import css from "./Header.module.css";
 import { useLocation } from "react-router-dom";
@@ -5,9 +7,12 @@ import NavItem from "../../components/NavItem/NavItem.jsx";
 import { useAuth } from "../../hooks/useAuth.js";
 import UserIcon from "../../assets/icons/user.svg";
 
-const Header = ({ isAuthenticated, onLogin, onLogout, onRegister }) => {
+const Header = ({ onLogin, onRegister }) => {
   const location = useLocation();
-  const { user } = useAuth();
+  const { user, logout } = useAuth();
+
+  const isAuthenticated = !!user;
+
   return (
     <>
       <div
@@ -24,7 +29,6 @@ const Header = ({ isAuthenticated, onLogin, onLogout, onRegister }) => {
               label="Psychologists"
               currentPath={location.pathname}
             />
-
             <NavItem
               to="/favorites"
               label="Favorites"
@@ -36,15 +40,16 @@ const Header = ({ isAuthenticated, onLogin, onLogout, onRegister }) => {
         {isAuthenticated ? (
           <div className={css.userSection}>
             <div className={css.userBox}>
-              {/* <span className={css.userIcon}></span> */}
               <div className={css.iconContainer}>
                 <img src={UserIcon} alt="User Icon" className={css.userIcon} />
               </div>
               <span className={css.userName}>
-                {user?.displayName?.split(" ")[0] || "User"}
+                {user?.displayName?.split(" ")[0] ||
+                  user?.email?.split("@")[0] ||
+                  "User"}
               </span>
             </div>
-            <button className={css.logoutButton} onClick={onLogout}>
+            <button className={css.logoutButton} onClick={logout}>
               Log out
             </button>
           </div>

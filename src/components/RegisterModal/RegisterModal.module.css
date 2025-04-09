@@ -47,16 +47,6 @@
   border: 1px solid #191a151a;
 }
 
-.modalContent form button {
-  width: 100%;
-  padding: 16px 190px;
-  background-color: #54be96;
-  color: white;
-  border-radius: 30px;
-  border: none;
-  cursor: pointer;
-  margin-top: 20px;
-}
 .closeButton {
   position: absolute;
   top: 28px;
@@ -71,4 +61,88 @@
 .closeButton:hover {
   color: #54be96;
   background-color: #fbfbfb;
+}
+
+/* .passwordBox {
+  position: relative;
+  width: 100%;
+}
+
+.passwordInput {
+  width: 100%;
+  padding-right: 40px;
+}
+
+.passwordToggle {
+  position: absolute;
+  top: 50%;
+  right: 10px;
+  transform: translateY(-50%);
+  background: transparent;
+  border: none;
+  cursor: pointer;
+  padding: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 30px;
+  height: 30px;
+  position: relative;
+}
+
+.eyeWrapper {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: absolute;
+  top: 0;
+  left: 0;
+  display: flex;
+}
+
+.hidden {
+  display: none;
+}
+
+.icon {
+  width: 20px;
+  height: 20px;
+  pointer-events: none;
+  fill: #fbfbfb;
+  stroke: #333;
+}
+*/
+.buttonSignIn {
+  width: 100%;
+  padding: 16px 190px;
+  background-color: #54be96;
+  color: white;
+  border-radius: 30px;
+  border: none;
+  cursor: pointer;
+  margin-top: 20px;
+}
+.passwordBox {
+  position: relative;
+  width: 100%;
+}
+
+.passwordInput {
+  width: 100%;
+  padding-right: 40px;
+}
+
+.passwordToggle {
+  position: absolute;
+  top: 25px;
+  right: 20px;
+  transform: translateY(-50%);
+  background: transparent;
+  border: none;
+  cursor: pointer;
+  padding: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 30px;
 }
