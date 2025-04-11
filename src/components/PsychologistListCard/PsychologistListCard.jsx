@@ -16,24 +16,29 @@ const filterLabels = {
   NOT_POPULAR: "Not Popular",
 };
 
-const applyFilter = (list, selectedFilter) => {
+const applyFilter = (list, selectedFilter, experiencedFilter) => {
+  let filteredList = experiencedFilter
+    ? list.filter((p) => parseInt(p.experience) >= 20)
+    : list;
+
   switch (selectedFilter) {
     case "A_TO_Z":
-      return [...list].sort((a, b) => a.name.localeCompare(b.name));
+      return [...filteredList].sort((a, b) => a.name.localeCompare(b.name));
     case "Z_TO_A":
-      return [...list].sort((a, b) => b.name.localeCompare(a.name));
+      return [...filteredList].sort((a, b) => b.name.localeCompare(a.name));
     case "PRICE_LOW":
-      return list.filter((p) => p.price_per_hour < 10);
+      return filteredList.filter((p) => p.price_per_hour < 10);
     case "PRICE_HIGH":
-      return list.filter((p) => p.price_per_hour >= 10);
+      return filteredList.filter((p) => p.price_per_hour >= 10);
     case "POPULAR":
-      return list.filter((p) => p.rating >= 4);
+      return filteredList.filter((p) => p.rating >= 4);
     case "NOT_POPULAR":
-      return list.filter((p) => p.rating < 4);
+      return filteredList.filter((p) => p.rating < 4);
     default:
-      return list;
+      return filteredList;
   }
 };
+
 const PsychologistListCard = () => {
   const [psychologists, setPsychologists] = useState([]);
   const [filteredPsychologists, setFilteredPsychologists] = useState([]);
@@ -44,6 +49,7 @@ const PsychologistListCard = () => {
   const location = useLocation();
   const filterRef = useRef(null);
 
+  // Fetching psychologists data
   useEffect(() => {
     setIsLoading(true);
     fetchPsychologists()
@@ -53,12 +59,13 @@ const PsychologistListCard = () => {
           id: index + 1,
         }));
         setPsychologists(psychologistsWithId);
-        console.log("Psychologists after fetching:", psychologists);
+        console.log("Psychologists after fetching:", psychologistsWithId);
       })
       .catch((error) => console.error("Error fetching psychologists:", error))
       .finally(() => setIsLoading(false));
   }, []);
 
+  // Handling outside click to close filter dropdown
   useEffect(() => {
     const handleClickOutside = (e) => {
       if (filterRef.current && !filterRef.current.contains(e.target)) {
@@ -73,14 +80,24 @@ const PsychologistListCard = () => {
     return () => document.removeEventListener("mousedown", handleClickOutside);
   }, [isFilterOpen]);
 
+  // Get the experience filter from URL
+  const params = new URLSearchParams(location.search);
+  const experiencedFilter = params.get("experience") === "true";
+
+  // Handle filter change
   const handleFilterChange = (selectedFilter) => {
     setFilter(selectedFilter);
     setVisibleCount(3);
-    const filtered = applyFilter(psychologists, selectedFilter);
+    const filtered = applyFilter(
+      psychologists,
+      selectedFilter,
+      experiencedFilter
+    );
     setFilteredPsychologists(filtered);
     setIsFilterOpen(false);
   };
 
+  // Load more psychologists
   const loadMore = () => {
     setVisibleCount((prev) => prev + 3);
   };
@@ -91,8 +108,6 @@ const PsychologistListCard = () => {
   );
 
   useEffect(() => {
-    const params = new URLSearchParams(location.search);
-    const experiencedFilter = params.get("experience") === "true";
     console.log("Experience filter from URL:", experiencedFilter);
 
     psychologists.forEach((psychologist) => {
@@ -102,20 +117,9 @@ const PsychologistListCard = () => {
       );
     });
 
-    const filtered = experiencedFilter
-      ? psychologists.filter((p) => {
-          const experienceInYears = parseInt(p.experience);
-          return experienceInYears >= 20;
-        })
-      : psychologists;
-
-    console.log(
-      "Filtered psychologists after experience filter:",
-      filtered.length
-    );
-
+    const filtered = applyFilter(psychologists, filter, experiencedFilter);
     setFilteredPsychologists(filtered);
-  }, [location.search, psychologists]);
+  }, [location.search, psychologists, filter, experiencedFilter]);
 
   return (
     <div>

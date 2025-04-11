@@ -14,14 +14,14 @@ import css from "./App.module.css";
 
 function AppContent() {
   const navigate = useNavigate();
-  const { user, loading: authLoading } = useAuth();
+  const { user, loading: authLoading, logout } = useAuth();
 
   const [isLoadingPsychologists, setIsLoadingPsychologists] = useState(true);
   const [isLoginOpen, setIsLoginOpen] = useState(false);
   const [isRegisterOpen, setIsRegisterOpen] = useState(false);
 
   useEffect(() => {
-    setTimeout(() => setIsLoadingPsychologists(false), 1000);
+    setTimeout(() => setIsLoadingPsychologists(false), 1000); // тимчасово
   }, []);
 
   const handleLogin = async ({ name, email, password }) => {
@@ -45,6 +45,7 @@ function AppContent() {
   };
 
   const handleLogout = () => {
+    logout(); // очищає user
     navigate("/");
   };
 

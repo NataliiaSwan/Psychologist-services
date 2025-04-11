@@ -40,8 +40,11 @@ const PsychologistCard = ({
     }
   }, [user, id]);
 
+  // const handleToggleExpand = () => {
+  //   setIsExpanded((prev) => !prev);
+  // };
   const handleToggleExpand = () => {
-    setIsExpanded((prev) => !prev);
+    setIsExpanded(!isExpanded);
   };
 
   const handleOpenModal = () => {
@@ -104,7 +107,7 @@ const PsychologistCard = ({
           <div className={css.innerCircle}></div>
         </div>
       </div>
-      <div className={css.cardBox}>
+      <div className={css.cardBox} onClick={handleToggleExpand}>
         <div className={css.cardHeader}>
           <p className={css.psychologistInfo}>psychologist</p>
           <ul className={css.listRatingPrice}>
@@ -152,7 +155,13 @@ const PsychologistCard = ({
         <p className={css.about}>{about}</p>
 
         {!isExpanded && (
-          <button className={css.readMore} onClick={handleToggleExpand}>
+          <button
+            className={css.readMore}
+            onClick={(e) => {
+              e.stopPropagation();
+              handleToggleExpand();
+            }}
+          >
             Read More
           </button>
         )}
@@ -169,7 +178,13 @@ const PsychologistCard = ({
                 rating={review.rating}
               />
             ))}
-            <button className={css.openModalButton} onClick={handleOpenModal}>
+            <button
+              className={css.openModalButton}
+              onClick={(e) => {
+                e.stopPropagation();
+                handleOpenModal();
+              }}
+            >
               Make an appointment
             </button>
             <AppointmentModal

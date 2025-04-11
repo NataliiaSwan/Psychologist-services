@@ -5,6 +5,7 @@ import SquareIcon from "../../components/SquareIcon/SquareIcon.jsx";
 import sprite from "../../assets/icons/sprite.svg";
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
+
 const HeroSection = ({ onGetStarted }) => {
   const [isExperiencedChecked, setIsExperiencedChecked] = useState(false);
   const navigate = useNavigate();

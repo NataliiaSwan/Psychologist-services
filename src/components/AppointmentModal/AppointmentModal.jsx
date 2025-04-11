@@ -72,7 +72,7 @@ const AppointmentModal = ({ isOpen, onClose, name, avatar_url }) => {
               setTimeout(() => {
                 setIsSubmitted(false);
                 onClose();
-              }, 2000);
+              }, 3000);
             }, 1500);
           }}
         >
