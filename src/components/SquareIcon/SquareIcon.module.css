@@ -5,27 +5,40 @@
   width: 40px;
   height: 40px;
   background-color: #4535af;
-  transform: rotate(65deg);
+  transform: rotate(75deg);
   position: absolute;
-  top: 45%;
-  right: 35%;
+  top: 38%;
+  right: 99%;
   border-radius: 10px;
 }
 .iconViolet {
   width: 10px;
   height: 15px;
-  transform: rotate(-65deg);
+  transform: rotate(-75deg);
+}
+@media (max-width: 767px) {
+  .iconboxViolet {
+    width: 30px;
+    height: 30px;
+    left: 17%;
+    top: 63%;
+  }
+
+  .iconViolet {
+    width: 8px;
+    height: 13px;
+  }
 }
 .iconboxYellow {
   display: flex;
   align-items: center;
   justify-content: center;
-  width: 59px;
-  height: 59px;
+  width: 48px;
+  height: 48px;
   background-color: #fbc75e;
-  transform: rotate(25deg);
-  top: 18%;
-  right: -7%;
+  transform: rotate(12deg);
+  top: 9%;
+  right: -9%;
   position: absolute;
   border-radius: 10px;
 }

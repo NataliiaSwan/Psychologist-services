@@ -47,20 +47,14 @@ const HeroSection = ({ setIsLoginOpen, setIsRegisterOpen }) => {
         </button>
       </div>
 
-      <ExperiencedCheckbox
-        checked={isExperiencedChecked}
-        onCheckboxChange={handleCheckboxChange}
-      />
-
-      <SquareIcon />
-
-      <img
-        src={image}
-        className={css.heroImages}
-        alt="girl-manager"
-        width="464"
-        height="526"
-      />
+      <div className={css.heroImageWrapper}>
+        <img src={image} className={css.heroImages} alt="girl-manager" />
+        <ExperiencedCheckbox
+          checked={isExperiencedChecked}
+          onCheckboxChange={handleCheckboxChange}
+        />
+        <SquareIcon />
+      </div>
     </div>
   );
 };

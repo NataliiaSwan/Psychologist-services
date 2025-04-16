@@ -1,7 +1,6 @@
 .heroSection {
   display: flex;
-  gap: 125px;
-  position: relative;
+  /* position: relative; */
   padding: 78px 0;
   width: 100%;
 }
@@ -53,4 +52,76 @@ button:hover {
 .iconArrow {
   width: 18px;
   height: 18px;
+}
+
+@media (max-width: 767px) {
+  .heroSection {
+    flex-direction: column;
+    padding: 40px 16px;
+    gap: 40px;
+    align-items: center;
+    text-align: center;
+  }
+
+  .heroTitle {
+    font-size: 36px;
+    line-height: 1.1em;
+  }
+
+  .accent {
+    font-size: 36px;
+    line-height: 1.1em;
+  }
+
+  .heroPage {
+    font-size: 16px;
+    width: 100%;
+    margin-bottom: 24px;
+  }
+
+  .button {
+    width: 100%;
+    justify-content: center;
+    padding: 14px 24px;
+    font-size: 18px;
+  }
+
+  .iconArrow {
+    width: 16px;
+    height: 16px;
+  }
+
+  .heroImages {
+    width: 100%;
+    height: auto;
+    max-width: 320px;
+  }
+}
+
+@media (max-width: 1023px) {
+  .heroSection {
+    gap: 60px;
+    padding: 60px 24px;
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .heroTitle,
+  .accent {
+    font-size: 48px;
+  }
+
+  .heroPage {
+    font-size: 17px;
+    width: 100%;
+  }
+
+  .heroImages {
+    width: 100%;
+    max-width: 400px;
+  }
+}
+.heroImageWrapper {
+  position: relative;
+  width: fit-content;
 }
