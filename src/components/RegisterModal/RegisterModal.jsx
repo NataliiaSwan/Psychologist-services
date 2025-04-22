@@ -8,7 +8,7 @@ const schema = yup.object().shape({
   name: yup.string().required("Name required"),
   email: yup
     .string()
-    .email("Incorrect format email")
+    .email("Incorrect email format")
     .required("Email is required"),
   password: yup
     .string()
@@ -18,6 +18,7 @@ const schema = yup.object().shape({
 
 const RegisterModal = ({ onClose, onRegister }) => {
   const [isPasswordVisible, setIsPasswordVisible] = useState(false);
+  const [registerError, setRegisterError] = useState(null);
 
   const {
     register,
@@ -33,12 +34,21 @@ const RegisterModal = ({ onClose, onRegister }) => {
   };
 
   const handleSubmitForm = async (data) => {
-    await onRegister(data);
-    reset();
+    try {
+      const result = await onRegister(data);
+      if (!result.success) {
+        setRegisterError(result.message || "Something went wrong.");
+        return;
+      }
+      reset(); // Clear form fields after successful submission
+    } catch (error) {
+      console.error(error);
+      setRegisterError("Unexpected error occurred.");
+    }
   };
 
   const handleClose = () => {
-    reset();
+    reset(); // Clear form fields on close
     onClose();
   };
 
@@ -48,7 +58,7 @@ const RegisterModal = ({ onClose, onRegister }) => {
         <button className={css.closeButton} onClick={handleClose}>
           ×
         </button>
-
+        {registerError && <p className={css.error}>{registerError}</p>}
         <h2 className={css.modalTitle}>Registration</h2>
         <p className={css.modalText}>
           Please provide your details to register.
@@ -57,6 +67,7 @@ const RegisterModal = ({ onClose, onRegister }) => {
         <form onSubmit={handleSubmit(handleSubmitForm)}>
           <input
             type="text"
+            autoFocus
             placeholder="Name"
             autoComplete="new-name"
             {...register("name")}

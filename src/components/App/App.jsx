@@ -9,8 +9,8 @@ import { useAuth } from "../../hooks/useAuth.js";
 import LoginModal from "../../components/LoginModal/LoginModal.jsx";
 import RegisterModal from "../../components/RegisterModal/RegisterModal.jsx";
 import css from "./App.module.css";
-import { AuthProvider } from "../../context/AuthContext";
-import { Navigate } from "react-router-dom";
+import { AuthProvider } from "../../context/AuthContext.jsx";
+import PrivateRoute from "../../components/PrivateRouter/PrivateRouter.jsx";
 
 function AppContent() {
   const navigate = useNavigate();
@@ -19,6 +19,7 @@ function AppContent() {
   const [isLoadingPsychologists, setIsLoadingPsychologists] = useState(true);
   const [isLoginOpen, setIsLoginOpen] = useState(false);
   const [isRegisterOpen, setIsRegisterOpen] = useState(false);
+  const [redirectAfterLogin, setRedirectAfterLogin] = useState(null);
 
   useEffect(() => {
     const timer = setTimeout(() => setIsLoadingPsychologists(false), 1000);
@@ -27,12 +28,25 @@ function AppContent() {
 
   const handleLogin = async ({ email, password }) => {
     const result = await login(email, password);
+
     if (result.success) {
       setIsLoginOpen(false);
-      navigate("/psychologists");
+
+      // Перевіряємо, чи є редірект після логіну
+      if (redirectAfterLogin) {
+        navigate(redirectAfterLogin);
+        setRedirectAfterLogin(null);
+      } else {
+        navigate("/psychologists");
+      }
     } else {
       alert(`Помилка входу: ${result.message}`);
     }
+  };
+
+  const handleCloseLogin = () => {
+    setRedirectAfterLogin(null);
+    setIsLoginOpen(false);
   };
 
   const handleRegister = async ({ name, email, password }) => {
@@ -61,12 +75,14 @@ function AppContent() {
 
   return (
     <div className={css.appContent}>
+      {/* Модалки входу та реєстрації */}
       {isLoginOpen && (
         <LoginModal
-          onClose={() => setIsLoginOpen(false)}
+          onClose={handleCloseLogin} // Використовуємо функцію handleCloseLogin
           onLogin={handleLogin}
         />
       )}
+
       {isRegisterOpen && (
         <RegisterModal
           onClose={() => setIsRegisterOpen(false)}
@@ -96,19 +112,28 @@ function AppContent() {
               />
             }
           />
-          <Route
-            path="/psychologists"
-            element={user ? <PsychologistPage /> : <Navigate to="/" replace />}
-          />
+          <Route path="/psychologists" element={<PsychologistPage />} />
+
           <Route
             path="/favorites"
-            element={user ? <FavoritesPage /> : <Navigate to="/" replace />}
+            element={
+              <PrivateRoute
+                user={user}
+                onLoginOpen={(path) => {
+                  setRedirectAfterLogin(path); // Зберігаємо куди редіректити після логіну
+                  setIsLoginOpen(true);
+                }}
+              >
+                <FavoritesPage />
+              </PrivateRoute>
+            }
           />
         </Route>
       </Routes>
     </div>
   );
 }
+
 function App() {
   return (
     <AuthProvider>

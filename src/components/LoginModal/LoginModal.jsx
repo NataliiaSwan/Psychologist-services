@@ -15,8 +15,9 @@ const schema = yup.object().shape({
     .required("Password required"),
 });
 
-const LoginModal = ({ onClose, onLogin }) => {
+const LoginModal = ({ onClose, onLogin, redirectAfterLogin }) => {
   const [isSubmitting, setIsSubmitting] = useState(false);
+  const [loginError, setLoginError] = useState(null);
 
   const {
     register,
@@ -34,12 +35,23 @@ const LoginModal = ({ onClose, onLogin }) => {
 
   const handleLogin = async (data) => {
     setIsSubmitting(true);
+    setLoginError(null);
     try {
-      await onLogin(data);
+      const result = await onLogin(data);
+      if (!result.success) {
+        setLoginError(result.message || "Something went wrong.");
+      } else {
+        // Якщо редірект після логіну вказаний, перенаправляємо на нього
+        if (redirectAfterLogin) {
+          window.location.href = redirectAfterLogin; // або можна використовувати navigate()
+        } else {
+          window.location.href = "/psychologists"; // редірект на іншу сторінку по замовчуванню
+        }
+      }
     } catch (error) {
       console.error("Login failed:", error);
+      setLoginError("Unexpected error occurred.");
     } finally {
-      reset();
       setIsSubmitting(false);
     }
   };
@@ -50,7 +62,7 @@ const LoginModal = ({ onClose, onLogin }) => {
         <button className={css.closeButton} type="button" onClick={handleClose}>
           ×
         </button>
-
+        {loginError && <p className={css.error}>{loginError}</p>}
         <h1 className={css.modalTitle}>Log In</h1>
         <p className={css.modalText}>
           Welcome back! Please enter your credentials.
@@ -59,6 +71,7 @@ const LoginModal = ({ onClose, onLogin }) => {
         <form onSubmit={handleSubmit(handleLogin)}>
           <input
             type="email"
+            autoFocus
             placeholder="Email"
             autoComplete="new-email"
             {...register("email")}
@@ -70,6 +83,7 @@ const LoginModal = ({ onClose, onLogin }) => {
             placeholder="Password"
             autoComplete="new-password"
             {...register("password")}
+            required
           />
           <p className={css.error}>{errors.password?.message}</p>
 
