@@ -16,19 +16,11 @@
   height: 15px;
   transform: rotate(-75deg);
 }
-@media (max-width: 767px) {
-  .iconboxViolet {
-    width: 30px;
-    height: 30px;
-    left: 17%;
-    top: 63%;
-  }
-
-  .iconViolet {
-    width: 8px;
-    height: 13px;
-  }
+.iconViolet {
+  width: 8px;
+  height: 13px;
 }
+
 .iconboxYellow {
   display: flex;
   align-items: center;
