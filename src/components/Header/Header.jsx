@@ -27,11 +27,18 @@ const Header = ({ onLogin, onRegister, onLogout }) => {
               label="Psychologists"
               currentPath={location.pathname}
             />
-            <NavItem
+            {/* <NavItem
               to="/favorites"
               label="Favorites"
               currentPath={location.pathname}
-            />
+            /> */}
+            {location.pathname === "/psychologists" && (
+              <NavItem
+                to="/favorites"
+                label="Favorites"
+                currentPath={location.pathname}
+              />
+            )}
           </nav>
         </div>
 

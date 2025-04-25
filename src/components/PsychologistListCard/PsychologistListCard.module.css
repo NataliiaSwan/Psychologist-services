@@ -2,6 +2,7 @@
   display: flex;
   flex-wrap: wrap;
   gap: 32px;
+  width: 100%;
 }
 
 .filterToggleButton {
@@ -10,16 +11,25 @@
   align-items: center;
   justify-content: space-between;
   border-radius: 14px;
-  padding-top: 16px;
-  padding-right: 14px;
-  padding-bottom: 16px;
-  padding-left: 18px;
+  padding-top: 12px;
+  padding-right: 10px;
+  padding-bottom: 12px;
+  padding-left: 14px;
   color: #fbfbfb;
   background-color: #54be96;
   font-weight: 500;
-  font-size: 16px;
+  font-size: 14px;
   line-height: 1.3;
   transition: background 0.2s ease;
+}
+@media screen and (min-width: 768px) {
+  .filterToggleButton {
+    padding-top: 16px;
+    padding-right: 14px;
+    padding-bottom: 16px;
+    padding-left: 18px;
+    font-size: 16px;
+  }
 }
 .iconVectorBottom {
   width: 10px;
@@ -36,6 +46,7 @@
   font-size: 14px;
   line-height: 1.3em;
   color: #8a8a89;
+  margin-bottom: 8px;
 }
 
 .loadMoreButton {
