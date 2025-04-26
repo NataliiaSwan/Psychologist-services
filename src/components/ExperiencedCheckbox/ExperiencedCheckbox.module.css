@@ -1,7 +1,7 @@
 .checkboxcontainer {
   position: absolute;
-  top: 63%;
-  left: 17%;
+  top: 68%;
+  left: 16%;
   transform: translateX(-90px);
 }
 
@@ -15,8 +15,8 @@
   align-items: center;
   justify-content: center;
   border-radius: 20px;
-  width: 280px;
-  height: 100px;
+  width: 240px;
+  height: 80px;
   gap: 16px;
   background-color: #54be96;
 }
