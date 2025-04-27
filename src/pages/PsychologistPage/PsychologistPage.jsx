@@ -3,7 +3,7 @@ import css from "./PsychologistPage.module.css";
 
 const PsychologistsPage = () => {
   return (
-    <div className={css.container}>
+    <div className={css.psychologistPageContainer}>
       <PsychologistListCard />
     </div>
   );

@@ -3,34 +3,27 @@
   max-width: 1184px;
   min-height: 100vh;
   margin: 0 auto;
+  padding: 0 16px;
   display: flex;
   flex-direction: column;
-  align-items: center;
-}
 
-.appContent {
-  width: 100%;
-  flex: 1;
+  align-items: stretch;
 } */
 
 .app {
   width: 100%;
+  max-width: 1184px;
   min-height: 100vh;
   margin: 0 auto;
-  padding: 16px;
   display: flex;
   flex-direction: column;
   align-items: center;
+  padding: 0 16px; /* Падінг зліва і справа */
+  box-sizing: border-box; /* Враховує падінги при обчисленні ширини */
 }
-
-/* .appContent {
-  width: 100%;
-  flex: 1;
-} */
 
 @media (min-width: 768px) {
   .app {
-    max-width: 1184px;
-    padding: 24px;
+    padding: 0 24px; /* Збільшуємо падінг на більших екранах */
   }
 }

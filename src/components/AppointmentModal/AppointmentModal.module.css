@@ -8,7 +8,6 @@
   animation: scaleIn 0.3s ease forwards;
 }
 
-/* Loader у кнопці */
 .submitButton:disabled::after {
   content: "";
   display: inline-block;
@@ -24,7 +23,6 @@
   transform: translateY(-50%);
 }
 
-/* Анімації */
 @keyframes fadeIn {
   from {
     opacity: 0;

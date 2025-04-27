@@ -1,4 +1,4 @@
-.modalOverlay {
+/* .modalOverlay {
   position: fixed;
   top: 0;
   left: 0;
@@ -112,7 +112,7 @@
   stroke: #333;
 }
 */
-.buttonSignIn {
+/* .buttonSignIn {
   width: 100%;
   padding: 16px 190px;
   background-color: #54be96;
@@ -145,4 +145,173 @@
   align-items: center;
   justify-content: center;
   width: 30px;
+}  */
+
+/* Вікно накладу */
+.modalOverlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: #191a1599;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 9999;
+}
+
+/* Контент модального вікна */
+.modalContent {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  width: 90%; /* Для мобільних пристроїв вікно займає 90% ширини */
+  max-width: 566px; /* Максимальна ширина */
+  background-color: #fbfbfb;
+  padding: 32px; /* Меньше падінгів для мобіл */
+  border-radius: 30px;
+  text-align: start;
+  box-sizing: border-box;
+  z-index: 10000;
+}
+
+/* Заголовок модального вікна */
+.modalTitle {
+  font-size: 24px; /* Менший розмір шрифта для мобіл */
+  font-weight: 500;
+  line-height: 1.2em;
+  margin-bottom: 20px; /* Менший відступ */
+}
+
+/* Текст модального вікна */
+.modalText {
+  font-size: 14px; /* Менший текст для мобіл */
+  font-weight: 400;
+  line-height: 1.2em;
+  color: #191a1580;
+  margin-bottom: 20px; /* Менший відступ */
+}
+
+/* Поле вводу для форми */
+.modalContent form input {
+  width: 100%;
+  padding: 14px; /* Меньше падінгів */
+  background-color: #fbfbfb;
+  box-sizing: border-box;
+  margin-bottom: 16px; /* Меньше відступів */
+  border-radius: 12px;
+  border: 1px solid #191a151a;
+}
+
+/* Кнопка закриття модалки */
+.closeButton {
+  position: absolute;
+  top: 16px; /* Менший відступ */
+  right: 16px;
+  background: none;
+  border: none;
+  font-size: 24px; /* Менший розмір шрифта */
+  cursor: pointer;
+  color: #333;
+}
+
+.closeButton:hover {
+  color: #54be96;
+  background-color: #fbfbfb;
+}
+
+/* Кнопка входу */
+.buttonSignIn {
+  width: 100%;
+  padding: 16px; /* Меньше падінгів для мобіл */
+  background-color: #54be96;
+  color: white;
+  border-radius: 30px;
+  border: none;
+  cursor: pointer;
+  margin-top: 16px; /* Меньше відступів */
+}
+
+/* Поле для вводу пароля */
+.passwordBox {
+  position: relative;
+  width: 100%;
+}
+
+.passwordInput {
+  width: 100%;
+  padding-right: 40px;
+}
+
+.passwordToggle {
+  position: absolute;
+  top: 25px;
+  right: 20px;
+  transform: translateY(-50%);
+  background: transparent;
+  border: none;
+  cursor: pointer;
+  padding: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 30px;
+}
+
+/* Медіа-запит для планшетів і більших екранів (від 768px) */
+@media (min-width: 768px) {
+  .modalContent {
+    width: 70%; /* Збільшуємо ширину модалки */
+    padding: 48px; /* Більше падінгів */
+  }
+
+  .modalTitle {
+    font-size: 32px; /* Збільшуємо розмір заголовка */
+    margin-bottom: 30px; /* Більший відступ */
+  }
+
+  .modalText {
+    font-size: 16px; /* Збільшуємо текст */
+    margin-bottom: 30px;
+  }
+
+  .modalContent form input {
+    padding: 16px; /* Більше падінгів для полів вводу */
+  }
+
+  .modalContent form button {
+    padding: 16px 190px; /* Більше падінгів для кнопки */
+  }
+
+  .closeButton {
+    font-size: 28px; /* Більший розмір шрифта для кнопки закриття */
+    top: 20px;
+    right: 20px;
+  }
+}
+
+/* Медіа-запит для великих екранів (від 1024px) */
+@media (min-width: 1024px) {
+  .modalContent {
+    width: 50%; /* Ще більша ширина для десктопів */
+  }
+
+  .modalTitle {
+    font-size: 36px; /* Збільшуємо розмір шрифта */
+    margin-bottom: 40px; /* Більший відступ */
+  }
+
+  .modalText {
+    font-size: 18px; /* Збільшуємо текст */
+    margin-bottom: 40px; /* Більший відступ */
+  }
+
+  .modalContent form input {
+    padding: 18px; /* Більше падінгів для полів вводу */
+  }
+
+  .modalContent form button {
+    padding: 18px 200px; /* Більше падінгів для кнопки */
+  }
 }

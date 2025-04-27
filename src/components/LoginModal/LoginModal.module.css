@@ -1,4 +1,4 @@
-.modalOverlay {
+/* .modalOverlay {
   position: fixed;
   top: 0;
   left: 0;
@@ -69,4 +69,141 @@
 .closeButton:hover {
   color: #54be96;
   background-color: #fbfbfb;
+} */
+
+/* Основні стилі для модального вікна */
+.modalOverlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: #191a1599;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 1000;
+}
+
+.modalContent {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  width: 90%; /* Для мобільних пристроїв займає 90% ширини */
+  max-width: 566px; /* Максимальна ширина */
+  background-color: #fbfbfb;
+  padding: 32px; /* Меньше падінгів для мобіл */
+  border-radius: 30px;
+  text-align: start;
+  box-sizing: border-box;
+}
+
+.modalTitle {
+  font-size: 24px; /* Менший розмір шрифта для мобіл */
+  font-weight: 500;
+  line-height: 1.2em;
+  margin-bottom: 20px; /* Менший відступ для мобіл */
+}
+
+.modalText {
+  font-size: 14px; /* Менший текст для мобіл */
+  font-weight: 400;
+  line-height: 1.2em;
+  letter-spacing: 0%;
+  color: #191a1580;
+  margin-bottom: 20px; /* Менший відступ для мобіл */
+}
+
+.modalContent form input {
+  width: 100%;
+  padding: 14px; /* Меньше падінгів */
+  background-color: #fbfbfb;
+  box-sizing: border-box;
+  margin-bottom: 16px; /* Меньше відступів */
+  border-radius: 12px;
+  border: 1px solid #191a151a;
+}
+
+.modalContent form button {
+  width: 100%;
+  padding: 16px; /* Меньше падінгів для мобіл */
+  background-color: #54be96;
+  color: white;
+  border-radius: 30px;
+  border: none;
+  cursor: pointer;
+  margin-top: 16px; /* Меньше відступів */
+}
+
+.closeButton {
+  position: absolute;
+  top: 16px; /* Меньше відступів */
+  right: 16px;
+  background: none;
+  border: none;
+  font-size: 24px; /* Менший розмір шрифта */
+  cursor: pointer;
+  color: #333;
+}
+
+.closeButton:hover {
+  color: #54be96;
+  background-color: #fbfbfb;
+}
+
+/* Медіа-запит для екранів з шириною від 768px і більше (планшети та десктопи) */
+@media (min-width: 768px) {
+  .modalContent {
+    width: 60%; /* Збільшуємо ширину на планшетах і більших екранах */
+    padding: 48px; /* Більше падінгів */
+  }
+
+  .modalTitle {
+    font-size: 32px; /* Збільшуємо розмір заголовка */
+    margin-bottom: 30px; /* Більший відступ */
+  }
+
+  .modalText {
+    font-size: 16px; /* Збільшуємо текст */
+    margin-bottom: 30px;
+  }
+
+  .modalContent form input {
+    padding: 18px; /* Більше падінгів для полів вводу */
+  }
+
+  .modalContent form button {
+    padding: 18px; /* Більше падінгів для кнопки */
+  }
+
+  .closeButton {
+    font-size: 32px; /* Більший розмір шрифта для кнопки закриття */
+    top: 28px;
+    right: 28px;
+  }
+}
+
+/* Медіа-запит для екранів з шириною від 1024px і більше (десктопи) */
+@media (min-width: 1024px) {
+  .modalContent {
+    width: 50%; /* Ще більша ширина для десктопів */
+  }
+
+  .modalTitle {
+    font-size: 36px; /* Збільшуємо розмір шрифта */
+    margin-bottom: 40px; /* Більший відступ */
+  }
+
+  .modalText {
+    font-size: 18px; /* Збільшуємо текст */
+    margin-bottom: 40px; /* Більший відступ */
+  }
+
+  .modalContent form input {
+    padding: 20px; /* Більше падінгів для полів вводу */
+  }
+
+  .modalContent form button {
+    padding: 20px; /* Більше падінгів для кнопки */
+  }
 }

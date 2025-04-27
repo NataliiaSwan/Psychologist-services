@@ -80,7 +80,7 @@ const FavoritesPage = () => {
   }, []);
 
   return (
-    <div className={css.favoritsContainer}>
+    <div className={css.favoritesContainer}>
       <h1 className={css.filterTitle}>Favorites</h1>
       <div className={css.filterWrapper}>
         <button
@@ -102,6 +102,7 @@ const FavoritesPage = () => {
 
       <div className={css.favoritsContent}>
         {/* Передаємо список фаворитів та функцію для видалення */}
+
         <FavoritesList
           favorites={visibleFavorites}
           onRemove={removeFromFavorites}
