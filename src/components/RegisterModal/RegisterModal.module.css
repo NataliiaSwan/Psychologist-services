@@ -8,7 +8,7 @@
   display: flex;
   align-items: center;
   justify-content: center;
-  z-index: 9999;
+  z-index: 999;
 }
 
 .modalContent {
@@ -22,16 +22,37 @@
   border-radius: 30px;
   text-align: start;
   box-sizing: border-box;
-  z-index: 10000;
+  z-index: 1000;
 }
-
+@media screen and (min-width: 768px) {
+  .modalContent {
+    width: 70%;
+    padding: 48px;
+  }
+}
+@media screen and (min-width: 1024px) {
+  .modalContent {
+    width: 50%;
+  }
+}
 .modalTitle {
   font-size: 24px;
   font-weight: 500;
   line-height: 1.2em;
   margin-bottom: 20px;
 }
-
+@media screen and (min-width: 768px) {
+  .modalTitle {
+    font-size: 32px;
+    margin-bottom: 30px;
+  }
+}
+@media screen and (min-width: 1024px) {
+  .modalTitle {
+    font-size: 36px;
+    margin-bottom: 40px;
+  }
+}
 .modalText {
   font-size: 14px;
   font-weight: 400;
@@ -39,7 +60,18 @@
   color: #191a1580;
   margin-bottom: 20px;
 }
-
+@media screen and (min-width: 768px) {
+  .modalText {
+    font-size: 16px;
+    margin-bottom: 30px;
+  }
+}
+@media screen and (min-width: 768px) {
+  .modalText {
+    font-size: 18px;
+    margin-bottom: 40px;
+  }
+}
 .modalContent form input {
   width: 100%;
   padding: 14px;
@@ -48,6 +80,16 @@
   margin-bottom: 16px;
   border-radius: 12px;
   border: 1px solid #191a151a;
+}
+@media screen and (min-width: 768px) {
+  .modalContent form input {
+    padding: 16px;
+  }
+}
+@media screen and (min-width: 768px) {
+  .modalContent form input {
+    padding: 18px;
+  }
 }
 
 .closeButton {
@@ -60,7 +102,13 @@
   cursor: pointer;
   color: #333;
 }
-
+@media screen and (min-width: 768px) {
+  .closeButton {
+    font-size: 28px;
+    top: 20px;
+    right: 20px;
+  }
+}
 .closeButton:hover {
   color: #54be96;
   background-color: #fbfbfb;
@@ -77,6 +125,16 @@
   margin-top: 16px;
 }
 
+@media screen and (min-width: 768px) {
+  .buttonSignIn form button {
+    padding: 18px;
+  }
+}
+@media screen and (min-width: 1024px) {
+  .buttonSignIn form button {
+    padding: 20px;
+  }
+}
 .passwordBox {
   position: relative;
   width: 100%;
@@ -100,59 +158,4 @@
   align-items: center;
   justify-content: center;
   width: 30px;
-}
-
-@media (min-width: 768px) {
-  .modalContent {
-    width: 70%;
-    padding: 48px;
-  }
-
-  .modalTitle {
-    font-size: 32px;
-    margin-bottom: 30px;
-  }
-
-  .modalText {
-    font-size: 16px;
-    margin-bottom: 30px;
-  }
-
-  .modalContent form input {
-    padding: 16px;
-  }
-
-  .modalContent form button {
-    padding: 16px 190px;
-  }
-
-  .closeButton {
-    font-size: 28px;
-    top: 20px;
-    right: 20px;
-  }
-}
-
-@media (min-width: 1024px) {
-  .modalContent {
-    width: 50%;
-  }
-
-  .modalTitle {
-    font-size: 36px;
-    margin-bottom: 40px;
-  }
-
-  .modalText {
-    font-size: 18px;
-    margin-bottom: 40px;
-  }
-
-  .modalContent form input {
-    padding: 18px;
-  }
-
-  .modalContent form button {
-    padding: 18px 200px;
-  }
 }
