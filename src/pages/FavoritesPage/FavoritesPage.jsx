@@ -2,6 +2,7 @@ import { useState, useEffect, useMemo, useRef } from "react";
 import FavoritesList from "../../components/FavoritesList/FavoritesList.jsx";
 import FavoritesFilter from "../../components/FavoritesFilter/FavoritesFilter.jsx";
 import css from "./FavoritesPage.module.css";
+import { motion } from "framer-motion";
 
 const FavoritesPage = () => {
   const [favorites, setFavorites] = useState([]);
@@ -73,44 +74,51 @@ const FavoritesPage = () => {
   }, []);
 
   return (
-    <div className={css.favoritesContainer}>
-      <h1 className={css.filterTitle}>Favorites</h1>
-      <div className={css.filterWrapper}>
-        <button
-          className={css.filterToggleButton}
-          onClick={() => setShowFilter(!showFilter)}
-        >
-          {getFilterLabel()}
-        </button>
-
-        {showFilter && (
-          <div ref={filterRef} className={css.dropdownMenu}>
-            <FavoritesFilter
-              selectedFilter={filter}
-              onFilterChange={handleFilterChange}
-            />
-          </div>
-        )}
-      </div>
-
-      <div className={css.favoritsContent}>
-        <FavoritesList
-          favorites={visibleFavorites}
-          onRemove={removeFromFavorites}
-        />
-
-        {visibleCount < filteredFavorites.length && (
-          <button className={css.loadMoreButton} onClick={loadMore}>
-            Load More
+    <motion.div
+      initial={{ opacity: 0 }}
+      animate={{ opacity: 1 }}
+      exit={{ opacity: 0 }}
+      transition={{ duration: 0.5 }}
+    >
+      <div className={css.favoritesContainer}>
+        <h1 className={css.filterTitle}>Favorites</h1>
+        <div className={css.filterWrapper}>
+          <button
+            className={css.filterToggleButton}
+            onClick={() => setShowFilter(!showFilter)}
+          >
+            {getFilterLabel()}
           </button>
-        )}
 
-        {visibleCount >= filteredFavorites.length &&
-          filteredFavorites.length > 0 && (
-            <p className={css.endMessage}>No more favorites to show</p>
+          {showFilter && (
+            <div ref={filterRef} className={css.dropdownMenu}>
+              <FavoritesFilter
+                selectedFilter={filter}
+                onFilterChange={handleFilterChange}
+              />
+            </div>
           )}
+        </div>
+
+        <div className={css.favoritsContent}>
+          <FavoritesList
+            favorites={visibleFavorites}
+            onRemove={removeFromFavorites}
+          />
+
+          {visibleCount < filteredFavorites.length && (
+            <button className={css.loadMoreButton} onClick={loadMore}>
+              Load More
+            </button>
+          )}
+
+          {visibleCount >= filteredFavorites.length &&
+            filteredFavorites.length > 0 && (
+              <p className={css.endMessage}>No more favorites to show</p>
+            )}
+        </div>
       </div>
-    </div>
+    </motion.div>
   );
 };
 

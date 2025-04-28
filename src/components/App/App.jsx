@@ -1,5 +1,5 @@
 import { useState, useEffect } from "react";
-import { Route, Routes, useNavigate } from "react-router-dom";
+import { Route, Routes, useNavigate, useLocation } from "react-router-dom";
 import HomePage from "../../pages/HomePage/HomePage.jsx";
 import PsychologistPage from "../../pages/PsychologistPage/PsychologistPage.jsx";
 import FavoritesPage from "../../pages/FavoritesPage/FavoritesPage.jsx";
@@ -11,9 +11,11 @@ import RegisterModal from "../../components/RegisterModal/RegisterModal.jsx";
 import css from "./App.module.css";
 import { AuthProvider } from "../../context/AuthContext.jsx";
 import PrivateRoute from "../../components/PrivateRouter/PrivateRouter.jsx";
-// import { CSSTransition, TransitionGroup } from "react-transition-group";
+import { AnimatePresence } from "framer-motion";
 
 function AppContent() {
+  const location = useLocation();
+
   const navigate = useNavigate();
   const { user, loading: authLoading, login, register, logout } = useAuth();
 
@@ -74,62 +76,60 @@ function AppContent() {
   if (authLoading || isLoadingPsychologists) return <Loader />;
 
   return (
-    <div className={css.appContent}>
-      {isLoginOpen && (
-        <LoginModal onClose={handleCloseLogin} onLogin={handleLogin} />
-      )}
+    <AnimatePresence mode="wait">
+      <div className={css.appContent}>
+        {isLoginOpen && (
+          <LoginModal onClose={handleCloseLogin} onLogin={handleLogin} />
+        )}
 
-      {isRegisterOpen && (
-        <RegisterModal
-          onClose={() => setIsRegisterOpen(false)}
-          onRegister={handleRegister}
-        />
-      )}
-      {/* <TransitionGroup>
-        <CSSTransition key={location.pathname} classNames="page" timeout={500}> */}
-      <Routes>
-        <Route
-          path="/"
-          element={
-            <Layout
-              onLoginOpen={() => setIsLoginOpen(true)}
-              onRegisterOpen={() => setIsRegisterOpen(true)}
-              user={user}
-              onLogout={handleLogout}
-            />
-          }
-        >
+        {isRegisterOpen && (
+          <RegisterModal
+            onClose={() => setIsRegisterOpen(false)}
+            onRegister={handleRegister}
+          />
+        )}
+        <Routes location={location} key={location.pathname}>
           <Route
-            index
+            path="/"
             element={
-              <HomePage
+              <Layout
+                onLoginOpen={() => setIsLoginOpen(true)}
+                onRegisterOpen={() => setIsRegisterOpen(true)}
                 user={user}
-                setIsRegisterOpen={setIsRegisterOpen}
-                setIsLoginOpen={setIsLoginOpen}
+                onLogout={handleLogout}
               />
             }
-          />
-          <Route path="/psychologists" element={<PsychologistPage />} />
+          >
+            <Route
+              index
+              element={
+                <HomePage
+                  user={user}
+                  setIsRegisterOpen={setIsRegisterOpen}
+                  setIsLoginOpen={setIsLoginOpen}
+                />
+              }
+            />
+            <Route path="/psychologists" element={<PsychologistPage />} />
 
-          <Route
-            path="/favorites"
-            element={
-              <PrivateRoute
-                user={user}
-                onLoginOpen={(path) => {
-                  setRedirectAfterLogin(path);
-                  setIsLoginOpen(true);
-                }}
-              >
-                <FavoritesPage />
-              </PrivateRoute>
-            }
-          />
-        </Route>
-      </Routes>
-      {/* </CSSTransition>
-      </TransitionGroup> */}
-    </div>
+            <Route
+              path="/favorites"
+              element={
+                <PrivateRoute
+                  user={user}
+                  onLoginOpen={(path) => {
+                    setRedirectAfterLogin(path);
+                    setIsLoginOpen(true);
+                  }}
+                >
+                  <FavoritesPage />
+                </PrivateRoute>
+              }
+            />
+          </Route>
+        </Routes>
+      </div>
+    </AnimatePresence>
   );
 }
 
