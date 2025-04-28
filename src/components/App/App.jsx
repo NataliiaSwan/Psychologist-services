@@ -11,6 +11,7 @@ import RegisterModal from "../../components/RegisterModal/RegisterModal.jsx";
 import css from "./App.module.css";
 import { AuthProvider } from "../../context/AuthContext.jsx";
 import PrivateRoute from "../../components/PrivateRouter/PrivateRouter.jsx";
+// import { CSSTransition, TransitionGroup } from "react-transition-group";
 
 function AppContent() {
   const navigate = useNavigate();
@@ -22,7 +23,7 @@ function AppContent() {
   const [redirectAfterLogin, setRedirectAfterLogin] = useState(null);
 
   useEffect(() => {
-    const timer = setTimeout(() => setIsLoadingPsychologists(false), 1000);
+    const timer = setTimeout(() => setIsLoadingPsychologists(false), 2000);
     return () => clearTimeout(timer);
   }, []);
 
@@ -32,7 +33,6 @@ function AppContent() {
     if (result.success) {
       setIsLoginOpen(false);
 
-      // Перевіряємо, чи є редірект після логіну
       if (redirectAfterLogin) {
         navigate(redirectAfterLogin);
         setRedirectAfterLogin(null);
@@ -75,12 +75,8 @@ function AppContent() {
 
   return (
     <div className={css.appContent}>
-      {/* Модалки входу та реєстрації */}
       {isLoginOpen && (
-        <LoginModal
-          onClose={handleCloseLogin} // Використовуємо функцію handleCloseLogin
-          onLogin={handleLogin}
-        />
+        <LoginModal onClose={handleCloseLogin} onLogin={handleLogin} />
       )}
 
       {isRegisterOpen && (
@@ -89,7 +85,8 @@ function AppContent() {
           onRegister={handleRegister}
         />
       )}
-
+      {/* <TransitionGroup>
+        <CSSTransition key={location.pathname} classNames="page" timeout={500}> */}
       <Routes>
         <Route
           path="/"
@@ -120,7 +117,7 @@ function AppContent() {
               <PrivateRoute
                 user={user}
                 onLoginOpen={(path) => {
-                  setRedirectAfterLogin(path); // Зберігаємо куди редіректити після логіну
+                  setRedirectAfterLogin(path);
                   setIsLoginOpen(true);
                 }}
               >
@@ -130,6 +127,8 @@ function AppContent() {
           />
         </Route>
       </Routes>
+      {/* </CSSTransition>
+      </TransitionGroup> */}
     </div>
   );
 }

@@ -16,7 +16,7 @@ export const signUp = async (name, email, password) => {
     const user = userCredential.user;
 
     await updateProfile(user, { displayName: name });
-    await user.reload(); // оновлюємо дані поточного користувача
+    await user.reload();
 
     console.log("User registered:", auth.currentUser);
     return auth.currentUser;

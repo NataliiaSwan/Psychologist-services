@@ -49,7 +49,6 @@ const PsychologistListCard = () => {
   const location = useLocation();
   const filterRef = useRef(null);
 
-  // Fetching psychologists data
   useEffect(() => {
     setIsLoading(true);
     fetchPsychologists()
@@ -65,7 +64,6 @@ const PsychologistListCard = () => {
       .finally(() => setIsLoading(false));
   }, []);
 
-  // Handling outside click to close filter dropdown
   useEffect(() => {
     const handleClickOutside = (e) => {
       if (filterRef.current && !filterRef.current.contains(e.target)) {
@@ -80,11 +78,9 @@ const PsychologistListCard = () => {
     return () => document.removeEventListener("mousedown", handleClickOutside);
   }, [isFilterOpen]);
 
-  // Get the experience filter from URL
   const params = new URLSearchParams(location.search);
   const experiencedFilter = params.get("experience") === "true";
 
-  // Handle filter change
   const handleFilterChange = (selectedFilter) => {
     setFilter(selectedFilter);
     setVisibleCount(3);
@@ -97,7 +93,6 @@ const PsychologistListCard = () => {
     setIsFilterOpen(false);
   };
 
-  // Load more psychologists
   const loadMore = () => {
     setVisibleCount((prev) => prev + 3);
   };

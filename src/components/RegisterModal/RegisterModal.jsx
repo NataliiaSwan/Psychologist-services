@@ -40,7 +40,7 @@ const RegisterModal = ({ onClose, onRegister }) => {
         setRegisterError(result.message || "Something went wrong.");
         return;
       }
-      reset(); // Clear form fields after successful submission
+      reset(); 
     } catch (error) {
       console.error(error);
       setRegisterError("Unexpected error occurred.");
@@ -48,7 +48,7 @@ const RegisterModal = ({ onClose, onRegister }) => {
   };
 
   const handleClose = () => {
-    reset(); // Clear form fields on close
+    reset(); 
     onClose();
   };
 

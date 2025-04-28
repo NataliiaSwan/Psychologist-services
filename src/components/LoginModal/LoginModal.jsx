@@ -41,11 +41,10 @@ const LoginModal = ({ onClose, onLogin, redirectAfterLogin }) => {
       if (!result.success) {
         setLoginError(result.message || "Something went wrong.");
       } else {
-        // Якщо редірект після логіну вказаний, перенаправляємо на нього
         if (redirectAfterLogin) {
-          window.location.href = redirectAfterLogin; // або можна використовувати navigate()
+          window.location.href = redirectAfterLogin;
         } else {
-          window.location.href = "/psychologists"; // редірект на іншу сторінку по замовчуванню
+          window.location.href = "/psychologists";
         }
       }
     } catch (error) {

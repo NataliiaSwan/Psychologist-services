@@ -40,9 +40,6 @@ const PsychologistCard = ({
     }
   }, [user, id]);
 
-  // const handleToggleExpand = () => {
-  //   setIsExpanded((prev) => !prev);
-  // };
   const handleToggleExpand = () => {
     setIsExpanded(!isExpanded);
   };

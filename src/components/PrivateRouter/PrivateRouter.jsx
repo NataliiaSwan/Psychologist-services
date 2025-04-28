@@ -4,7 +4,7 @@ import { Navigate } from "react-router-dom";
 const PrivateRoute = ({ user, onLoginOpen, children }) => {
   useEffect(() => {
     if (!user) {
-      onLoginOpen("/favorites"); // Перенаправляємо після рендеру
+      onLoginOpen("/favorites");
     }
   }, [user, onLoginOpen]);
 

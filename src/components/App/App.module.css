@@ -1,15 +1,3 @@
-/* .app {
-  width: 100%;
-  max-width: 1184px;
-  min-height: 100vh;
-  margin: 0 auto;
-  padding: 0 16px;
-  display: flex;
-  flex-direction: column;
-
-  align-items: stretch;
-} */
-
 .app {
   width: 100%;
   max-width: 1184px;
@@ -18,12 +6,12 @@
   display: flex;
   flex-direction: column;
   align-items: center;
-  padding: 0 16px; /* Падінг зліва і справа */
-  box-sizing: border-box; /* Враховує падінги при обчисленні ширини */
+  padding: 0 16px;
+  box-sizing: border-box;
 }
 
 @media (min-width: 768px) {
   .app {
-    padding: 0 24px; /* Збільшуємо падінг на більших екранах */
+    padding: 0 24px;
   }
 }

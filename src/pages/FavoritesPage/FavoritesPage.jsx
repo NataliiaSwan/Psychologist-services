@@ -22,32 +22,27 @@ const FavoritesPage = () => {
     setFavorites(uniqueFavorites);
   }, []);
 
-  // Видалення картки з улюблених
   const removeFromFavorites = (id) => {
     const updatedFavorites = favorites.filter((card) => card.id !== id);
-    setFavorites(updatedFavorites); // Оновлюємо стейт
-    localStorage.setItem("favorites", JSON.stringify(updatedFavorites)); // Зберігаємо в localStorage
+    setFavorites(updatedFavorites);
+    localStorage.setItem("favorites", JSON.stringify(updatedFavorites));
   };
 
-  // Фільтрація фаворитів
   const filteredFavorites = useMemo(() => {
     if (filter === "POPULAR") return favorites.filter((p) => p.rating >= 4);
     if (filter === "NOT_POPULAR") return favorites.filter((p) => p.rating < 4);
     return favorites;
   }, [favorites, filter]);
 
-  // Вибірка видимих карток (за пагінацією)
   const visibleFavorites = useMemo(
     () => filteredFavorites.slice(0, visibleCount),
     [filteredFavorites, visibleCount]
   );
 
-  // Завантаження більше карток
   const loadMore = () => {
     setVisibleCount((prev) => prev + 3);
   };
 
-  // Отримання лейбла для кнопки фільтра
   const getFilterLabel = () => {
     switch (filter) {
       case "POPULAR":
@@ -59,14 +54,12 @@ const FavoritesPage = () => {
     }
   };
 
-  // Обробка зміни фільтру
   const handleFilterChange = (newFilter) => {
     setFilter(newFilter);
     setShowFilter(false);
-    setVisibleCount(3); // скидаємо лічильник при зміні фільтру
+    setVisibleCount(3);
   };
 
-  // Закриття фільтра при натисканні поза ним
   useEffect(() => {
     const handleClickOutside = (e) => {
       if (filterRef.current && !filterRef.current.contains(e.target)) {
@@ -101,8 +94,6 @@ const FavoritesPage = () => {
       </div>
 
       <div className={css.favoritsContent}>
-        {/* Передаємо список фаворитів та функцію для видалення */}
-
         <FavoritesList
           favorites={visibleFavorites}
           onRemove={removeFromFavorites}
