@@ -20,15 +20,37 @@ const AppointmentModal = ({ isOpen, onClose, name, avatar_url }) => {
   const [isSubmitted, setIsSubmitted] = useState(false);
   const [isLoading, setIsLoading] = useState(false);
 
+  // useEffect(() => {
+  //   const handleEsc = (e) => {
+  //     if (e.key === "Escape") {
+  //       onClose();
+  //     }
+  //   };
+  //   window.addEventListener("keydown", handleEsc);
+  //   return () => window.removeEventListener("keydown", handleEsc);
+  // }, [onClose]);
+
+  // if (!isOpen) return null;
   useEffect(() => {
     const handleEsc = (e) => {
       if (e.key === "Escape") {
         onClose();
       }
     };
+
     window.addEventListener("keydown", handleEsc);
-    return () => window.removeEventListener("keydown", handleEsc);
-  }, [onClose]);
+
+    if (isOpen) {
+      document.body.style.overflow = "hidden";
+    } else {
+      document.body.style.overflow = "auto";
+    }
+
+    return () => {
+      window.removeEventListener("keydown", handleEsc);
+      document.body.style.overflow = "auto";
+    };
+  }, [isOpen, onClose]);
 
   if (!isOpen) return null;
 

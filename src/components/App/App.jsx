@@ -12,6 +12,7 @@ import css from "./App.module.css";
 import { AuthProvider } from "../../context/AuthContext.jsx";
 import PrivateRoute from "../../components/PrivateRouter/PrivateRouter.jsx";
 import { AnimatePresence } from "framer-motion";
+import { getFavorites } from "../../services/firebaseFunctions.js";
 
 function AppContent() {
   const location = useLocation();
@@ -33,6 +34,11 @@ function AppContent() {
     const result = await login(email, password);
 
     if (result.success) {
+      const user = result.user;
+
+      const favorites = await getFavorites(user.uid);
+      localStorage.setItem("favorites", JSON.stringify(favorites));
+
       setIsLoginOpen(false);
 
       if (redirectAfterLogin) {

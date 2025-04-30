@@ -16,3 +16,10 @@ export const isFavorite = async (userId, psychologistId) => {
   const snapshot = await get(favRef);
   return snapshot.exists();
 };
+
+export const getFavorites = async (userId) => {
+  const favRef = ref(db, `users/${userId}/favorites`);
+  const snapshot = await get(favRef);
+  const data = snapshot.val();
+  return data ? Object.values(data) : [];
+};

@@ -4,12 +4,20 @@
   display: flex;
   flex-direction: column;
   gap: 32px;
+  min-height: 400px;
+  transition: all 0.3s ease;
 }
 
 .emptyState {
   width: 100%;
-
   text-align: center;
   color: #888;
   font-size: 18px;
 }
+/* .cardsWrapper {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+  gap: 24px;
+  width: 100%;
+  flex-grow: 1;
+} */

@@ -23,7 +23,7 @@ export const AuthProvider = ({ children }) => {
     try {
       const loggedInUser = await signIn(email, password);
       setUser(loggedInUser);
-      return { success: true };
+      return { success: true, user };
     } catch (error) {
       setError(error.message);
       return { success: false, message: error.message };
