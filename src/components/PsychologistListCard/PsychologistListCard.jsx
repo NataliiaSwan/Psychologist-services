@@ -3,8 +3,9 @@ import { fetchPsychologists } from "../../services/psychologistService.js";
 import PsychologistCard from "../../components/PsychologistCard/PsychologistCard.jsx";
 import FilterComponent from "../../components/FilterComponent/FilterComponent.jsx";
 import css from "./PsychologistListCard.module.css";
-import sprite from "../../assets/icons/sprite.svg";
+// import sprite from "../../assets/icons/sprite.svg";
 import { useLocation } from "react-router-dom";
+import FilterToggleButton from "../../components/FilterToggleButton/FilterToggleButton.jsx";
 
 const filterLabels = {
   ALL: "Show All",
@@ -120,7 +121,7 @@ const PsychologistListCard = () => {
     <div>
       <h1 className={css.filterTitle}>Filter</h1>
       <div className={css.filterToggleButtonWrapper}>
-        <button
+        {/* <button
           className={css.filterToggleButton}
           onClick={() => setIsFilterOpen(!isFilterOpen)}
         >
@@ -132,7 +133,14 @@ const PsychologistListCard = () => {
           >
             <use href={`${sprite}#icon-vector-bottom`} />
           </svg>
-        </button>
+        </button> */}
+
+        <FilterToggleButton
+          currentFilter={filter}
+          isOpen={isFilterOpen}
+          onClick={() => setIsFilterOpen(!isFilterOpen)}
+          filterLabels={filterLabels}
+        />
 
         {isFilterOpen && (
           <div ref={filterRef} className={css.filterWrapper}>

@@ -20,17 +20,6 @@ const AppointmentModal = ({ isOpen, onClose, name, avatar_url }) => {
   const [isSubmitted, setIsSubmitted] = useState(false);
   const [isLoading, setIsLoading] = useState(false);
 
-  // useEffect(() => {
-  //   const handleEsc = (e) => {
-  //     if (e.key === "Escape") {
-  //       onClose();
-  //     }
-  //   };
-  //   window.addEventListener("keydown", handleEsc);
-  //   return () => window.removeEventListener("keydown", handleEsc);
-  // }, [onClose]);
-
-  // if (!isOpen) return null;
   useEffect(() => {
     const handleEsc = (e) => {
       if (e.key === "Escape") {
@@ -57,161 +46,165 @@ const AppointmentModal = ({ isOpen, onClose, name, avatar_url }) => {
   return (
     <div className={css.backdrop} onClick={onClose}>
       <div className={css.modal} onClick={(e) => e.stopPropagation()}>
-        <h1 className={css.title}>Make an appointment with a psychologist</h1>
-        <p className={css.description}>
-          You are on the verge of changing your life for the better. Fill out
-          the short form below to book your personal appointment with a
-          professional psychologist. We guarantee confidentiality and respect
-          for your privacy.
-        </p>
+        <di className={css.modalContainer}>
+          <h1 className={css.title}>Make an appointment with a psychologist</h1>
+          <p className={css.description}>
+            You are on the verge of changing your life for the better. Fill out
+            the short form below to book your personal appointment with a
+            professional psychologist. We guarantee confidentiality and respect
+            for your privacy.
+          </p>
 
-        <div className={css.avatarContainer}>
-          <img src={avatar_url} alt={name} className={css.avatar} />
-          <div className={css.titleNamebox}>
-            <h3 className={css.infoTitle}>Your psychologist</h3>
-            <p className={css.psychologistName}>{name}</p>
+          <div className={css.avatarContainer}>
+            <img src={avatar_url} alt={name} className={css.avatar} />
+            <div className={css.titleNamebox}>
+              <h3 className={css.infoTitle}>Your psychologist</h3>
+              <p className={css.psychologistName}>{name}</p>
+            </div>
           </div>
-        </div>
 
-        <Formik
-          initialValues={{
-            name: "",
-            email: "",
-            phoneNumber: "",
-            time: "",
-            comment: "",
-          }}
-          validationSchema={validationSchema}
-          onSubmit={(values, { resetForm }) => {
-            setIsLoading(true);
-
-            setTimeout(() => {
-              console.log("Appointment booked:", values);
-              resetForm();
-              setIsLoading(false);
-              setIsSubmitted(true);
+          <Formik
+            initialValues={{
+              name: "",
+              email: "",
+              phoneNumber: "",
+              time: "",
+              comment: "",
+            }}
+            validationSchema={validationSchema}
+            onSubmit={(values, { resetForm }) => {
+              setIsLoading(true);
 
               setTimeout(() => {
-                setIsSubmitted(false);
-                onClose();
-              }, 3000);
-            }, 1500);
-          }}
-        >
-          {({ setFieldValue, values }) => (
-            <>
-              {isSubmitted ? (
-                <p className={css.successMessage}>
-                  Thank you! Your appointment request has been sent.
-                </p>
-              ) : (
-                <Form className={css.form}>
-                  <div className={css.fullWidth}>
-                    <Field
-                      name="name"
-                      placeholder="Your Name"
-                      className={css.inputField}
-                    />
-                    <ErrorMessage
-                      name="name"
-                      component="div"
-                      className={css.errorMessage}
-                    />
-                  </div>
+                console.log("Appointment booked:", values);
+                resetForm();
+                setIsLoading(false);
+                setIsSubmitted(true);
 
-                  <div className={css.row}>
-                    <div className={css.halfWidth}>
+                setTimeout(() => {
+                  setIsSubmitted(false);
+                  onClose();
+                }, 3000);
+              }, 1500);
+            }}
+          >
+            {({ setFieldValue, values }) => (
+              <>
+                {isSubmitted ? (
+                  <p className={css.successMessage}>
+                    Thank you! Your appointment request has been sent.
+                  </p>
+                ) : (
+                  <Form className={css.form}>
+                    <div className={css.fullWidth}>
                       <Field
-                        name="phoneNumber"
-                        placeholder="Your Phone Number"
+                        name="name"
+                        placeholder="Your Name"
                         className={css.inputField}
                       />
                       <ErrorMessage
-                        name="phoneNumber"
+                        name="name"
                         component="div"
                         className={css.errorMessage}
                       />
                     </div>
 
-                    <div className={css.halfWidth}>
-                      <div className={css.timeInputWrapper}>
-                        <input
-                          type="text"
-                          name="time"
-                          placeholder="00:00"
-                          readOnly
-                          value={values.time}
-                          onClick={() => setShowDropdown(!showDropdown)}
+                    <div className={css.row}>
+                      <div className={css.halfWidth}>
+                        <Field
+                          name="phoneNumber"
+                          placeholder="Your Phone Number"
                           className={css.inputField}
                         />
-                        <span
-                          className={css.clockIcon}
-                          onClick={() => setShowDropdown(!showDropdown)}
-                        >
-                          🕒
-                        </span>
+                        <ErrorMessage
+                          name="phoneNumber"
+                          component="div"
+                          className={css.errorMessage}
+                        />
                       </div>
 
-                      {showDropdown && (
-                        <div className={css.dropdown}>
-                          <div className={css.dropdownTitle}>Meeting time</div>
-                          {availableTimes.map((t, index) => (
-                            <div
-                              key={index}
-                              className={css.dropdownItem}
-                              onClick={() => {
-                                setFieldValue("time", t);
-                                setShowDropdown(false);
-                              }}
-                            >
-                              {t}
-                            </div>
-                          ))}
+                      <div className={css.halfWidth}>
+                        <div className={css.timeInputWrapper}>
+                          <input
+                            type="text"
+                            name="time"
+                            placeholder="00:00"
+                            readOnly
+                            value={values.time}
+                            onClick={() => setShowDropdown(!showDropdown)}
+                            className={css.inputField}
+                          />
+                          <span
+                            className={css.clockIcon}
+                            onClick={() => setShowDropdown(!showDropdown)}
+                          >
+                            🕒
+                          </span>
                         </div>
-                      )}
+
+                        {showDropdown && (
+                          <div className={css.dropdown}>
+                            <div className={css.dropdownTitle}>
+                              Meeting time
+                            </div>
+                            {availableTimes.map((t, index) => (
+                              <div
+                                key={index}
+                                className={css.dropdownItem}
+                                onClick={() => {
+                                  setFieldValue("time", t);
+                                  setShowDropdown(false);
+                                }}
+                              >
+                                {t}
+                              </div>
+                            ))}
+                          </div>
+                        )}
+                        <ErrorMessage
+                          name="time"
+                          component="div"
+                          className={css.errorMessage}
+                        />
+                      </div>
+                    </div>
+
+                    <div className={css.fullWidth}>
+                      <Field
+                        name="email"
+                        type="email"
+                        placeholder="Your Email"
+                        className={css.inputField}
+                      />
                       <ErrorMessage
-                        name="time"
+                        name="email"
                         component="div"
                         className={css.errorMessage}
                       />
                     </div>
-                  </div>
 
-                  <div className={css.fullWidth}>
-                    <Field
-                      name="email"
-                      type="email"
-                      placeholder="Your Email"
-                      className={css.inputField}
-                    />
-                    <ErrorMessage
-                      name="email"
-                      component="div"
-                      className={css.errorMessage}
-                    />
-                  </div>
+                    <div className={css.fullWidth}>
+                      <Field
+                        name="comment"
+                        as="textarea"
+                        placeholder="Your Comment"
+                        className={css.textArea}
+                      />
+                    </div>
 
-                  <div className={css.fullWidth}>
-                    <Field
-                      name="comment"
-                      as="textarea"
-                      placeholder="Your Comment"
-                      className={css.textArea}
-                    />
-                  </div>
-
-                  <button
-                    type="submit"
-                    className={css.submitButton}
-                    disabled={isLoading}
-                  >
-                    {isLoading ? "Sending..." : "Send"}
-                  </button>
-                </Form>
-              )}
-            </>
-          )}
-        </Formik>
+                    <button
+                      type="submit"
+                      className={css.submitButton}
+                      disabled={isLoading}
+                    >
+                      {isLoading ? "Sending..." : "Send"}
+                    </button>
+                  </Form>
+                )}
+              </>
+            )}
+          </Formik>
+        </di>
       </div>
     </div>
   );

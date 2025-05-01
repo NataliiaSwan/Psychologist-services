@@ -3,6 +3,7 @@ import FavoritesList from "../../components/FavoritesList/FavoritesList.jsx";
 import FavoritesFilter from "../../components/FavoritesFilter/FavoritesFilter.jsx";
 import css from "./FavoritesPage.module.css";
 import { motion } from "framer-motion";
+import FilterToggleButton from "../../components/FilterToggleButton/FilterToggleButton";
 
 const FavoritesPage = () => {
   const [favorites, setFavorites] = useState([]);
@@ -44,15 +45,10 @@ const FavoritesPage = () => {
     setVisibleCount((prev) => prev + 3);
   };
 
-  const getFilterLabel = () => {
-    switch (filter) {
-      case "POPULAR":
-        return "Popular";
-      case "NOT_POPULAR":
-        return "Not popular";
-      default:
-        return "Show all";
-    }
+  const filterLabels = {
+    ALL: "Show all",
+    POPULAR: "Popular",
+    NOT_POPULAR: "Not popular",
   };
 
   const handleFilterChange = (newFilter) => {
@@ -82,13 +78,14 @@ const FavoritesPage = () => {
     >
       <div className={css.favoritesContainer}>
         <h1 className={css.filterTitle}>Favorites</h1>
+
         <div className={css.filterWrapper}>
-          <button
-            className={css.filterToggleButton}
+          <FilterToggleButton
+            currentFilter={filter}
+            isOpen={showFilter}
             onClick={() => setShowFilter(!showFilter)}
-          >
-            {getFilterLabel()}
-          </button>
+            filterLabels={filterLabels}
+          />
 
           {showFilter && (
             <div ref={filterRef} className={css.dropdownMenu}>
