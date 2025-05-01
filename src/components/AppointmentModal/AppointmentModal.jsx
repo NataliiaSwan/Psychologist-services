@@ -46,7 +46,7 @@ const AppointmentModal = ({ isOpen, onClose, name, avatar_url }) => {
   return (
     <div className={css.backdrop} onClick={onClose}>
       <div className={css.modal} onClick={(e) => e.stopPropagation()}>
-        <di className={css.modalContainer}>
+        <div className={css.modalContainer}>
           <h1 className={css.title}>Make an appointment with a psychologist</h1>
           <p className={css.description}>
             You are on the verge of changing your life for the better. Fill out
@@ -204,7 +204,7 @@ const AppointmentModal = ({ isOpen, onClose, name, avatar_url }) => {
               </>
             )}
           </Formik>
-        </di>
+        </div>
       </div>
     </div>
   );

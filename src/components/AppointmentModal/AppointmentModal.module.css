@@ -1,7 +1,9 @@
 .modal {
   position: relative;
+  overflow-y: auto;
+  min-height: 0;
   padding: 32px;
-  width: 100%;
+
   max-width: 360px;
   max-height: 100vh;
   background-color: #fbfbfb;
@@ -19,7 +21,6 @@
     max-height: 96vh;
   }
 }
-
 .backdrop {
   position: fixed;
   inset: 0;
