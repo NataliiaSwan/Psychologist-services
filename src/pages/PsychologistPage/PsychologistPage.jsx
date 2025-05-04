@@ -5,6 +5,7 @@ import { motion } from "framer-motion";
 const PsychologistsPage = () => {
   return (
     <motion.div
+      layout
       initial={{ opacity: 0, y: 20 }} // Початковий стан
       animate={{ opacity: 1, y: 0 }} // Анімований стан
       exit={{ opacity: 0, y: -20 }} // Вихідна анімація
