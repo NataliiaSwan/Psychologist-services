@@ -3,14 +3,11 @@ import Header from "../Header/Header.jsx";
 import css from "./Layout.module.css";
 
 const Layout = ({ onLoginOpen, onRegisterOpen, user, onLogout }) => {
-  const isAuthenticated = Boolean(user);
-  const userName = user?.displayName || user?.email || "";
-
   return (
     <>
       <Header
-        isAuthenticated={isAuthenticated}
-        userName={userName}
+        isAuthenticated={!!user}
+        userName={user?.displayName || user?.email || ""}
         onLogin={onLoginOpen}
         onLogout={onLogout}
         onRegister={onRegisterOpen}

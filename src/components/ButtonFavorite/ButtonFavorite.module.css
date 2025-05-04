@@ -1,0 +1,27 @@
+.heartButton {
+  background-color: transparent;
+  border: none;
+  padding: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.heartButton:hover {
+  background-color: transparent;
+}
+.iconHeart {
+  fill: white;
+  stroke: black;
+  width: 20px;
+  height: 17px;
+}
+@media screen and (min-width: 768px) {
+  .iconHeart {
+    width: 23px;
+    height: 20px;
+  }
+}
+.iconHeartActive {
+  fill: #54be96;
+  stroke: none;
+}

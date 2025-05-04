@@ -1,15 +1,22 @@
-import logo from "../../assets/images/Logo.svg";
-import css from "./Header.module.css";
 import { useLocation } from "react-router-dom";
-import NavItem from "../../components/NavItem/NavItem.jsx";
 import { useAuth } from "../../hooks/useAuth.js";
+import NavItem from "../../components/NavItem/NavItem.jsx";
+
+import logo from "../../assets/images/Logo.svg";
 import UserIcon from "../../assets/icons/user.svg";
+import css from "./Header.module.css";
 
 const Header = ({ onLogin, onRegister, onLogout }) => {
-  const location = useLocation();
   const { user } = useAuth();
-
+  const location = useLocation();
   const isAuthenticated = !!user;
+  const currentPath = location.pathname;
+
+  const renderUserName = () => {
+    if (user?.displayName) return user.displayName.split(" ")[0];
+    if (user?.email) return user.email.split("@")[0];
+    return "User";
+  };
 
   return (
     <>
@@ -19,22 +26,19 @@ const Header = ({ onLogin, onRegister, onLogout }) => {
         }`}
       >
         <div className={css.headerBox}>
-          <img src={logo} alt="logo psychologists services" width="218" />
+          <img src={logo} alt="Psychologists Logo" width="218" />
           <nav className={css.navList}>
-            <NavItem to="/" label="Home" currentPath={location.pathname} />
+            <NavItem to="/" label="Home" currentPath={currentPath} />
             <NavItem
               to="/psychologists"
               label="Psychologists"
-              currentPath={location.pathname}
+              currentPath={currentPath}
             />
             <NavItem
               to="/favorites"
               label="Favorites"
-              currentPath={location.pathname}
-              hidden={
-                location.pathname !== "/psychologists" &&
-                location.pathname !== "/favorites"
-              }
+              currentPath={currentPath}
+              hidden={!["/psychologists", "/favorites"].includes(currentPath)}
             />
           </nav>
         </div>
@@ -45,11 +49,7 @@ const Header = ({ onLogin, onRegister, onLogout }) => {
               <div className={css.iconContainer}>
                 <img src={UserIcon} alt="User Icon" className={css.userIcon} />
               </div>
-              <span className={css.userName}>
-                {user?.displayName
-                  ? user.displayName.split(" ")[0]
-                  : user?.email?.split("@")[0] || "User"}{" "}
-              </span>
+              <span className={css.userName}>{renderUserName()}</span>
             </div>
             <button className={css.logoutButton} onClick={onLogout}>
               Log out
@@ -73,14 +73,3 @@ const Header = ({ onLogin, onRegister, onLogout }) => {
 };
 
 export default Header;
-
-{
-  /* {location.pathname === "/psychologists" ||
-            location.pathname === "/favorites" ? (
-              <NavItem
-                to="/favorites"
-                label="Favorites"
-                currentPath={location.pathname}
-              />
-            ) : null} */
-}

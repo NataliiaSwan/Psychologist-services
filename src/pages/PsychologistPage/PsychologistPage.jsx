@@ -1,19 +1,14 @@
 import PsychologistListCard from "../../components/PsychologistListCard/PsychologistListCard.jsx";
 import css from "./PsychologistPage.module.css";
-import { motion } from "framer-motion";
+import PageTransition from "../../components/PageTransition/PageTransition.jsx";
 
 const PsychologistsPage = () => {
   return (
-    <motion.div
-      initial={{ opacity: 0 }}
-      animate={{ opacity: 1 }}
-      exit={{ opacity: 0 }}
-      transition={{ duration: 0.3 }}
-    >
+    <PageTransition>
       <div className={css.psychologistPageContainer}>
         <PsychologistListCard />
       </div>
-    </motion.div>
+    </PageTransition>
   );
 };
 

@@ -30,7 +30,7 @@ const HeroSection = ({ onGetStarted }) => {
           We help you to reveal your potential, overcome challenges and find a
           guide in your own life with the help of our experienced psychologists.
         </p>
-        <button className={css.button} onClick={handleStart}>
+        <button type="button" className={css.button} onClick={handleStart}>
           Get started
           <svg className={css.iconArrow}>
             <use href={`${sprite}#icon-arrow`} />
@@ -39,7 +39,11 @@ const HeroSection = ({ onGetStarted }) => {
       </div>
 
       <div className={css.heroImageWrapper}>
-        <img src={image} className={css.heroImages} alt="girl-manager" />
+        <img
+          src={image}
+          className={css.heroImages}
+          alt="Woman psychologist illustration"
+        />
         <ExperiencedCheckbox
           checked={isExperiencedChecked}
           onCheckboxChange={handleCheckboxChange}

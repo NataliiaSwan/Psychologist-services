@@ -3,7 +3,6 @@ import { fetchPsychologists } from "../../services/psychologistService.js";
 import PsychologistCard from "../../components/PsychologistCard/PsychologistCard.jsx";
 import FilterComponent from "../../components/FilterComponent/FilterComponent.jsx";
 import css from "./PsychologistListCard.module.css";
-// import sprite from "../../assets/icons/sprite.svg";
 import { useLocation } from "react-router-dom";
 import FilterToggleButton from "../../components/FilterToggleButton/FilterToggleButton.jsx";
 

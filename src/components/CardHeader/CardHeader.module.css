@@ -1,0 +1,58 @@
+.cardHeader {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 8px;
+}
+@media screen and (min-width: 768px) {
+  .cardHeader {
+    flex-direction: row;
+  }
+}
+.psychologistInfo {
+  font-weight: 500;
+  color: #8a8a89;
+  line-height: 1.5em;
+  font-size: 12px;
+}
+@media screen and (min-width: 768px) {
+  .psychologistInfo {
+    font-size: 14px;
+  }
+}
+.listRatingPrice {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 22px;
+}
+@media screen and (min-width: 768px) {
+  .listRatingPrice {
+    gap: 32px;
+  }
+}
+.rating,
+.price {
+  display: flex;
+  align-items: center;
+  font-weight: 500;
+  font-size: 12px;
+  line-height: 1.5em;
+}
+@media screen and (min-width: 768px) {
+  .rating,
+  .price {
+    font-size: 16px;
+  }
+}
+.iconStar {
+  width: 20px;
+  height: 20px;
+  fill: #ffc531;
+  margin-right: 8px;
+}
+.pricePerHour {
+  color: #38cd3e;
+}

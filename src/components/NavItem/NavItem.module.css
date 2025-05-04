@@ -3,7 +3,20 @@
   display: flex;
   flex-direction: column;
   align-items: center;
-  min-height: 30px;
+}
+
+.activeLink,
+.inactiveLink {
+  transition: color 0.3s ease;
+  text-decoration: none;
+}
+
+.inactiveLink {
+  color: #191a15;
+}
+
+.inactiveLink:hover {
+  color: #54be96;
 }
 
 .activeLink {
@@ -13,11 +26,23 @@
 
 .circle {
   position: absolute;
-  bottom: -10px; /* Під текстом */
+  bottom: -10px;
   left: 50%;
   transform: translateX(-50%);
   width: 8px;
   height: 8px;
   background-color: #54be96;
   border-radius: 50%;
+  opacity: 0;
+  transition: opacity 0.3s ease, transform 0.3s ease;
+}
+
+.navItem:hover .circle {
+  opacity: 0.5;
+  transform: translateX(-50%) scale(1.2);
+}
+
+.navItem .circle[style*="visible"] {
+  opacity: 1 !important;
+  transform: translateX(-50%) scale(1);
 }

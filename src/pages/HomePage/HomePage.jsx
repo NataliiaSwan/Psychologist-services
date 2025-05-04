@@ -1,32 +1,36 @@
 import HeroSection from "../../components/HeroSection/HeroSection.jsx";
 import css from "./HomePage.module.css";
 import { useNavigate } from "react-router-dom";
-import { motion } from "framer-motion";
+import PageTransition from "../../components/PageTransition/PageTransition.jsx";
 
 const HomePage = ({ user, setIsRegisterOpen, setIsLoginOpen }) => {
   const navigate = useNavigate();
 
   const handleGetStarted = (isExperiencedChecked) => {
+    const isRegistered = localStorage.getItem("isRegistered") === "true";
+
     if (user) {
+      // Якщо користувач авторизований — переходимо до списку психологів
       navigate(`/psychologists?experienced=${isExperiencedChecked}`);
-    } else if (localStorage.getItem("isRegistered")) {
-      setIsLoginOpen(true);
-    } else {
-      setIsRegisterOpen(true);
+      return;
     }
+
+    if (isRegistered) {
+      // Якщо користувач вже реєструвався раніше — відкриваємо логін
+      setIsLoginOpen(true);
+      return;
+    }
+
+    // Якщо користувач не зареєстрований — відкриваємо форму реєстрації
+    setIsRegisterOpen(true);
   };
 
   return (
-    <motion.div
-      initial={{ opacity: 0 }}
-      animate={{ opacity: 1 }}
-      exit={{ opacity: 0 }}
-      transition={{ duration: 0.5 }}
-    >
+    <PageTransition>
       <div className={css.pageContainer}>
         <HeroSection onGetStarted={handleGetStarted} />
       </div>
-    </motion.div>
+    </PageTransition>
   );
 };
 

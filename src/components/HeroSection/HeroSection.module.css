@@ -2,8 +2,14 @@
   display: flex;
   padding: 78px 0;
 }
+.container {
+  max-width: 1184px;
+  margin: 0 auto;
+  width: 100%;
+}
 
 .heroTitle {
+  margin-bottom: 20px;
   font-size: 80px;
   font-weight: 600;
   line-height: 1em;
@@ -11,7 +17,6 @@
   text-align: center;
   text-underline-position: from-font;
   text-decoration-skip-ink: none;
-  margin-bottom: 20px;
 }
 @media screen and (min-width: 1264px) {
   .heroTitle {
@@ -19,33 +24,33 @@
   }
 }
 .accent {
+  color: #54be96;
   font-size: 80px;
   font-style: italic;
   font-weight: 600;
   line-height: 82px;
-  color: #54be96;
 }
 .heroPage {
   display: block;
+  margin-bottom: 40px;
   width: 510px;
   font-size: 18px;
   font-weight: 500;
   line-height: 1.3em;
-  margin-bottom: 40px;
 }
 .button {
   display: flex;
   gap: 18px;
-  background-color: #54be96;
   padding: 18px 50px;
-  border-radius: 30px;
+  color: #fbfbfb;
+  background-color: #54be96;
   font-family: Inter;
   font-size: 20px;
   font-weight: 500;
   line-height: 1.2em;
-  color: #fbfbfb;
-  cursor: pointer;
+  border-radius: 30px;
   border: none;
+  cursor: pointer;
 }
 button:hover {
   background: #36a379;
@@ -58,10 +63,10 @@ button:hover {
 @media (max-width: 767px) {
   .heroSection {
     flex-direction: column;
-    padding: 40px 16px;
-    gap: 40px;
     align-items: center;
     text-align: center;
+    padding: 40px 16px;
+    gap: 40px;
   }
 
   .heroTitle {
@@ -75,9 +80,9 @@ button:hover {
   }
 
   .heroPage {
-    font-size: 16px;
-    width: 100%;
     margin-bottom: 24px;
+    width: 100%;
+    font-size: 16px;
   }
 
   .button {
@@ -100,10 +105,10 @@ button:hover {
 
 @media (max-width: 1023px) {
   .heroSection {
-    gap: 60px;
-    padding: 60px 24px;
     flex-direction: column;
     align-items: center;
+    gap: 60px;
+    padding: 60px 24px;
   }
 
   .heroTitle,

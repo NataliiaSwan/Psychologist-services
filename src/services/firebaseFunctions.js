@@ -21,5 +21,7 @@ export const getFavorites = async (userId) => {
   const favRef = ref(db, `users/${userId}/favorites`);
   const snapshot = await get(favRef);
   const data = snapshot.val();
-  return data ? Object.values(data) : [];
+  const favorites = data ? Object.values(data) : [];
+  localStorage.setItem("favorites", JSON.stringify(favorites)); // ← додаємо
+  return favorites;
 };

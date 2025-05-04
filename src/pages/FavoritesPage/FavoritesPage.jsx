@@ -2,7 +2,7 @@ import { useState, useEffect, useMemo, useRef } from "react";
 import FavoritesList from "../../components/FavoritesList/FavoritesList.jsx";
 import FavoritesFilter from "../../components/FavoritesFilter/FavoritesFilter.jsx";
 import css from "./FavoritesPage.module.css";
-import { motion } from "framer-motion";
+import PageTransition from "../../components/PageTransition/PageTransition.jsx";
 import FilterToggleButton from "../../components/FilterToggleButton/FilterToggleButton";
 
 const FavoritesPage = () => {
@@ -70,12 +70,7 @@ const FavoritesPage = () => {
   }, []);
 
   return (
-    <motion.div
-      initial={{ opacity: 0 }}
-      animate={{ opacity: 1 }}
-      exit={{ opacity: 0 }}
-      transition={{ duration: 0.5 }}
-    >
+    <PageTransition>
       <div className={css.favoritesContainer}>
         <h1 className={css.filterTitle}>Favorites</h1>
 
@@ -115,7 +110,7 @@ const FavoritesPage = () => {
             )}
         </div>
       </div>
-    </motion.div>
+    </PageTransition>
   );
 };
 
