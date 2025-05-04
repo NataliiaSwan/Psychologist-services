@@ -27,20 +27,6 @@ const Header = ({ onLogin, onRegister, onLogout }) => {
               label="Psychologists"
               currentPath={location.pathname}
             />
-
-            {/* {location.pathname === "/psychologists" ||
-            location.pathname === "/favorites" ? (
-              <NavItem
-                to="/favorites"
-                label="Favorites"
-                currentPath={location.pathname}
-              />
-            ) : null} */}
-            {/* <NavItem
-              to="/favorites"
-              label="Favorites"
-              currentPath={location.pathname}
-            /> */}
             <NavItem
               to="/favorites"
               label="Favorites"
@@ -87,3 +73,14 @@ const Header = ({ onLogin, onRegister, onLogout }) => {
 };
 
 export default Header;
+
+{
+  /* {location.pathname === "/psychologists" ||
+            location.pathname === "/favorites" ? (
+              <NavItem
+                to="/favorites"
+                label="Favorites"
+                currentPath={location.pathname}
+              />
+            ) : null} */
+}
