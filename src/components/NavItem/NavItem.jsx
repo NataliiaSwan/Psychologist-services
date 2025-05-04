@@ -5,6 +5,16 @@ const NavItem = ({ to, label, currentPath }) => {
   const isActive = currentPath === to;
 
   return (
+    // <div className={css.navItem}>
+    //   <Link
+    //     to={to}
+    //     className={isActive ? css.activeLink : css.inactiveLink}
+    //     aria-current={isActive ? "page" : undefined}
+    //   >
+    //     {label}
+    //   </Link>
+    //   {isActive && <div className={css.circle}></div>}
+    // </div>
     <div className={css.navItem}>
       <Link
         to={to}
@@ -13,7 +23,10 @@ const NavItem = ({ to, label, currentPath }) => {
       >
         {label}
       </Link>
-      {isActive && <div className={css.circle}></div>}
+      <div
+        className={css.circle}
+        style={{ visibility: isActive ? "visible" : "hidden" }}
+      />
     </div>
   );
 };

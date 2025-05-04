@@ -5,11 +5,10 @@ import { motion } from "framer-motion";
 const PsychologistsPage = () => {
   return (
     <motion.div
-      layout
-      initial={{ opacity: 0, y: 20 }} // Початковий стан
-      animate={{ opacity: 1, y: 0 }} // Анімований стан
-      exit={{ opacity: 0, y: -20 }} // Вихідна анімація
-      transition={{ duration: 0.5 }} // Тривалість анімації
+      initial={{ opacity: 0 }}
+      animate={{ opacity: 1 }}
+      exit={{ opacity: 0 }}
+      transition={{ duration: 0.3 }}
     >
       <div className={css.psychologistPageContainer}>
         <PsychologistListCard />

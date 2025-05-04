@@ -36,10 +36,19 @@ const Header = ({ onLogin, onRegister, onLogout }) => {
                 currentPath={location.pathname}
               />
             ) : null} */}
+            {/* <NavItem
+              to="/favorites"
+              label="Favorites"
+              currentPath={location.pathname}
+            /> */}
             <NavItem
               to="/favorites"
               label="Favorites"
               currentPath={location.pathname}
+              hidden={
+                location.pathname !== "/psychologists" &&
+                location.pathname !== "/favorites"
+              }
             />
           </nav>
         </div>

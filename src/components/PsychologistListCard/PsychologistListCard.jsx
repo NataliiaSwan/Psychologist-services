@@ -121,20 +121,6 @@ const PsychologistListCard = () => {
     <div>
       <h1 className={css.filterTitle}>Filter</h1>
       <div className={css.filterToggleButtonWrapper}>
-        {/* <button
-          className={css.filterToggleButton}
-          onClick={() => setIsFilterOpen(!isFilterOpen)}
-        >
-          {filterLabels[filter]}
-          <svg
-            className={`${css.iconVectorBottom} ${
-              isFilterOpen ? css.iconVectorTop : ""
-            }`}
-          >
-            <use href={`${sprite}#icon-vector-bottom`} />
-          </svg>
-        </button> */}
-
         <FilterToggleButton
           currentFilter={filter}
           isOpen={isFilterOpen}
