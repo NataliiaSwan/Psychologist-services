@@ -1,15 +1,15 @@
 import { useEffect } from "react";
-import { Navigate } from "react-router-dom";
 
 const PrivateRoute = ({ user, onLoginOpen, children }) => {
   useEffect(() => {
-    if (!user) {
+    // Якщо користувач не залогінений і поточна сторінка — /favorites
+    if (!user && window.location.pathname === "/favorites") {
       onLoginOpen("/favorites");
     }
   }, [user, onLoginOpen]);
 
   if (!user) {
-    return <Navigate to="/" replace />;
+    return null;
   }
 
   return children;

@@ -1,8 +1,52 @@
 import css from "./ExperiencedCheckbox.module.css";
 
-const ExperiencedCheckbox = ({ checked, onCheckboxChange }) => {
+// const ExperiencedCheckbox = ({ checked, onCheckboxChange }) => {
+//   const handleChange = (e) => {
+//     onCheckboxChange(e.target.checked);
+//   };
+
+//   return (
+//     <div className={css.checkboxcontainer}>
+//       <label className={css.checkboxlabel}>
+//         <input
+//           type="checkbox"
+//           checked={checked}
+//           onChange={handleChange}
+//           className={css.checkbox}
+//         />
+//         <div className={css.customCheckbox}></div>
+//         <div className={css.textContainer}>
+//           <span className={css.text}>Experienced psychologists</span>
+//           <span className={css.count}>15,000</span>
+//         </div>
+//       </label>
+//     </div>
+//   );
+// };
+
+// export default ExperiencedCheckbox;
+
+const ExperiencedCheckbox = ({
+  checked,
+  onCheckboxChange,
+  experiencedCount,
+}) => {
+  // const handleChange = (e) => {
+  //   onCheckboxChange(e.target.checked);
+  // };
+
   const handleChange = (e) => {
-    onCheckboxChange(e.target.checked);
+    const checked = e.target.checked;
+    onCheckboxChange(checked);
+
+    // Оновлюємо параметр в URL
+    const params = new URLSearchParams(window.location.search);
+    if (checked) {
+      params.set("experienced", "true");
+    } else {
+      params.delete("experienced");
+    }
+    window.history.pushState(null, "", "?" + params.toString()); // Оновлюємо URL
   };
 
   return (
@@ -17,11 +61,10 @@ const ExperiencedCheckbox = ({ checked, onCheckboxChange }) => {
         <div className={css.customCheckbox}></div>
         <div className={css.textContainer}>
           <span className={css.text}>Experienced psychologists</span>
-          <span className={css.count}>15,000</span>
+          <span className={css.count}>{experiencedCount}</span>
         </div>
       </label>
     </div>
   );
 };
-
 export default ExperiencedCheckbox;

@@ -1,34 +1,144 @@
+// import HeroSection from "../../components/HeroSection/HeroSection.jsx";
+// import css from "./HomePage.module.css";
+// import { useNavigate } from "react-router-dom";
+// import PageTransition from "../../components/PageTransition/PageTransition.jsx";
+
+// const HomePage = ({ user, setIsRegisterOpen, setIsLoginOpen }) => {
+//   const navigate = useNavigate();
+
+//   const handleGetStarted = (isExperiencedChecked) => {
+//     const isRegistered = localStorage.getItem("isRegistered") === "true";
+
+//     if (user) {
+//       // Якщо користувач авторизований — переходимо до списку психологів
+//       navigate(`/psychologists?experienced=${isExperiencedChecked}`);
+//       return;
+//     }
+
+//     if (isRegistered) {
+//       // Якщо користувач вже реєструвався раніше — відкриваємо логін
+//       setIsLoginOpen(true);
+//       return;
+//     }
+
+//     // Якщо користувач не зареєстрований — відкриваємо форму реєстрації
+//     setIsRegisterOpen(true);
+//   };
+
+//   return (
+//     <PageTransition>
+//       <div className={css.pageContainer}>
+//         <HeroSection onGetStarted={handleGetStarted} />
+//       </div>
+//     </PageTransition>
+//   );
+// };
+
+// export default HomePage;
+
+// import HeroSection from "../../components/HeroSection/HeroSection.jsx";
+// import css from "./HomePage.module.css";
+// import { useNavigate } from "react-router-dom";
+// import PageTransition from "../../components/PageTransition/PageTransition.jsx";
+// import { useEffect, useState } from "react";
+// import { fetchPsychologists } from "../../services/psychologistService.js";
+
+// const HomePage = ({ user, setIsRegisterOpen, setIsLoginOpen }) => {
+//   const navigate = useNavigate();
+//   const [experiencedCount, setExperiencedCount] = useState(0);
+
+//   useEffect(() => {
+//     const loadExperiencedCount = async () => {
+//       try {
+//         const data = await fetchPsychologists();
+//         const experienced = data.filter((p) => parseInt(p.experience) >= 15);
+//         setExperiencedCount(experienced.length);
+//       } catch (error) {
+//         console.error("Error loading psychologists:", error);
+//       }
+//     };
+
+//     loadExperiencedCount();
+//   }, []);
+
+//   const handleGetStarted = (isExperiencedChecked) => {
+//     const isRegistered = localStorage.getItem("isRegistered") === "true";
+
+//     if (user) {
+//       navigate(`/psychologists?experienced=${isExperiencedChecked}`);
+//       return;
+//     }
+
+//     if (isRegistered) {
+//       setIsLoginOpen(true);
+//       return;
+//     }
+
+//     setIsRegisterOpen(true);
+//   };
+
+//   return (
+//     <PageTransition>
+//       <div className={css.pageContainer}>
+//         <HeroSection
+//           onGetStarted={handleGetStarted}
+//           experiencedCount={experiencedCount}
+//         />
+//       </div>
+//     </PageTransition>
+//   );
+// };
+
+// export default HomePage;
+
 import HeroSection from "../../components/HeroSection/HeroSection.jsx";
 import css from "./HomePage.module.css";
 import { useNavigate } from "react-router-dom";
 import PageTransition from "../../components/PageTransition/PageTransition.jsx";
+import { useEffect, useState } from "react";
+import { fetchPsychologists } from "../../services/psychologistService.js";
 
 const HomePage = ({ user, setIsRegisterOpen, setIsLoginOpen }) => {
   const navigate = useNavigate();
+  const [experiencedCount, setExperiencedCount] = useState(0);
+
+  useEffect(() => {
+    const loadExperiencedCount = async () => {
+      try {
+        const data = await fetchPsychologists();
+        const experienced = data.filter((p) => parseInt(p.experience) >= 15);
+        setExperiencedCount(experienced.length);
+      } catch (error) {
+        console.error("Error loading psychologists:", error);
+      }
+    };
+
+    loadExperiencedCount();
+  }, []);
 
   const handleGetStarted = (isExperiencedChecked) => {
     const isRegistered = localStorage.getItem("isRegistered") === "true";
 
     if (user) {
-      // Якщо користувач авторизований — переходимо до списку психологів
       navigate(`/psychologists?experienced=${isExperiencedChecked}`);
       return;
     }
 
     if (isRegistered) {
-      // Якщо користувач вже реєструвався раніше — відкриваємо логін
       setIsLoginOpen(true);
       return;
     }
 
-    // Якщо користувач не зареєстрований — відкриваємо форму реєстрації
     setIsRegisterOpen(true);
   };
 
   return (
     <PageTransition>
       <div className={css.pageContainer}>
-        <HeroSection onGetStarted={handleGetStarted} />
+        <HeroSection
+          onGetStarted={handleGetStarted}
+          experiencedCount={experiencedCount}
+        />
       </div>
     </PageTransition>
   );

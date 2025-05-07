@@ -1,10 +1,10 @@
-import { useEffect, useState, useRef, useMemo } from "react";
+import { useEffect, useState, useMemo } from "react";
+import { useSearchParams } from "react-router-dom";
 import { fetchPsychologists } from "../../services/psychologistService.js";
 import PsychologistCard from "../../components/PsychologistCard/PsychologistCard.jsx";
 import FilterComponent from "../../components/FilterComponent/FilterComponent.jsx";
-import css from "./PsychologistListCard.module.css";
-import { useLocation } from "react-router-dom";
 import FilterToggleButton from "../../components/FilterToggleButton/FilterToggleButton.jsx";
+import css from "./PsychologistListCard.module.css";
 
 const filterLabels = {
   ALL: "Show All",
@@ -18,7 +18,7 @@ const filterLabels = {
 
 const applyFilter = (list, selectedFilter, experiencedFilter) => {
   let filteredList = experiencedFilter
-    ? list.filter((p) => parseInt(p.experience) >= 20)
+    ? list.filter((p) => parseInt(p.experience) >= 15)
     : list;
 
   switch (selectedFilter) {
@@ -40,14 +40,16 @@ const applyFilter = (list, selectedFilter, experiencedFilter) => {
 };
 
 const PsychologistListCard = () => {
+  const [searchParams] = useSearchParams();
+  const experiencedParam = searchParams.get("experienced");
+  const showExperiencedOnly = experiencedParam === "true";
+
   const [psychologists, setPsychologists] = useState([]);
   const [filteredPsychologists, setFilteredPsychologists] = useState([]);
   const [isFilterOpen, setIsFilterOpen] = useState(false);
   const [filter, setFilter] = useState("ALL");
   const [visibleCount, setVisibleCount] = useState(3);
   const [isLoading, setIsLoading] = useState(false);
-  const location = useLocation();
-  const filterRef = useRef(null);
 
   useEffect(() => {
     setIsLoading(true);
@@ -58,38 +60,19 @@ const PsychologistListCard = () => {
           id: index + 1,
         }));
         setPsychologists(psychologistsWithId);
-        console.log("Psychologists after fetching:", psychologistsWithId);
       })
       .catch((error) => console.error("Error fetching psychologists:", error))
       .finally(() => setIsLoading(false));
   }, []);
 
   useEffect(() => {
-    const handleClickOutside = (e) => {
-      if (filterRef.current && !filterRef.current.contains(e.target)) {
-        setIsFilterOpen(false);
-      }
-    };
-    if (isFilterOpen) {
-      document.addEventListener("mousedown", handleClickOutside);
-    } else {
-      document.removeEventListener("mousedown", handleClickOutside);
-    }
-    return () => document.removeEventListener("mousedown", handleClickOutside);
-  }, [isFilterOpen]);
-
-  const params = new URLSearchParams(location.search);
-  const experiencedFilter = params.get("experience") === "true";
+    const filtered = applyFilter(psychologists, filter, showExperiencedOnly);
+    setFilteredPsychologists(filtered);
+    setVisibleCount(3);
+  }, [psychologists, filter, showExperiencedOnly]);
 
   const handleFilterChange = (selectedFilter) => {
     setFilter(selectedFilter);
-    setVisibleCount(3);
-    const filtered = applyFilter(
-      psychologists,
-      selectedFilter,
-      experiencedFilter
-    );
-    setFilteredPsychologists(filtered);
     setIsFilterOpen(false);
   };
 
@@ -101,20 +84,6 @@ const PsychologistListCard = () => {
     () => filteredPsychologists.slice(0, visibleCount),
     [filteredPsychologists, visibleCount]
   );
-
-  useEffect(() => {
-    console.log("Experience filter from URL:", experiencedFilter);
-
-    psychologists.forEach((psychologist) => {
-      const experienceInYears = parseInt(psychologist.experience);
-      console.log(
-        `Psychologist ${psychologist.id}: Experience ${psychologist.experience} => ${experienceInYears} years`
-      );
-    });
-
-    const filtered = applyFilter(psychologists, filter, experiencedFilter);
-    setFilteredPsychologists(filtered);
-  }, [location.search, psychologists, filter, experiencedFilter]);
 
   return (
     <div>
@@ -128,13 +97,11 @@ const PsychologistListCard = () => {
         />
 
         {isFilterOpen && (
-          <div ref={filterRef} className={css.filterWrapper}>
-            <div className={css.dropdownMenu}>
-              <FilterComponent
-                onFilterChange={handleFilterChange}
-                selectedFilter={filter}
-              />
-            </div>
+          <div className={css.filterWrapper}>
+            <FilterComponent
+              onFilterChange={handleFilterChange}
+              selectedFilter={filter}
+            />
           </div>
         )}
       </div>
@@ -153,12 +120,13 @@ const PsychologistListCard = () => {
                 No psychologists found for selected filter
               </p>
             )}
-            {visibleCount < filteredPsychologists.length && (
-              <button className={css.loadMoreButton} onClick={loadMore}>
-                Load More
-              </button>
-            )}
           </div>
+
+          {visibleCount < filteredPsychologists.length && (
+            <button className={css.loadMoreButton} onClick={loadMore}>
+              Load More
+            </button>
+          )}
 
           {visibleCount >= filteredPsychologists.length &&
             filteredPsychologists.length > 0 && (
