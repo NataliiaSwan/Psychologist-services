@@ -184,7 +184,7 @@ const HeroSection = ({ experiencedCount }) => {
         <ExperiencedCheckbox
           checked={isExperiencedChecked}
           onCheckboxChange={handleCheckboxChange}
-          experiencedCount={isExperiencedChecked ? experiencedCount : 0}
+          experiencedCount={isExperiencedChecked && experiencedCount}
         />
         <SquareIcon />
       </div>

@@ -12,6 +12,7 @@ const Layout = ({ onLoginOpen, onRegisterOpen, user, onLogout }) => {
         onLogout={onLogout}
         onRegister={onRegisterOpen}
       />
+      <hr className={css.line} />
       <main className={css.main}>
         <Outlet />
       </main>

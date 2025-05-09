@@ -123,9 +123,11 @@ const PsychologistListCard = () => {
           </div>
 
           {visibleCount < filteredPsychologists.length && (
-            <button className={css.loadMoreButton} onClick={loadMore}>
-              Load More
-            </button>
+            <div className={css.boxButton}>
+              <button className={css.loadMoreButton} onClick={loadMore}>
+                Load More
+              </button>
+            </div>
           )}
 
           {visibleCount >= filteredPsychologists.length &&

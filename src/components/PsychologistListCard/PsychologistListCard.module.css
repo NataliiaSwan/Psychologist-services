@@ -23,7 +23,6 @@
 }
 @media screen and (min-width: 768px) {
   .loadMoreButton {
-    margin: 64px auto 0 auto;
     padding: 14px 48px;
     font-size: 16px;
     border-radius: 30px;
@@ -63,4 +62,8 @@
     opacity: 1;
     transform: translateY(0);
   }
+}
+.boxButton {
+  display: flex;
+  justify-content: center;
 }

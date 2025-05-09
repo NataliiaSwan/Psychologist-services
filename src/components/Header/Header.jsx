@@ -66,8 +66,6 @@ const Header = ({ onLogin, onRegister, onLogout }) => {
           </div>
         )}
       </div>
-
-      <hr className={css.line} />
     </>
   );
 };

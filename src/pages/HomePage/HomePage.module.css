@@ -1,17 +1,5 @@
-.pageContainer {
+.homePageContainer {
   width: 100%;
-  max-width: 1184px;
+  max-width: 1216px;
   box-sizing: border-box;
-}
-
-@media (max-width: 1279px) {
-  .pageContainer {
-    padding: 0 24px;
-  }
-}
-
-@media (max-width: 767px) {
-  .pageContainer {
-    padding: 0 16px;
-  }
 }

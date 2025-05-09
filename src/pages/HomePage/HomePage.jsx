@@ -134,7 +134,7 @@ const HomePage = ({ user, setIsRegisterOpen, setIsLoginOpen }) => {
 
   return (
     <PageTransition>
-      <div className={css.pageContainer}>
+      <div className={css.homePageContainer}>
         <HeroSection
           onGetStarted={handleGetStarted}
           experiencedCount={experiencedCount}
