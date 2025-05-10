@@ -2,14 +2,20 @@
   display: flex;
   align-items: center;
   justify-content: center;
-  width: 40px;
-  height: 40px;
+  width: 32px;
+  height: 32px;
   background-color: #4535af;
   transform: rotate(75deg);
   position: absolute;
   top: 38%;
   right: 99%;
   border-radius: 10px;
+}
+@media screen and (min-width: 768px) {
+  .iconboxViolet {
+    width: 40px;
+    height: 40px;
+  }
 }
 .iconViolet {
   width: 10px;
@@ -25,14 +31,20 @@
   display: flex;
   align-items: center;
   justify-content: center;
-  width: 48px;
-  height: 48px;
+  width: 40px;
+  height: 40px;
   background-color: #fbc75e;
   transform: rotate(12deg);
   top: 9%;
   right: -9%;
   position: absolute;
   border-radius: 10px;
+}
+@media screen and (min-width: 768px) {
+  .iconboxYellow {
+    width: 48px;
+    height: 48px;
+  }
 }
 .iconYellow {
   width: 25px;

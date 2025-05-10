@@ -1,13 +1,19 @@
 .checkboxcontainer {
   position: absolute;
-  top: 68%;
-  left: 16%;
+  top: 51%;
+  left: 12%;
   transform: translateX(-90px);
+  padding: 0 20px;
+}
+@media screen and (min-width: 768px) {
+  .checkboxcontainer {
+    left: 8%;
+  }
 }
 
-@media screen and (min-width: 1264px) {
+@media screen and (min-width: 1216px) {
   .checkboxcontainer {
-    left: -1%;
+    left: -5%;
   }
 }
 .checkboxlabel {
@@ -17,16 +23,17 @@
   border-radius: 20px;
   width: 240px;
   height: 80px;
-  gap: 16px;
+  gap: 2px;
   background-color: #54be96;
 }
 @media screen and (min-width: 768px) {
   .checkboxlabel {
-    width: 300px;
-    height: 110px;
+    width: 260px;
+    height: 90px;
+    gap: 16px;
   }
 }
-@media screen and (min-width: 1264px) {
+@media screen and (min-width: 1216px) {
   .checkboxlabel {
     width: 311px;
     height: 118px;
@@ -53,15 +60,23 @@
 }
 
 .customCheckbox {
-  width: 30px;
-  height: 30px;
-  padding: 12px;
-  border-radius: 5px;
+  width: 20px;
+  height: 20px;
+  padding: 8px;
+  border-radius: 3px;
   background-color: white;
   display: flex;
   align-items: center;
   justify-content: center;
   transition: background-color 0.2s, border-color 0.2s;
+}
+@media screen and (min-width: 768px) {
+  .customCheckbox {
+    width: 30px;
+    height: 30px;
+    padding: 12px;
+    border-radius: 5px;
+  }
 }
 
 .checkbox:checked + .customCheckbox::after {
