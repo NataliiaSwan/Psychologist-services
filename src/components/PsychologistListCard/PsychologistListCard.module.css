@@ -5,19 +5,19 @@
 }
 
 .filterTitle {
+  color: #8a8a89;
   font-weight: 500;
   font-size: 14px;
   line-height: 1.3em;
-  color: #8a8a89;
   margin-bottom: 8px;
 }
 
 .loadMoreButton {
+  color: white;
+  background-color: #54be96;
   margin: 64px auto 0 auto;
   padding: 12px 32px;
   font-size: 14px;
-  background-color: #54be96;
-  color: white;
   border: none;
   border-radius: 26px;
 }
@@ -38,7 +38,7 @@
 }
 .filterToggleButtonWrapper:hover {
   opacity: 1;
-  background-color: #45a578;
+  background-color: #36a379;
   border-radius: 14px;
 }
 
@@ -51,11 +51,11 @@
 }
 .dropdownMenu {
   background-color: white;
-  border: 1px solid #ccc;
   padding: 10px;
+  min-width: 180px;
+  border: 1px solid #ccc;
   border-radius: 8px;
   box-shadow: 0 6px 12px rgba(0, 0, 0, 0.1);
-  min-width: 180px;
 }
 
 @keyframes slideFadeIn {

@@ -2,23 +2,25 @@
   display: flex;
   align-items: center;
   justify-content: center;
+  color: #54be96;
+  background-color: #54be9633;
   width: 44px;
   height: 44px;
-  border-radius: 50%;
-  background-color: #54be9633;
-  color: #54be96;
   font-weight: 500;
   font-size: 20px;
   line-height: 1em;
+  border-radius: 50%;
 }
+
 .comment {
+  color: #191a1580;
+  margin-bottom: 40px;
   font-family: Inter;
   font-weight: 400;
   font-size: 16px;
   line-height: 1.2em;
-  color: #191a1580;
-  margin-bottom: 40px;
 }
+
 .cardHeader {
   display: flex;
   gap: 12px;

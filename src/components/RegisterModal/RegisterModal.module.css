@@ -2,23 +2,23 @@
   position: fixed;
   top: 0;
   left: 0;
-  width: 100%;
-  height: 100%;
-  background-color: #191a1599;
   display: flex;
   align-items: center;
   justify-content: center;
   z-index: 999;
+  background-color: #191a1599;
+  width: 100%;
+  height: 100%;
 }
 
 .modalContent {
   position: relative;
   display: flex;
   flex-direction: column;
-  width: 90%;
-  max-width: 300px;
   background-color: #fbfbfb;
   padding: 22px;
+  width: 90%;
+  max-width: 300px;
   border-radius: 30px;
   text-align: start;
   box-sizing: border-box;
@@ -26,8 +26,8 @@
 }
 @media screen and (min-width: 768px) {
   .modalContent {
-    width: 70%;
     padding: 48px;
+    width: 70%;
     max-width: 566px;
   }
 }
@@ -37,10 +37,10 @@
   }
 }
 .modalTitle {
+  margin-bottom: 20px;
   font-size: 24px;
   font-weight: 500;
   line-height: 1.2em;
-  margin-bottom: 20px;
 }
 @media screen and (min-width: 768px) {
   .modalTitle {
@@ -55,11 +55,11 @@
   }
 }
 .modalText {
+  color: #191a1580;
+  margin-bottom: 20px;
   font-size: 14px;
   font-weight: 400;
   line-height: 1.2em;
-  color: #191a1580;
-  margin-bottom: 20px;
 }
 @media screen and (min-width: 768px) {
   .modalText {
@@ -74,11 +74,11 @@
   }
 }
 .modalContent form input {
-  width: 100%;
-  padding: 14px;
   background-color: #fbfbfb;
-  box-sizing: border-box;
   margin-bottom: 16px;
+  padding: 14px;
+  width: 100%;
+  box-sizing: border-box;
   border-radius: 12px;
   border: 1px solid #191a151a;
 }
@@ -97,12 +97,13 @@
   position: absolute;
   top: 16px;
   right: 16px;
+  color: #333;
   background: none;
   border: none;
   font-size: 24px;
   cursor: pointer;
-  color: #333;
 }
+
 @media screen and (min-width: 768px) {
   .closeButton {
     font-size: 28px;
@@ -116,14 +117,14 @@
 }
 
 .buttonSignIn {
-  width: 100%;
-  padding: 16px;
-  background-color: #54be96;
   color: white;
+  background-color: #54be96;
+  margin-top: 16px;
+  padding: 16px;
+  width: 100%;
   border-radius: 30px;
   border: none;
   cursor: pointer;
-  margin-top: 16px;
 }
 
 @media screen and (min-width: 768px) {
@@ -131,7 +132,7 @@
     padding: 18px;
   }
 }
-@media screen and (min-width: 1024px) {
+@media screen and (min-width: 1184px) {
   .buttonSignIn form button {
     padding: 20px;
   }
@@ -150,13 +151,13 @@
   position: absolute;
   top: 25px;
   right: 20px;
-  transform: translateY(-50%);
-  background: transparent;
-  border: none;
-  cursor: pointer;
-  padding: 0;
   display: flex;
   align-items: center;
   justify-content: center;
+  background: transparent;
   width: 30px;
+  transform: translateY(-50%);
+  border: none;
+  cursor: pointer;
+  padding: 0;
 }

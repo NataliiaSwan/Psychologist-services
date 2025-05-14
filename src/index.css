@@ -69,9 +69,7 @@ ol {
 hr {
   margin: 0;
 }
-/* html {
-  overflow-y: scroll;
-} */
+
 .no-scroll {
   overflow: hidden;
 }

@@ -1,9 +1,9 @@
 .favoriteContainer {
-  width: 100%;
-  max-width: 1184px;
   display: flex;
   flex-direction: column;
   gap: 32px;
+  width: 100%;
+  max-width: 1184px;
   min-height: 400px;
   transition: all 0.3s ease;
 }
@@ -13,9 +13,10 @@
   gap: 32px;
 }
 .emptyState {
-  width: 100%;
   text-align: center;
   color: #888;
+  width: 100%;
+
   font-size: 14px;
 }
 @media screen and (min-width: 768px) {

@@ -1,8 +1,8 @@
 .modal {
-  position: relative;
   overflow-y: auto;
-  min-height: 0;
+  position: relative;
   padding: 32px;
+  min-height: 0;
   max-width: 360px;
   max-height: 100vh;
   background-color: #fbfbfb;
@@ -15,8 +15,8 @@
 }
 @media screen and (min-width: 768px) {
   .modal {
-    max-width: 600px;
     padding: 64px;
+    max-width: 600px;
     max-height: 96vh;
   }
 }
@@ -106,7 +106,6 @@
 .textArea {
   width: 100%;
   padding: 12px 14px;
-
   background-color: #fbfbfb;
   font-size: 12px;
   line-height: 1.1em;
@@ -152,9 +151,9 @@
   position: absolute;
   display: flex;
   flex-direction: column;
-  width: 151px;
   margin-top: 8px;
   padding: 16px;
+  width: 151px;
   background-color: #ffffff;
   border-radius: 10px;
   box-sizing: border-box;
@@ -199,14 +198,14 @@
 
 .submitButton {
   position: relative;
-  width: 100%;
   padding: 10px 0;
+  width: 100%;
   background-color: #3cb371;
   color: #fff;
-  border: none;
-  border-radius: 10px;
   font-size: 14px;
   font-weight: 400;
+  border: none;
+  border-radius: 10px;
   cursor: pointer;
   transition: background-color 0.3s ease, opacity 0.3s ease;
 }

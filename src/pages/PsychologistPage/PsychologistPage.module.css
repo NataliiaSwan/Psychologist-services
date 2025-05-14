@@ -1,8 +1,8 @@
 .psychologistPageContainer {
-  max-width: 1184px;
-  width: 100%;
   margin: 0 auto;
   padding: 32px 0;
+  max-width: 1184px;
+  width: 100%;
 }
 @media screen and (min-width: 768px) {
   .psychologistPageContainer {

@@ -2,8 +2,8 @@
   display: flex;
   flex-direction: column;
   align-items: center;
-  padding: 16px;
   background-color: #fbfbfb;
+  padding: 16px;
   border-radius: 24px;
   gap: 16px;
 }
@@ -33,31 +33,30 @@
   position: absolute;
   top: 8px;
   right: 8px;
-  width: 14px;
-  height: 14px;
-  background-color: white;
-  border-radius: 50%;
   display: flex;
   align-items: center;
   justify-content: center;
+  background-color: #ffffff;
+  width: 14px;
+  height: 14px;
+  border-radius: 50%;
 }
 
 .innerCircle {
+  background-color: #54be96;
   width: 10px;
   height: 10px;
   border-radius: 50%;
-  background-color: #54be96;
 }
 .avatarContainer {
+  position: relative;
   display: inline-block;
   align-items: center;
   justify-content: center;
-  padding: 12px;
   color: #fbfbfb;
+  padding: 12px;
   border-radius: 30px;
   border: 2px solid #54be9633;
-  position: relative;
-  display: inline-block;
 }
 
 .cardBox {
@@ -77,12 +76,12 @@
   }
 }
 .cardHeader {
-  width: 100%;
   display: flex;
   flex-direction: column;
   justify-content: space-between;
   align-items: center;
   margin-bottom: 8px;
+  width: 100%;
 }
 @media screen and (min-width: 768px) {
   .cardHeader {
@@ -90,17 +89,17 @@
   }
 }
 .name {
+  color: #191a15;
+  margin-bottom: 20px;
   font-weight: 400;
   font-size: 18px;
   line-height: 1em;
-  color: #191a15;
-  margin-bottom: 20px;
 }
 @media screen and (min-width: 768px) {
   .name {
+    margin-bottom: 24px;
     font-weight: 500;
     font-size: 24px;
-    margin-bottom: 24px;
   }
 }
 .infoPcychologistList {
@@ -123,12 +122,12 @@
 }
 
 .about {
-  width: 100%;
-  font-size: 12px;
-  line-height: 1.4;
   text-align: start;
   color: #191a1580;
   margin-bottom: 14px;
+  width: 100%;
+  font-size: 12px;
+  line-height: 1.4;
 }
 
 @media screen and (min-width: 768px) {
@@ -161,12 +160,12 @@
   }
 }
 .heartButton {
-  background-color: transparent;
-  border: none;
-  padding: 0;
   display: flex;
   align-items: center;
   justify-content: center;
+  background-color: transparent;
+  border: none;
+  padding: 0;
 }
 .heartButton:hover {
   background-color: transparent;
@@ -190,19 +189,19 @@
 }
 
 .iconStar {
-  width: 20px;
-  height: 20px;
   fill: #ffc531;
   margin-right: 8px;
+  width: 20px;
+  height: 20px;
 }
 
 .readMore {
+  color: #191a15;
+  background: inherit;
   font-family: Inter;
   font-weight: 400;
   font-size: 12px;
   line-height: 1.2em;
-  background: inherit;
-  color: #191a15;
   text-decoration: underline;
 }
 @media screen and (min-width: 768px) {
@@ -223,13 +222,13 @@
   display: flex;
   align-items: center;
   justify-content: center;
-  padding: 10px;
-  background-color: #f3f3f3;
-  border-radius: 20px;
   color: #8a8a89;
+  background-color: #f3f3f3;
+  padding: 10px;
   font-weight: 400;
   font-size: 10px;
   line-height: 1.2px;
+  border-radius: 20px;
   box-sizing: border-box;
 }
 @media screen and (min-width: 768px) {
@@ -238,12 +237,10 @@
   .specialization,
   .initialConsultation {
     padding: 16px;
-
-    border-radius: 24px;
-
     font-weight: 500;
     font-size: 16px;
     line-height: 1.5px;
+    border-radius: 24px;
   }
 }
 span {
@@ -254,15 +251,15 @@ span {
   color: #38cd3e;
 }
 .openModalButton {
+  color: #fbfbfb;
+  background-color: #54be96;
+  padding: 14px 32px;
   width: 227px;
   height: 48px;
-  border-radius: 30px;
-  padding: 14px 32px;
-  background-color: #54be96;
   font-weight: 500;
   font-size: 16px;
   line-height: 1.2em;
-  color: #fbfbfb;
+  border-radius: 30px;
   cursor: pointer;
 }
 .openModalButton:hover {
@@ -274,8 +271,8 @@ span {
   position: fixed;
   top: 20px;
   right: 20px;
-  background-color: #ffdddd;
   color: #a60000;
+  background-color: #ffdddd;
   padding: 12px 20px;
   border-radius: 12px;
   box-shadow: 0 2px 6px rgba(0, 0, 0, 0.2);

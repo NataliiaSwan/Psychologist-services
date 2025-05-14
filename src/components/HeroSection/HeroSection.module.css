@@ -49,11 +49,12 @@
   display: flex;
   align-items: center;
   gap: 18px;
+  color: white;
+  background-color: #54be96;
   padding: 14px 24px;
   font-size: 18px;
   font-weight: 500;
-  background-color: #54be96;
-  color: white;
+
   border: none;
   border-radius: 30px;
   cursor: pointer;
@@ -141,9 +142,9 @@
 }
 
 .heroImages {
+  display: block;
   width: 100%;
   height: auto;
-  display: block;
   max-width: 446px;
 }
 @media screen and (min-width: 768px) and (max-width: 1183px) {
