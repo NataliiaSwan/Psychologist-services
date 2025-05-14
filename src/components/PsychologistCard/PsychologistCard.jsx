@@ -122,12 +122,15 @@ const PsychologistCard = ({
             >
               Make an appointment
             </button>
-            <AppointmentModal
-              isOpen={isModalOpen}
-              onClose={() => setIsModalOpen(false)}
-              name={name}
-              avatar_url={avatar_url}
-            />
+
+            {isModalOpen && (
+              <AppointmentModal
+                isOpen={isModalOpen}
+                onClose={() => setIsModalOpen(false)}
+                name={name}
+                avatar_url={avatar_url}
+              />
+            )}
           </>
         )}
       </div>

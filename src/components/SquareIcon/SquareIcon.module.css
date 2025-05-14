@@ -35,12 +35,12 @@
   height: 40px;
   background-color: #fbc75e;
   transform: rotate(12deg);
-  top: 9%;
-  right: -9%;
+  top: 26%;
+  right: -8%;
   position: absolute;
   border-radius: 10px;
 }
-@media screen and (min-width: 768px) {
+@media screen and (min-width: 1184px) {
   .iconboxYellow {
     width: 48px;
     height: 48px;

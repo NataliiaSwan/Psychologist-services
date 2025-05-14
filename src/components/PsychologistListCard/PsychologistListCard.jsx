@@ -10,8 +10,8 @@ const filterLabels = {
   ALL: "Show All",
   A_TO_Z: "A to Z",
   Z_TO_A: "Z to A",
-  PRICE_LOW: "Less than 10$",
-  PRICE_HIGH: "Greater than 10$",
+  PRICE_LOW: "Less than 150$",
+  PRICE_HIGH: "Greater than 150$",
   POPULAR: "Popular",
   NOT_POPULAR: "Not Popular",
 };
@@ -27,13 +27,13 @@ const applyFilter = (list, selectedFilter, experiencedFilter) => {
     case "Z_TO_A":
       return [...filteredList].sort((a, b) => b.name.localeCompare(a.name));
     case "PRICE_LOW":
-      return filteredList.filter((p) => p.price_per_hour < 10);
+      return filteredList.filter((p) => p.price_per_hour < 150);
     case "PRICE_HIGH":
-      return filteredList.filter((p) => p.price_per_hour >= 10);
+      return filteredList.filter((p) => p.price_per_hour >= 150);
     case "POPULAR":
-      return filteredList.filter((p) => p.rating >= 4);
+      return filteredList.filter((p) => p.rating >= 4.7);
     case "NOT_POPULAR":
-      return filteredList.filter((p) => p.rating < 4);
+      return filteredList.filter((p) => p.rating < 4.7);
     default:
       return filteredList;
   }

@@ -45,6 +45,9 @@ const HomePage = ({ user, setIsRegisterOpen, setIsLoginOpen }) => {
         <HeroSection
           onGetStarted={handleGetStarted}
           experiencedCount={experiencedCount}
+          user={user}
+          setIsLoginOpen={setIsLoginOpen}
+          setIsRegisterOpen={setIsRegisterOpen}
         />
       </div>
     </PageTransition>

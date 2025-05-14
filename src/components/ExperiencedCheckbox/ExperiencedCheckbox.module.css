@@ -1,20 +1,21 @@
 .checkboxcontainer {
   position: absolute;
-  top: 58%;
+  top: 71%;
   left: 12%;
   transform: translateX(-90px);
   padding: 0 20px;
 }
 @media screen and (min-width: 768px) {
   .checkboxcontainer {
-    left: 1%;
-    top: 62%;
+    left: 10%;
+    top: 70%;
   }
 }
 
 @media screen and (min-width: 1184px) {
   .checkboxcontainer {
     left: -6%;
+    top: 68%;
   }
 }
 .checkboxlabel {
@@ -29,8 +30,8 @@
 }
 @media screen and (min-width: 768px) {
   .checkboxlabel {
-    width: 260px;
-    height: 90px;
+    width: 289px;
+    height: 100px;
     gap: 16px;
   }
 }

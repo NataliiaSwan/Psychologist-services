@@ -9,14 +9,13 @@ const ExperiencedCheckbox = ({
     const checked = e.target.checked;
     onCheckboxChange(checked);
 
-    // Оновлюємо параметр в URL
     const params = new URLSearchParams(window.location.search);
     if (checked) {
       params.set("experienced", "true");
     } else {
       params.delete("experienced");
     }
-    window.history.pushState(null, "", "?" + params.toString()); // Оновлюємо URL
+    window.history.pushState(null, "", "?" + params.toString());
   };
 
   return (

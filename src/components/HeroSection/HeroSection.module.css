@@ -37,6 +37,10 @@
   .heroPage {
     font-size: 18px;
     margin-bottom: 40px;
+  }
+}
+@media screen and (min-width: 1184px) {
+  .heroPage {
     width: 510px;
   }
 }
@@ -82,7 +86,7 @@
   display: flex;
   flex-direction: column;
   align-items: center;
-  gap: 40px;
+  gap: 10px;
   padding: 0 16px;
   box-sizing: border-box;
 }
@@ -100,14 +104,13 @@
 .container {
   width: 100%;
   max-width: 100%;
-  padding-top: 48px;
+  padding-top: 78px;
   padding-bottom: 60px;
   text-align: center;
 }
 
 @media screen and (min-width: 768px) {
   .container {
-    max-width: 400px;
     text-align: left;
   }
 }
@@ -116,21 +119,23 @@
   .container {
     padding-top: 126px;
     padding-bottom: 140px;
-    max-width: 600px;
   }
 }
 
-/* Фото та обгортка */
 .heroImageWrapper {
   position: relative;
   width: 100%;
   max-width: 446px;
-  padding-bottom: 100px;
 }
-
-@media screen and (min-width: 768px) {
+@media screen and (min-width: 768px) and (max-width: 1183px) {
   .heroImageWrapper {
-    flex-shrink: 0;
+    padding-top: 78px;
+    max-width: 380px;
+  }
+}
+@media screen and (min-width: 1184px) {
+  .heroImageWrapper {
+    max-width: 446px;
     padding-top: 78px;
   }
 }
@@ -139,4 +144,15 @@
   width: 100%;
   height: auto;
   display: block;
+  max-width: 446px;
+}
+@media screen and (min-width: 768px) and (max-width: 1183px) {
+  .heroImages {
+    max-width: 380px;
+  }
+}
+@media screen and (min-width: 1184px) {
+  .heroImages {
+    max-width: 446px;
+  }
 }

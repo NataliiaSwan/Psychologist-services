@@ -31,8 +31,9 @@ const FavoritesPage = () => {
   };
 
   const filteredFavorites = useMemo(() => {
-    if (filter === "POPULAR") return favorites.filter((p) => p.rating >= 4);
-    if (filter === "NOT_POPULAR") return favorites.filter((p) => p.rating < 4);
+    if (filter === "POPULAR") return favorites.filter((p) => p.rating >= 4.7);
+    if (filter === "NOT_POPULAR")
+      return favorites.filter((p) => p.rating < 4.7);
     return favorites;
   }, [favorites, filter]);
 

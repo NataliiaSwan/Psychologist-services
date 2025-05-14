@@ -6,7 +6,12 @@ import sprite from "../../assets/icons/sprite.svg";
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 
-const HeroSection = ({ experiencedCount }) => {
+const HeroSection = ({
+  experiencedCount,
+  user,
+  setIsLoginOpen,
+  setIsRegisterOpen,
+}) => {
   const navigate = useNavigate();
   const [isExperiencedChecked, setIsExperiencedChecked] = useState(false);
 
@@ -15,11 +20,22 @@ const HeroSection = ({ experiencedCount }) => {
   };
 
   const handleStart = () => {
-    const params = new URLSearchParams();
-    if (isExperiencedChecked) {
-      params.set("experienced", "true");
+    const isRegistered = localStorage.getItem("isRegistered") === "true";
+
+    if (user) {
+      const params = new URLSearchParams();
+      if (isExperiencedChecked) {
+        params.set("experienced", "true");
+      }
+      navigate(`/psychologists?${params.toString()}`);
+      return;
     }
-    navigate(`/psychologists?${params.toString()}`);
+
+    if (isRegistered) {
+      setIsLoginOpen(true);
+      return;
+    }
+    setIsRegisterOpen(true);
   };
 
   return (
