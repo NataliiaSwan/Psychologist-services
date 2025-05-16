@@ -26,6 +26,17 @@ function AppContent() {
   const [redirectAfterLogin, setRedirectAfterLogin] = useState(null);
 
   useEffect(() => {
+    if (isLoginOpen || isRegisterOpen) {
+      document.body.classList.add("no-scroll");
+    } else {
+      document.body.classList.remove("no-scroll");
+    }
+    return () => {
+      document.body.classList.remove("no-scroll");
+    };
+  }, [isLoginOpen, isRegisterOpen]);
+
+  useEffect(() => {
     const timer = setTimeout(() => setShowInitialLoader(false), 2000);
     return () => clearTimeout(timer);
   }, []);
@@ -44,9 +55,8 @@ function AppContent() {
       const user = result.user;
       const favorites = await getFavorites(user.uid);
       localStorage.setItem("favorites", JSON.stringify(favorites));
-      // Перенесено navigate і закриття модалки в useEffect
     } else {
-      alert(`Помилка входу: ${result.message}`);
+      alert(`Login error: ${result.message}`);
     }
   };
 
@@ -58,8 +68,8 @@ function AppContent() {
       navigate("/psychologists");
     } else {
       const msg = result.message.includes("email-already-in-use")
-        ? "Ця електронна адреса вже використовується."
-        : `Помилка реєстрації: ${result.message}`;
+        ? "This email address is already in use."
+        : `Registration error: ${result.message}`;
       alert(msg);
     }
   };
