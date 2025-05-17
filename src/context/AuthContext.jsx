@@ -46,7 +46,6 @@ export const AuthProvider = ({ children }) => {
     try {
       await logOut();
       setUser(null);
-      localStorage.removeItem("favorites");
     } catch (error) {
       console.error("Logout error:", error.message);
     }

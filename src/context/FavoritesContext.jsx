@@ -28,17 +28,21 @@ export const FavoritesProvider = ({ children }) => {
   }, [user]);
 
   const addFavorite = async (psychologist) => {
-    if (!user) return;
-    await addToFavorites(user.uid, psychologist);
-    const updated = [...favorites, psychologist];
+    let updated;
+    if (user) {
+      await addToFavorites(user.uid, psychologist);
+    }
+    updated = [...favorites, psychologist];
     setFavorites(updated);
     localStorage.setItem("favorites", JSON.stringify(updated));
   };
 
   const removeFavorite = async (psychologistId) => {
-    if (!user) return;
-    await removeFromFavorites(user.uid, psychologistId);
-    const updated = favorites.filter((fav) => fav.id !== psychologistId);
+    let updated;
+    if (user) {
+      await removeFromFavorites(user.uid, psychologistId);
+    }
+    updated = favorites.filter((fav) => fav.id !== psychologistId);
     setFavorites(updated);
     localStorage.setItem("favorites", JSON.stringify(updated));
   };
@@ -53,5 +57,4 @@ export const FavoritesProvider = ({ children }) => {
     </FavoritesContext.Provider>
   );
 };
-
 export const useFavorites = () => useContext(FavoritesContext);
