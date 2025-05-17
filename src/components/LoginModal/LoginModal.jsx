@@ -2,7 +2,7 @@ import { useForm } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
 import * as yup from "yup";
 import css from "./LoginModal.module.css";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import ReactDOM from "react-dom";
 
 const schema = yup.object().shape({
@@ -28,6 +28,17 @@ const LoginModal = ({ onClose, onLogin, redirectAfterLogin }) => {
   } = useForm({
     resolver: yupResolver(schema),
   });
+
+  // 🔒 Блокування скролу
+  useEffect(() => {
+    document.documentElement.classList.add("no-scroll");
+    document.body.classList.add("no-scroll");
+
+    return () => {
+      document.documentElement.classList.remove("no-scroll");
+      document.body.classList.remove("no-scroll");
+    };
+  }, []);
 
   const handleClose = () => {
     reset();

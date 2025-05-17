@@ -71,9 +71,10 @@ hr {
   margin: 0;
 }
 
-.no-scroll {
-  overflow: hidden;
-}
-html {
+/* html {
   overflow-y: scroll;
+} */
+html.no-scroll,
+body.no-scroll {
+  overflow: hidden;
 }
