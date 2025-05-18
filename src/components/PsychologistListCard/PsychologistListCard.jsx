@@ -5,6 +5,7 @@ import PsychologistCard from "../../components/PsychologistCard/PsychologistCard
 import FilterComponent from "../../components/FilterComponent/FilterComponent.jsx";
 import FilterToggleButton from "../../components/FilterToggleButton/FilterToggleButton.jsx";
 import css from "./PsychologistListCard.module.css";
+import Loader from "../../components/Loader/Loader.jsx";
 
 const filterLabels = {
   ALL: "Show All",
@@ -107,7 +108,7 @@ const PsychologistListCard = () => {
       </div>
 
       {isLoading ? (
-        <p className={css.loading}>Loading psychologists...</p>
+        <Loader />
       ) : (
         <>
           <div className={css.psychologistListContainer}>
