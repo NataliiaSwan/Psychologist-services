@@ -95,9 +95,9 @@
 @media screen and (min-width: 768px) {
   .heroSection {
     flex-direction: row;
-    align-items: flex-start;
+
     justify-content: space-between;
-    padding: 0;
+    padding: 78px 0;
     gap: 125px;
   }
 }
@@ -105,21 +105,12 @@
 .container {
   width: 100%;
   max-width: 100%;
-  padding-top: 78px;
-  padding-bottom: 60px;
   text-align: center;
 }
 
 @media screen and (min-width: 768px) {
   .container {
     text-align: left;
-  }
-}
-
-@media screen and (min-width: 1184px) {
-  .container {
-    padding-top: 126px;
-    padding-bottom: 140px;
   }
 }
 
@@ -130,17 +121,14 @@
 }
 @media screen and (min-width: 768px) and (max-width: 1183px) {
   .heroImageWrapper {
-    padding-top: 78px;
     max-width: 380px;
   }
 }
 @media screen and (min-width: 1184px) {
   .heroImageWrapper {
     max-width: 446px;
-    padding-top: 78px;
   }
 }
-
 .heroImages {
   display: block;
   width: 100%;

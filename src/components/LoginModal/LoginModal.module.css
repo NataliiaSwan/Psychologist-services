@@ -15,8 +15,9 @@
   position: relative;
   display: flex;
   flex-direction: column;
-  width: 90%;
-  max-width: 300px;
+  width: 90vw;
+  /* width: 90%; */
+  /* max-width: 300px; */
   background-color: #fbfbfb;
   padding: 22px;
   border-radius: 30px;
