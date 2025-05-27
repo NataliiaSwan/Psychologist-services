@@ -23,7 +23,6 @@ body {
   display: flex;
   flex-direction: column;
   min-width: 320px;
-
   background-color: var(--background-color);
   background-color: #f3f3f3;
   color: var(--text-color);

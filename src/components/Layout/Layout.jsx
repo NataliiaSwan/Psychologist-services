@@ -12,7 +12,7 @@ const Layout = ({ onLoginOpen, onRegisterOpen, user, onLogout }) => {
         onLogout={onLogout}
         onRegister={onRegisterOpen}
       />
-      <hr className={css.line} />
+      <hr />
       <main className={css.main}>
         <Outlet />
       </main>

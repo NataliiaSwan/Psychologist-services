@@ -1,15 +1,14 @@
-.main {
+/* .main {
   display: flex;
   flex-direction: column;
   justify-content: flex-start;
-
   width: 100%;
   max-width: 1184px;
   margin: 0 auto;
   box-sizing: border-box;
-  min-height: 100vh;
-}
-.line {
-  border: none;
+  min-height: 100%;
+} */
+hr {
+  /* border: none; */
   border: 1px solid #191a151a;
 }
